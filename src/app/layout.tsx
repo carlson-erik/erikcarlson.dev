@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-
-// Supports weights 100-900
-import "@fontsource-variable/raleway";
-import "../styles/globals.css";
+/* ------------------ Fonts ------------------ */
+import "@fontsource-variable/raleway"; // Supports weights 100-900
+/* ------------------ Global CSS Styles ------------------ */
+import "../styles/global.css";
+import "../styles/reset.css";
+/* ------------------ Components & Utils ------------------ */
+import StyledComponentsRegistry from "../lib/registry";
 
 export const metadata: Metadata = {
   title: "Home | Erik Carlson",
@@ -16,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </body>
     </html>
   );
 }

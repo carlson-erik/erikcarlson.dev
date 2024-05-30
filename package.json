@@ -12,7 +12,9 @@
     "@fontsource-variable/raleway": "^5.0.20",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-switch": "^7.0.0",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -2,10 +2,10 @@
 import PageLayout from "@/components/page-layout";
 import { ThemeProvider } from "@/theme/context";
 
-export default function HomePage() {
+export default function BlogPage() {
   return (
     <ThemeProvider>
-      <PageLayout>Home Page</PageLayout>
+      <PageLayout>Blog page</PageLayout>
     </ThemeProvider>
   );
 }

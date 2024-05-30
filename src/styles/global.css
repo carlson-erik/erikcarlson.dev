@@ -1,0 +1,18 @@
+html, body {
+  font-family: 'Raleway Variable', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 4rem 0 4rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  body  {
+    padding: 1rem;
+  }
+}
