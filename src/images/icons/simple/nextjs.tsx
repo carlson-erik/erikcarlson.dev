@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DevIcon, SocialIcon } from "../../styled";
 import { IconProps } from "../../types";
+import { ThemeContext } from "@/theme/context";
 
-const ICON_DEFAULT = "#64328B";
+const ICON_LIGHTPAGE = "#000000";
+const ICON_DARKPAGE = "#FFFFFF";
 
 const NextJS = (props: IconProps) => {
-  const { color, type } = props;
-  const fillColor = color && color !== "" ? color : ICON_DEFAULT;
+  const { type } = props;
+  const { theme } = useContext(ThemeContext);
   const Icon = type === "social" ? SocialIcon : DevIcon;
+  const fillColor = theme.name === 'Dark' ? ICON_DARKPAGE : ICON_LIGHTPAGE;
+  const fontColor = theme.name === 'Dark' ? '#000000' : '#FFFFFF'
   return (
     <Icon role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
       <mask
@@ -18,7 +22,7 @@ const NextJS = (props: IconProps) => {
         x="0"
         y="0"
       >
-        <circle cx="90" cy="90" fill={fillColor} r="90"></circle>
+        <circle cx="90" cy="90" fill='#FFFFFF' r="90"></circle>
       </mask>
       <g mask="url(#:r8:mask0_408_134)">
         <circle
@@ -49,8 +53,8 @@ const NextJS = (props: IconProps) => {
           y1="116.5"
           y2="160.5"
         >
-          <stop stop-color="white"></stop>
-          <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+          <stop stop-color={fontColor}></stop>
+          <stop offset="1" stop-color={fontColor} stop-opacity="0"></stop>
         </linearGradient>
         <linearGradient
           gradientUnits="userSpaceOnUse"
@@ -60,8 +64,8 @@ const NextJS = (props: IconProps) => {
           y1="54"
           y2="106.875"
         >
-          <stop stop-color="white"></stop>
-          <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+          <stop stop-color={fontColor}></stop>
+          <stop offset="1" stop-color={fontColor} stop-opacity="0"></stop>
         </linearGradient>
       </defs>
     </Icon>

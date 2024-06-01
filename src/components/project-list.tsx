@@ -354,9 +354,9 @@ const ProjectList = () => {
             </ProjectHeader>
             <DetailContainer largeContent>
               <Paragraph>
-                Using Gatsby and TypeScript, I built the very site you're using
+                Using Nextjs and TypeScript, I built the very site you're using
                 now. With this site, I want to show off the cool projects that
-                I've built and document my learning journey in a blog!
+                I've built and (eventually) document my learning journey in a blog!
               </Paragraph>
             </DetailContainer>
             <DetailContainer>
@@ -364,7 +364,7 @@ const ProjectList = () => {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    "gatsby",
+                    "nextjs",
                     "react",
                     "typescript",
                   ]}

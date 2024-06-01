@@ -62,7 +62,6 @@ const ICON_COLOR = "#F8F9FA";
 export default function ThemeSwitch() {
   const { theme, setTheme } = useContext(ThemeContext);
   const handleThemeChange = (nextChecked: boolean) => {
-    console.log("whats up");
     if (nextChecked) {
       setTheme(DarkTheme);
       window.sessionStorage.setItem(
