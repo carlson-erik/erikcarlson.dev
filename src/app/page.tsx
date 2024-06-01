@@ -19,7 +19,7 @@ const Paragraph = styled.p`
 `;
 
 const Introduction = styled.section`
-  padding-bottom 2rem;
+  padding-bottom: 2rem;
 `;
 
 export default function HomePage() {

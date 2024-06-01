@@ -132,12 +132,12 @@ export default function ExperiencePage() {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "typescript" },
-                    { type: "javascript" },
-                    { type: "react" },
-                    { type: "d3" },
-                    { type: "jest" },
-                    { type: "java" },
+                    "typescript",
+                    "javascript",
+                    "react",
+                    "d3",
+                    "jest",
+                    "java",
                   ]}
                 />
               </SkillListContainer>
@@ -196,12 +196,12 @@ export default function ExperiencePage() {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "typescript" },
-                    { type: "javascript" },
-                    { type: "react" },
-                    { type: "d3" },
-                    { type: "jest" },
-                    { type: "java" },
+                    "typescript",
+                    "javascript",
+                    "react",
+                    "d3",
+                    "jest",
+                    "java",
                   ]}
                 />
               </SkillListContainer>
@@ -214,7 +214,7 @@ export default function ExperiencePage() {
             </InformationContainer>
             <InformationContainer>
               <Business>Pegasystems</Business>
-              <Location>(Bedford, NH)</Location>
+              <Location>(Salem, NH)</Location>
             </InformationContainer>
             <InformationContainer flipFlexDirection>
               <div>
@@ -245,12 +245,12 @@ export default function ExperiencePage() {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "javascript" },
-                    { type: "react" },
-                    { type: "d3" },
-                    { type: "redux" },
-                    { type: "jest" },
-                    { type: "java" },
+                    "javascript",
+                    "react",
+                    "d3",
+                    "redux",
+                    "jest",
+                    "java",
                   ]}
                 />
               </SkillListContainer>
@@ -286,9 +286,9 @@ export default function ExperiencePage() {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "javascript" },
-                    { type: "css" },
-                    { type: "java" },
+                    "javascript",
+                    "css",
+                    "java",
                   ]}
                 />
               </SkillListContainer>
@@ -323,9 +323,9 @@ export default function ExperiencePage() {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "javascript" },
-                    { type: "css" },
-                    { type: "java" },
+                    "javascript",
+                    "css",
+                    "java",
                   ]}
                 />
               </SkillListContainer>

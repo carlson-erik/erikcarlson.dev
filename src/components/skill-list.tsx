@@ -23,6 +23,7 @@ import Github from "../images/icons/alt/github";
 import Rollup from "../images/icons/simple/rollup";
 import Webpack from "../images/icons/simple/webpack";
 import NextJS from "@/images/icons/simple/nextjs";
+import Icon, { IconType } from "./icon";
 
 const Container = styled.div`
   width: 100%;
@@ -31,7 +32,7 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const IconLink = styled(Link)<{ theme: Theme }>`
+const IconLink = styled(Link) <{ theme: Theme }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,52 +45,20 @@ const IconLink = styled(Link)<{ theme: Theme }>`
   }
 `;
 
-export type AltIconType = "github" | "nodejs" | "react";
-
-export type SimpleIconType =
-  | "css"
-  | "d3"
-  | "dev"
-  | "gatsby"
-  | "gmail"
-  | "java"
-  | "javascript"
-  | "jest"
-  | "nextjs"
-  | "redux"
-  | "rollup"
-  | "typescript"
-  | "webpack";
-
-export type IconType = AltIconType | SimpleIconType;
-
-export interface Icon {
-  type: IconType;
-  color?: string;
-  disableLink?: boolean;
-}
-
-export interface SimpleIcon extends Icon {
-  type: SimpleIconType;
-}
-
-export interface AltIcon extends Icon {
-  type: AltIconType;
-  useAlt?: boolean;
-}
+type Skill = IconType;
 
 export interface SkillListProps {
-  skills: IconType[];
+  skills: Skill[];
 }
 
-type IconDetails = {
+type SkillDetails = {
   component: (props: IconProps | AltIconProps) => JSX.Element;
   type: "simple" | "alt";
   title: string;
   url: string;
 };
 
-const ICON_MAP: Record<IconType, IconDetails> = {
+const ICON_MAP: Record<Skill, SkillDetails> = {
   css: {
     component: CSS,
     title: "CSS3",
@@ -188,41 +157,23 @@ const ICON_MAP: Record<IconType, IconDetails> = {
   },
 };
 
-interface IconComponentProps {}
-
-const IconComponent = (props: IconComponentProps) => (
-  <SkillCompInfo.component key={skill.type} {...skill} type="dev" />
-);
-
 const SkillList = (props: SkillListProps) => {
   const { skills } = props;
   const { theme } = useContext(ThemeContext);
   return (
     <Container>
       {skills.map((skill) => {
-        let SkillCompInfo: SkillLink;
-
-        // if (Object.keys(ALT_ICON_MAP).includes(skill.type)) {
-        //   SkillCompInfo = ALT_ICON_MAP[skill.type];
-        // } else {
-        //   SkillCompInfo = SIMPLE_ICON_MAP[skill.type];
-        // }
-        SkillCompInfo = ICON_MAP[skill.type];
-
-        if (skill.disableLink) {
-          return <IconComponent />;
-        }
-
+        const { url, title, component }: SkillDetails = ICON_MAP[skill];
         return (
           <IconLink
-            key={skill.type}
-            href={SkillCompInfo.url}
+            key={skill}
+            href={url}
             target="_blank"
             rel="noopener noreferrer"
-            title={SkillCompInfo.title}
+            title={title}
             theme={theme}
           >
-            {IconComponent}
+            <Icon iconType={skill} Component={component} />
           </IconLink>
         );
       })}

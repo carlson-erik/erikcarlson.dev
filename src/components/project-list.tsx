@@ -19,7 +19,7 @@ const ProjectRow = styled.div<{ reversed?: boolean }>`
 
   @media only screen and (max-width: 850px) {
     flex-direction: ${(props) =>
-      props.reversed ? "column-reverse" : "column"};
+    props.reversed ? "column-reverse" : "column"};
   }
 `;
 
@@ -170,10 +170,10 @@ const ProjectList = () => {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "react" },
-                    { type: "typescript" },
-                    { type: "jest" },
-                    { type: "rollup" },
+                    "react",
+                    "typescript",
+                    "jest",
+                    "rollup",
                   ]}
                 />
               </SkillListContainer>
@@ -236,9 +236,9 @@ const ProjectList = () => {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "react" },
-                    { type: "javascript" },
-                    { type: "redux" },
+                    "react",
+                    "javascript",
+                    "redux",
                   ]}
                 />
               </SkillListContainer>
@@ -279,9 +279,9 @@ const ProjectList = () => {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "react" },
-                    { type: "javascript" },
-                    { type: "typescript" },
+                    "react",
+                    "javascript",
+                    "typescript",
                   ]}
                 />
               </SkillListContainer>
@@ -322,9 +322,9 @@ const ProjectList = () => {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "react" },
-                    { type: "javascript" },
-                    { type: "typescript" },
+                    "react",
+                    "javascript",
+                    "typescript",
                   ]}
                 />
               </SkillListContainer>
@@ -364,9 +364,9 @@ const ProjectList = () => {
               <SkillListContainer>
                 <SkillList
                   skills={[
-                    { type: "gatsby" },
-                    { type: "react" },
-                    { type: "typescript" },
+                    "gatsby",
+                    "react",
+                    "typescript",
                   ]}
                 />
               </SkillListContainer>

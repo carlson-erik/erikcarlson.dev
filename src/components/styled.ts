@@ -7,7 +7,7 @@ const Heading = styled.h2`
   padding-bottom: 0.5rem;
 `;
 
-const StyledLink = styled(Link)<{ hasIcon?: boolean }>`
+const StyledLink = styled(Link) <{ hasIcon?: boolean }>`
   ${(props) =>
     props.hasIcon
       ? `
@@ -22,7 +22,7 @@ const StyledLink = styled(Link)<{ hasIcon?: boolean }>`
 
 const Paragraph = styled.p`
   font-family: "Raleway", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.75rem;
 `;
 
