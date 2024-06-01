@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource-variable/raleway": "^5.0.20",
+    "@fontsource-variable/montserrat": "^5.0.19",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

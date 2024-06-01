@@ -222,7 +222,6 @@ const Header = () => {
         <Navigation theme={theme} showMobileMenu={showMobileMenu}>
           <NavigationLink href="/">Home</NavigationLink>
           <NavigationLink href="/experience">Experience</NavigationLink>
-          <NavigationLink href="/blog">Blog</NavigationLink>
         </Navigation>
         <Interactions>
           <SocialContainer>
