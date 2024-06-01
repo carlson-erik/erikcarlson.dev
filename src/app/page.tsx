@@ -6,6 +6,7 @@ import ProjectList from "../components/project-list";
 import { Heading, Link } from "../components/styled";
 /* ------------------ Theme ------------------ */
 import { ThemeProvider } from "@/theme/context";
+import { useEffect } from "react";
 
 const Paragraph = styled.p`
   font-family: "Raleway", sans-serif;
@@ -23,6 +24,9 @@ const Introduction = styled.section`
 `;
 
 export default function HomePage() {
+  useEffect(() => {
+    document.title = 'Home | Erik Carlson'
+  }, []);
   return (
     <ThemeProvider>
       <PageLayout>

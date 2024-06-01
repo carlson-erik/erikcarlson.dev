@@ -6,6 +6,7 @@ import PageLayout from "@/components/page-layout";
 import { ThemeProvider } from "@/theme/context";
 import SkillList from "@/components/skill-list";
 import { Heading } from "@/components/styled";
+import { useEffect } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -70,6 +71,9 @@ const SkillListContainer = styled.div`
 `;
 
 export default function ExperiencePage() {
+  useEffect(() => {
+    document.title = 'Experience | Erik Carlson'
+  }, []);
   return (
     <ThemeProvider>
       <PageLayout>
