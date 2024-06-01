@@ -1,10 +1,10 @@
 "use client";
-import PageLayout from "@/components/page-layout";
 import styled from "styled-components";
-
+/* ------------------ Components ------------------ */
+import PageLayout from "@/components/page-layout";
 import ProjectList from "../components/project-list";
 import { Heading, Link } from "../components/styled";
-
+/* ------------------ Theme ------------------ */
 import { ThemeProvider } from "@/theme/context";
 
 const Paragraph = styled.p`

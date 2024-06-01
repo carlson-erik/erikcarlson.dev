@@ -22,6 +22,7 @@ import ReactIcon from "../images/icons/alt/react";
 import Github from "../images/icons/alt/github";
 import Rollup from "../images/icons/simple/rollup";
 import Webpack from "../images/icons/simple/webpack";
+import NextJS from "@/images/icons/simple/nextjs";
 
 const Container = styled.div`
   width: 100%;
@@ -54,9 +55,10 @@ export type SimpleIconType =
   | "java"
   | "javascript"
   | "jest"
-  | "typescript"
+  | "nextjs"
   | "redux"
   | "rollup"
+  | "typescript"
   | "webpack";
 
 export type IconType = AltIconType | SimpleIconType;
@@ -77,95 +79,120 @@ export interface AltIcon extends Icon {
 }
 
 export interface SkillListProps {
-  skills: (AltIcon | SimpleIcon)[];
+  skills: IconType[];
 }
 
-type SkillLink = {
+type IconDetails = {
   component: (props: IconProps | AltIconProps) => JSX.Element;
+  type: "simple" | "alt";
   title: string;
   url: string;
 };
 
-const SIMPLE_ICON_MAP: Record<SimpleIconType, SkillLink> = {
+const ICON_MAP: Record<IconType, IconDetails> = {
   css: {
     component: CSS,
     title: "CSS3",
+    type: "simple",
     url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
   },
   d3: {
     component: D3,
     title: "D3.js",
+    type: "simple",
     url: "https://d3js.org/",
   },
   dev: {
     component: Dev,
     title: "dev.to",
+    type: "simple",
     url: "https://dev.to/",
   },
   gatsby: {
     component: Gatsby,
     title: "Gatsby.js",
+    type: "simple",
     url: "https://www.gatsbyjs.com/",
   },
   gmail: {
     component: Gmail,
     title: "Google's gmail",
+    type: "simple",
     url: "https://www.google.com/gmail/about/",
   },
   java: {
     component: Java,
     title: "Oracle Java",
+    type: "simple",
     url: "https://www.java.com/en/",
   },
   javascript: {
     component: JavaScript,
     title: "JavaScript",
+    type: "simple",
     url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   jest: {
     component: Jest,
     title: "Jest.js",
+    type: "simple",
     url: "https://jestjs.io/",
+  },
+  nextjs: {
+    component: NextJS,
+    title: "Next.js",
+    type: "simple",
+    url: "https://nextjs.org/",
   },
   typescript: {
     component: TypeScript,
     title: "TypeScript",
+    type: "simple",
     url: "https://www.typescriptlang.org/",
   },
   redux: {
     component: Redux,
     title: "Redux.js",
+    type: "simple",
     url: "https://redux.js.org/",
   },
   rollup: {
     component: Rollup,
     title: "rollup.js",
+    type: "simple",
     url: "https://rollupjs.org/",
   },
   webpack: {
     component: Webpack,
     title: "Webpack",
+    type: "simple",
     url: "https://webpack.js.org/",
   },
-};
-
-const ALT_ICON_MAP: Record<AltIconType, SkillLink> = {
   github: {
     component: Github,
     title: "Github",
+    type: "alt",
     url: "https://github.com/",
   },
   nodejs: {
     component: NodeJS,
     title: "Node.js",
+    type: "alt",
     url: "https://nodejs.org/en/",
   },
   react: {
     component: ReactIcon,
     title: "React.js",
+    type: "alt",
     url: "https://reactjs.org/",
   },
 };
+
+interface IconComponentProps {}
+
+const IconComponent = (props: IconComponentProps) => (
+  <SkillCompInfo.component key={skill.type} {...skill} type="dev" />
+);
 
 const SkillList = (props: SkillListProps) => {
   const { skills } = props;
@@ -173,20 +200,17 @@ const SkillList = (props: SkillListProps) => {
   return (
     <Container>
       {skills.map((skill) => {
-        let SkillCompInfo;
+        let SkillCompInfo: SkillLink;
 
-        if (Object.keys(ALT_ICON_MAP).includes(skill.type)) {
-          SkillCompInfo = ALT_ICON_MAP[skill.type];
-        } else {
-          SkillCompInfo = SIMPLE_ICON_MAP[skill.type];
-        }
-
-        const IconComponent = (
-          <SkillCompInfo.component key={skill.type} {...skill} type="dev" />
-        );
+        // if (Object.keys(ALT_ICON_MAP).includes(skill.type)) {
+        //   SkillCompInfo = ALT_ICON_MAP[skill.type];
+        // } else {
+        //   SkillCompInfo = SIMPLE_ICON_MAP[skill.type];
+        // }
+        SkillCompInfo = ICON_MAP[skill.type];
 
         if (skill.disableLink) {
-          return IconComponent;
+          return <IconComponent />;
         }
 
         return (

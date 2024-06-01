@@ -4,7 +4,7 @@ import "@fontsource-variable/raleway"; // Supports weights 100-900
 /* ------------------ Global CSS Styles ------------------ */
 import "../styles/global.css";
 import "../styles/reset.css";
-/* ------------------ Components & Utils ------------------ */
+/* ------------------ Utils ------------------ */
 import StyledComponentsRegistry from "../lib/registry";
 
 export const metadata: Metadata = {
