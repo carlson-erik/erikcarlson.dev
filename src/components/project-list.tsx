@@ -19,7 +19,7 @@ const ProjectRow = styled.div<{ reversed?: boolean }>`
 
   @media only screen and (max-width: 850px) {
     flex-direction: ${(props) =>
-    props.reversed ? "column-reverse" : "column"};
+      props.reversed ? "column-reverse" : "column"};
   }
 `;
 
@@ -168,14 +168,7 @@ const ProjectList = () => {
             <DetailContainer>
               <DetailLabel>Technologies:</DetailLabel>
               <SkillListContainer>
-                <SkillList
-                  skills={[
-                    "react",
-                    "typescript",
-                    "jest",
-                    "rollup",
-                  ]}
-                />
+                <SkillList skills={["react", "typescript", "jest", "rollup"]} />
               </SkillListContainer>
             </DetailContainer>
           </ContentContainer>
@@ -234,13 +227,7 @@ const ProjectList = () => {
             <DetailContainer>
               <DetailLabel>Technologies:</DetailLabel>
               <SkillListContainer>
-                <SkillList
-                  skills={[
-                    "react",
-                    "javascript",
-                    "redux",
-                  ]}
-                />
+                <SkillList skills={["react", "javascript", "redux"]} />
               </SkillListContainer>
             </DetailContainer>
           </Project>
@@ -277,13 +264,7 @@ const ProjectList = () => {
             <DetailContainer>
               <DetailLabel>Technologies:</DetailLabel>
               <SkillListContainer>
-                <SkillList
-                  skills={[
-                    "react",
-                    "javascript",
-                    "typescript",
-                  ]}
-                />
+                <SkillList skills={["react", "javascript", "typescript"]} />
               </SkillListContainer>
             </DetailContainer>
           </Project>
@@ -320,23 +301,17 @@ const ProjectList = () => {
             <DetailContainer>
               <DetailLabel>Technologies:</DetailLabel>
               <SkillListContainer>
-                <SkillList
-                  skills={[
-                    "react",
-                    "javascript",
-                    "typescript",
-                  ]}
-                />
+                <SkillList skills={["react", "javascript", "typescript"]} />
               </SkillListContainer>
             </DetailContainer>
           </Project>
           <Project id="portfolio" theme={theme}>
             <ProjectHeader>
-              <ProjectName>This Portfolio!</ProjectName>
+              <ProjectName>This Site!</ProjectName>
               <ProjectLinks>
                 <IconLink
                   key="project-github"
-                  href="https://github.com/carlson-erik/carlson-erik.github.io"
+                  href="https://github.com/carlson-erik/erikcarlson.dev"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="componentry github repo"
@@ -356,19 +331,14 @@ const ProjectList = () => {
               <Paragraph>
                 Using Nextjs and TypeScript, I built the very site you're using
                 now. With this site, I want to show off the cool projects that
-                I've built and (eventually) document my learning journey in a blog!
+                I've built and (eventually) document my learning journey in a
+                blog!
               </Paragraph>
             </DetailContainer>
             <DetailContainer>
               <DetailLabel>Technologies:</DetailLabel>
               <SkillListContainer>
-                <SkillList
-                  skills={[
-                    "nextjs",
-                    "react",
-                    "typescript",
-                  ]}
-                />
+                <SkillList skills={["nextjs", "react", "typescript"]} />
               </SkillListContainer>
             </DetailContainer>
           </Project>
