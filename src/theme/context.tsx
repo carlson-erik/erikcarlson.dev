@@ -5,29 +5,29 @@ import { Theme, ThemeContextType, ThemeNames } from "./types";
 
 const useThemeDetector = () => {
   const getCurrentTheme = () => {
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       return false;
     } else {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
   };
   const [isDarkTheme, setIsDarkTheme] = useState(getCurrentTheme());
-  const mqListener = (e => {
+  const mqListener = (e: any) => {
     setIsDarkTheme(e.matches);
-  });
+  };
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
     const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    darkThemeMq.addEventListener('change', mqListener);
-    return () => darkThemeMq.removeEventListener('change', mqListener);
+    darkThemeMq.addEventListener("change", mqListener);
+    return () => darkThemeMq.removeEventListener("change", mqListener);
   }, []);
   return isDarkTheme;
-}
+};
 
 const ThemeContext = createContext<ThemeContextType>({
   theme: LightTheme,
-  setTheme: () => { },
+  setTheme: () => {},
 });
 
 interface ThemeProviderProps {
@@ -55,15 +55,23 @@ const ThemeProvider = (props: ThemeProviderProps) => {
       if (storedThemeName) {
         // This site has already loaded before and/or the user has changed the theme manually.
         // Use the stored theme.
-        setActiveTheme(storedThemeName === ThemeNames.LIGHT ? LightTheme : DarkTheme);
+        setActiveTheme(
+          storedThemeName === ThemeNames.LIGHT ? LightTheme : DarkTheme
+        );
       } else if (isUserOSDarkTheme) {
         // Match the User's Operating System by setting to Dark mode
-        setActiveTheme(DarkTheme)
-        window.sessionStorage.setItem("erikcarlson.dev-theme-name", DarkTheme.name)
+        setActiveTheme(DarkTheme);
+        window.sessionStorage.setItem(
+          "erikcarlson.dev-theme-name",
+          DarkTheme.name
+        );
       } else {
         // Default to Light Theme
-        setActiveTheme(LightTheme)
-        window.sessionStorage.setItem("erikcarlson.dev-theme-name", LightTheme.name)
+        setActiveTheme(LightTheme);
+        window.sessionStorage.setItem(
+          "erikcarlson.dev-theme-name",
+          LightTheme.name
+        );
       }
     }
   }, [activeTheme, isUserOSDarkTheme]);
