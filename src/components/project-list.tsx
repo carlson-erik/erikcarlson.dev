@@ -56,7 +56,7 @@ const Project = styled.div<{ theme: Theme }>`
   gap: 0.5rem;
   background-color: ${(props) => props.theme.colors.projectList.background};
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     width: 100%;
     flex-basis: 100%;
   }
@@ -72,13 +72,13 @@ const ProjectLinks = styled.div`
   justify-content: flex-end;
 `;
 
-const DetailContainer = styled.div<{ largeContent?: boolean }>`
+const DetailContainer = styled.div<{ $largeContent?: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
 
   ${(props) =>
-    props.largeContent
+    props.$largeContent
       ? `
         flex-direction: column;
         align-items: unset;
@@ -156,7 +156,7 @@ const ProjectList = () => {
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer largeContent>
+            <DetailContainer $largeContent>
               <Paragraph>
                 ElasticEditor allows developers to include modifiable rich
                 content in their React projects. At the core of ElasticEditor is
@@ -214,7 +214,7 @@ const ProjectList = () => {
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer largeContent>
+            <DetailContainer $largeContent>
               <Paragraph>
                 Coddit is a web application that renders Reddit as if it were
                 code. Coddit allows users to take advantage features such as
@@ -253,7 +253,7 @@ const ProjectList = () => {
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer largeContent>
+            <DetailContainer $largeContent>
               <Paragraph>
                 Often I come across interesting React Component ideas on design
                 websites. When I find something that challenges or inspires me,
@@ -290,7 +290,7 @@ const ProjectList = () => {
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer largeContent>
+            <DetailContainer $largeContent>
               <Paragraph>
                 Often I come across interesting Website ideas on design
                 websites. When I find something that challenges or inspires me,
@@ -327,7 +327,7 @@ const ProjectList = () => {
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer largeContent>
+            <DetailContainer $largeContent>
               <Paragraph>
                 Using Nextjs and TypeScript, I built the very site you're using
                 now. With this site, I want to show off the cool projects that

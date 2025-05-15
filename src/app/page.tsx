@@ -25,7 +25,7 @@ const Introduction = styled.section`
 
 export default function HomePage() {
   useEffect(() => {
-    document.title = 'Home | Erik Carlson'
+    document.title = "Home | Erik Carlson";
   }, []);
   return (
     <ThemeProvider>
@@ -56,15 +56,9 @@ export default function HomePage() {
           </Paragraph>
           <Paragraph>
             I specialize in designing and creating Frontend solutions with
-            React.js, and TypeScript. I have expertise in building Backend
-            technologies. I like to build cool things and learn from the
-            experience.
-          </Paragraph>
-          <Paragraph>
-            By now you're saying,{" "}
-            <em>"Hey, can this guy actually do what he says?"</em> My projects
-            and <Link href="/experience">past work experience</Link> speak for
-            themselves!
+            React.js, and TypeScript. Although, I have expertise in building
+            Backend technologies. I like to build cool things and learn from the
+            experience. Check out my projects to see that process!
           </Paragraph>
         </Introduction>
         <ProjectList />

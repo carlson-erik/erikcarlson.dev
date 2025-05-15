@@ -17,7 +17,7 @@ const Interactions = styled.div`
   flex-grow: 1;
   justify-content: flex-end;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     flex-direction: row;
     justify-content: unset;
   }
@@ -29,7 +29,7 @@ const Container = styled.header<{ theme: Theme }>`
   border-bottom: 1px solid ${(props) => props.theme.colors.borderLine};
   margin-bottom: 1rem;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -51,7 +51,7 @@ const TitleContainer = styled.div`
   align-items: center;
 
   & img {
-    border-radius: 3rem;
+    border-radius: 6rem;
   }
 
   @media only screen and (max-width: 350px) {
@@ -75,19 +75,19 @@ const Title = styled.h1`
   }
 `;
 
-const NavigationContainer = styled.div<{ showMobileMenu: boolean }>`
+const NavigationContainer = styled.div<{ $showMobileMenu: boolean }>`
   display: flex;
-  margin-left: 5rem;
+  padding-left: 7rem;
 
   @media only screen and (max-width: 1000px) {
-    margin: 0;
+    padding-left: 7rem;
   }
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     flex-direction: column;
     width: 100%;
     padding-top: 0;
-    padding-left: 5rem;
+    padding-left: 7rem;
   }
 
   @media only screen and (max-width: 350px) {
@@ -95,7 +95,7 @@ const NavigationContainer = styled.div<{ showMobileMenu: boolean }>`
   }
 `;
 
-const Navigation = styled.nav<{ showMobileMenu: boolean; theme: Theme }>`
+const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
   display: flex;
   margin: 0;
   padding: 0;
@@ -110,14 +110,14 @@ const Navigation = styled.nav<{ showMobileMenu: boolean; theme: Theme }>`
   }
 
   ${(props) =>
-    !props.showMobileMenu
+    !props.$showMobileMenu
       ? `
-        @media only screen and (max-width: 625px) {
+        @media only screen and (max-width: 650px) {
           display: none;
         }
       `
       : `
-        @media only screen and (max-width: 625px) {
+        @media only screen and (max-width: 650px) {
           flex-direction: column;
           border-top: 1px solid ${props.theme.colors.borderLine};
           border-bottom: 1px solid ${props.theme.colors.borderLine};
@@ -151,7 +151,7 @@ const ThemeSwitchContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     flex-grow: 1;
     height: 100%;
     justify-content: flex-end;
@@ -177,7 +177,7 @@ const SocialLink = styled.a`
 const MenuIconContainer = styled.div`
   display: none;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     display: flex;
     padding: 0 0.5rem 0 0.5rem;
   }
@@ -189,7 +189,7 @@ const MenuIcon = styled.svg`
 `;
 
 const Header = () => {
-  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+  const [$showMobileMenu, set$showMobileMenu] = useState<boolean>(false);
   const { theme } = useContext(ThemeContext);
   return (
     <Container theme={theme}>
@@ -198,15 +198,17 @@ const Header = () => {
           <TitleContainer>
             <Image
               src={profilePic}
-              width={64}
-              height={64}
+              width={96}
+              height={96}
               alt="erik carlson portfolio picture"
             />
             <Title>Erik Carlson</Title>
           </TitleContainer>
         </StyledTitleLink>
         <ActionContainer>
-          <MenuIconContainer onClick={() => setShowMobileMenu(!showMobileMenu)}>
+          <MenuIconContainer
+            onClick={() => set$showMobileMenu(!$showMobileMenu)}
+          >
             <MenuIcon
               xmlns="http://www.w3.org/2000/svg"
               viewBox="-5 -7 24 24"
@@ -218,8 +220,8 @@ const Header = () => {
           </MenuIconContainer>
         </ActionContainer>
       </TitleRowContainer>
-      <NavigationContainer showMobileMenu={showMobileMenu}>
-        <Navigation theme={theme} showMobileMenu={showMobileMenu}>
+      <NavigationContainer $showMobileMenu={$showMobileMenu}>
+        <Navigation theme={theme} $showMobileMenu={$showMobileMenu}>
           <NavigationLink href="/">Home</NavigationLink>
           <NavigationLink href="/experience">Experience</NavigationLink>
         </Navigation>

@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import Switch from "react-switch";
+import React, { useCallback, useContext } from "react";
 import styled from "styled-components";
 /* -------- Themes -------- */
 import { ThemeContext } from "../../theme/context";
@@ -8,17 +7,21 @@ import LightTheme from "../../theme/light-theme";
 /* -------- Types -------- */
 import { ThemeNames } from "../../theme/types";
 
-const IconWrapper = styled.span`
-  height: 28px;
-  width: 30px;
+const IconWrapper = styled.span<{ $hoverColor: string }>`
+  height: 40px;
+  width: 40px;
   display: flex;
+  border-radius: 4px;
   align-items: center;
   justify-content: center;
+  &:hover {
+    background-color: ${(props) => props.$hoverColor};
+  }
 `;
 
 const SolidIcon = styled.svg`
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
 `;
 
 interface IconProps {
@@ -55,43 +58,34 @@ function DayIcon(props: IconProps) {
   );
 }
 
-const ON_COLOR = "#0F62D7";
-const OFF_COLOR = "#A9AEB7";
-const ICON_COLOR = "#F8F9FA";
-
 export default function ThemeSwitch() {
   const { theme, setTheme } = useContext(ThemeContext);
-  const handleThemeChange = (nextChecked: boolean) => {
-    if (nextChecked) {
-      setTheme(DarkTheme);
-      window.sessionStorage.setItem(
-        "erikcarlson.dev-theme-name",
-        DarkTheme.name
-      );
-    } else {
+  const handleThemeChange = useCallback(() => {
+    if (theme.name === ThemeNames.DARK) {
       setTheme(LightTheme);
       window.sessionStorage.setItem(
         "erikcarlson.dev-theme-name",
         LightTheme.name
       );
+    } else {
+      setTheme(DarkTheme);
+      window.sessionStorage.setItem(
+        "erikcarlson.dev-theme-name",
+        DarkTheme.name
+      );
     }
-  };
+  }, [theme, setTheme]);
+
   return (
-    <Switch
-      onChange={handleThemeChange}
-      checked={theme.name === ThemeNames.DARK}
-      onColor={ON_COLOR}
-      offColor={OFF_COLOR}
-      checkedIcon={
-        <IconWrapper>
-          <NightIcon color={ICON_COLOR} />
-        </IconWrapper>
-      }
-      uncheckedIcon={
-        <IconWrapper>
-          <DayIcon color={ICON_COLOR} />
-        </IconWrapper>
-      }
-    />
+    <IconWrapper
+      onClick={handleThemeChange}
+      $hoverColor={theme.colors.link.iconHover}
+    >
+      {theme.name === ThemeNames.DARK ? (
+        <NightIcon color={theme.colors.text} />
+      ) : (
+        <DayIcon color={theme.colors.text} />
+      )}
+    </IconWrapper>
   );
 }

@@ -26,14 +26,14 @@ const DetailContainer = styled.div`
 `;
 
 const InformationContainer = styled.div<{
-  flipFlexDirection?: boolean;
-  noPadding?: boolean;
+  $flipFlexDirection?: boolean;
+  $noPadding?: boolean;
 }>`
-  padding-left: ${(props) => (props.noPadding ? "" : "1.5rem")};
+  padding-left: ${(props) => (props.$noPadding ? "" : "1.5rem")};
   display: flex;
   width: 100%;
-  flex-direction: ${(props) => (props.flipFlexDirection ? "column" : "row")};
-  ${(props) => (!props.flipFlexDirection ? "align-items: center;" : "")}
+  flex-direction: ${(props) => (props.$flipFlexDirection ? "column" : "row")};
+  ${(props) => (!props.$flipFlexDirection ? "align-items: center;" : "")}
 `;
 
 const Title = styled.div`
@@ -72,7 +72,7 @@ const SkillListContainer = styled.div`
 
 export default function ExperiencePage() {
   useEffect(() => {
-    document.title = 'Experience | Erik Carlson'
+    document.title = "Experience | Erik Carlson";
   }, []);
   return (
     <ThemeProvider>
@@ -80,7 +80,7 @@ export default function ExperiencePage() {
         <Container>
           <Heading>Job Experience</Heading>
           <DetailContainer>
-            <InformationContainer noPadding>
+            <InformationContainer $noPadding>
               <Title>Principal Software Engineer</Title>
               <Duration>'24 - Present</Duration>
             </InformationContainer>
@@ -88,7 +88,7 @@ export default function ExperiencePage() {
               <Business>Pegasystems</Business>
               <Location>(Remote)</Location>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <div>
                 This role includes responsbilities such as the following:
               </div>
@@ -115,7 +115,7 @@ export default function ExperiencePage() {
                 </li>
               </BulletList>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <Label>Security Champion</Label>
               <BulletList>
                 <li>
@@ -148,7 +148,7 @@ export default function ExperiencePage() {
             </InformationContainer>
           </DetailContainer>
           <DetailContainer>
-            <InformationContainer noPadding>
+            <InformationContainer $noPadding>
               <Title>Senior Software Engineer</Title>
               <Duration>'21 - '24</Duration>
             </InformationContainer>
@@ -156,7 +156,7 @@ export default function ExperiencePage() {
               <Business>Pegasystems</Business>
               <Location>(Remote)</Location>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <div>
                 This role included responsbilities such as the following:
               </div>
@@ -179,7 +179,7 @@ export default function ExperiencePage() {
                 </li>
               </BulletList>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <Label>Security Champion</Label>
               <BulletList>
                 <li>
@@ -212,7 +212,7 @@ export default function ExperiencePage() {
             </InformationContainer>
           </DetailContainer>
           <DetailContainer>
-            <InformationContainer noPadding>
+            <InformationContainer $noPadding>
               <Title>Software Engineer</Title>
               <Duration>'19 - '20</Duration>
             </InformationContainer>
@@ -220,7 +220,7 @@ export default function ExperiencePage() {
               <Business>Pegasystems</Business>
               <Location>(Salem, NH)</Location>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <div>
                 This role included responsbilities such as the following:
               </div>
@@ -261,7 +261,7 @@ export default function ExperiencePage() {
             </InformationContainer>
           </DetailContainer>
           <DetailContainer>
-            <InformationContainer noPadding>
+            <InformationContainer $noPadding>
               <Title>Associate Software Engineer</Title>
               <Duration>'17 - '19</Duration>
             </InformationContainer>
@@ -269,7 +269,7 @@ export default function ExperiencePage() {
               <Business>Pegasystems</Business>
               <Location>(Bedford, NH)</Location>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <div>
                 This role included responsbilities such as the following:
               </div>
@@ -288,18 +288,12 @@ export default function ExperiencePage() {
             <InformationContainer>
               <Label>Relevant technologies:</Label>
               <SkillListContainer>
-                <SkillList
-                  skills={[
-                    "javascript",
-                    "css",
-                    "java",
-                  ]}
-                />
+                <SkillList skills={["javascript", "css", "java"]} />
               </SkillListContainer>
             </InformationContainer>
           </DetailContainer>
           <DetailContainer>
-            <InformationContainer noPadding>
+            <InformationContainer $noPadding>
               <Title>Software Engineer Intern</Title>
               <Duration>Summer '16</Duration>
             </InformationContainer>
@@ -307,7 +301,7 @@ export default function ExperiencePage() {
               <Business>Pegasystems</Business>
               <Location>(Bedford, NH)</Location>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <div>
                 This role included responsbilities such as the following:
               </div>
@@ -325,18 +319,12 @@ export default function ExperiencePage() {
             <InformationContainer>
               <Label>Relevant technologies:</Label>
               <SkillListContainer>
-                <SkillList
-                  skills={[
-                    "javascript",
-                    "css",
-                    "java",
-                  ]}
-                />
+                <SkillList skills={["javascript", "css", "java"]} />
               </SkillListContainer>
             </InformationContainer>
           </DetailContainer>
           <DetailContainer>
-            <InformationContainer noPadding>
+            <InformationContainer $noPadding>
               <Title>IPSec and IKEv2 Technician</Title>
               <Duration>'14 - '16</Duration>
             </InformationContainer>
@@ -344,7 +332,7 @@ export default function ExperiencePage() {
               <Business>UNH Interoperability Lab</Business>
               <Location>(Durham, NH)</Location>
             </InformationContainer>
-            <InformationContainer flipFlexDirection>
+            <InformationContainer $flipFlexDirection>
               <div>
                 This role included responsbilities such as the following:
               </div>
