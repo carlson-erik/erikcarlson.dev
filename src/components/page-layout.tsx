@@ -12,7 +12,7 @@ const Container = styled.div<{ theme: Theme }>`
   max-width: 1000px;
   padding-bottom: 4rem;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     padding-right: 0;
     padding-left: 0;
     padding-bottom: 2rem;

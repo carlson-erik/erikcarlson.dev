@@ -56,7 +56,7 @@ const Project = styled.div<{ theme: Theme }>`
   gap: 0.5rem;
   background-color: ${(props) => props.theme.colors.projectList.background};
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     width: 100%;
     flex-basis: 100%;
   }

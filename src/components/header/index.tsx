@@ -17,7 +17,7 @@ const Interactions = styled.div`
   flex-grow: 1;
   justify-content: flex-end;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     flex-direction: row;
     justify-content: unset;
   }
@@ -29,7 +29,7 @@ const Container = styled.header<{ theme: Theme }>`
   border-bottom: 1px solid ${(props) => props.theme.colors.borderLine};
   margin-bottom: 1rem;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -77,17 +77,17 @@ const Title = styled.h1`
 
 const NavigationContainer = styled.div<{ $showMobileMenu: boolean }>`
   display: flex;
-  margin-left: 5rem;
+  padding-left: 7rem;
 
   @media only screen and (max-width: 1000px) {
-    margin: 0;
+    padding-left: 7rem;
   }
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     flex-direction: column;
     width: 100%;
     padding-top: 0;
-    padding-left: 5rem;
+    padding-left: 7rem;
   }
 
   @media only screen and (max-width: 350px) {
@@ -112,12 +112,12 @@ const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
   ${(props) =>
     !props.$showMobileMenu
       ? `
-        @media only screen and (max-width: 625px) {
+        @media only screen and (max-width: 650px) {
           display: none;
         }
       `
       : `
-        @media only screen and (max-width: 625px) {
+        @media only screen and (max-width: 650px) {
           flex-direction: column;
           border-top: 1px solid ${props.theme.colors.borderLine};
           border-bottom: 1px solid ${props.theme.colors.borderLine};
@@ -151,7 +151,7 @@ const ThemeSwitchContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     flex-grow: 1;
     height: 100%;
     justify-content: flex-end;
@@ -177,7 +177,7 @@ const SocialLink = styled.a`
 const MenuIconContainer = styled.div`
   display: none;
 
-  @media only screen and (max-width: 625px) {
+  @media only screen and (max-width: 650px) {
     display: flex;
     padding: 0 0.5rem 0 0.5rem;
   }
