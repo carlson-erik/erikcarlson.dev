@@ -9,12 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fontsource-variable/raleway": "^5.0.20",
-    "@fontsource-variable/montserrat": "^5.0.19",
+    "@fontsource-variable/raleway": "^5.2.5",
+    "@fontsource-variable/montserrat": "^5.2.5",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-switch": "^7.0.0",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
