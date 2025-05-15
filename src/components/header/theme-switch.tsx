@@ -7,7 +7,7 @@ import LightTheme from "../../theme/light-theme";
 /* -------- Types -------- */
 import { ThemeNames } from "../../theme/types";
 
-const IconWrapper = styled.span<{ hoverColor: string }>`
+const IconWrapper = styled.span<{ $hoverColor: string }>`
   height: 40px;
   width: 40px;
   display: flex;
@@ -15,7 +15,7 @@ const IconWrapper = styled.span<{ hoverColor: string }>`
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: ${(props) => props.hoverColor};
+    background-color: ${(props) => props.$hoverColor};
   }
 `;
 
@@ -79,7 +79,7 @@ export default function ThemeSwitch() {
   return (
     <IconWrapper
       onClick={handleThemeChange}
-      hoverColor={theme.colors.link.iconHover}
+      $hoverColor={theme.colors.link.iconHover}
     >
       {theme.name === ThemeNames.DARK ? (
         <NightIcon color={theme.colors.text} />

@@ -75,7 +75,7 @@ const Title = styled.h1`
   }
 `;
 
-const NavigationContainer = styled.div<{ showMobileMenu: boolean }>`
+const NavigationContainer = styled.div<{ $showMobileMenu: boolean }>`
   display: flex;
   margin-left: 5rem;
 
@@ -95,7 +95,7 @@ const NavigationContainer = styled.div<{ showMobileMenu: boolean }>`
   }
 `;
 
-const Navigation = styled.nav<{ showMobileMenu: boolean; theme: Theme }>`
+const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
   display: flex;
   margin: 0;
   padding: 0;
@@ -110,7 +110,7 @@ const Navigation = styled.nav<{ showMobileMenu: boolean; theme: Theme }>`
   }
 
   ${(props) =>
-    !props.showMobileMenu
+    !props.$showMobileMenu
       ? `
         @media only screen and (max-width: 625px) {
           display: none;
@@ -189,7 +189,7 @@ const MenuIcon = styled.svg`
 `;
 
 const Header = () => {
-  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+  const [$showMobileMenu, set$showMobileMenu] = useState<boolean>(false);
   const { theme } = useContext(ThemeContext);
   return (
     <Container theme={theme}>
@@ -206,7 +206,9 @@ const Header = () => {
           </TitleContainer>
         </StyledTitleLink>
         <ActionContainer>
-          <MenuIconContainer onClick={() => setShowMobileMenu(!showMobileMenu)}>
+          <MenuIconContainer
+            onClick={() => set$showMobileMenu(!$showMobileMenu)}
+          >
             <MenuIcon
               xmlns="http://www.w3.org/2000/svg"
               viewBox="-5 -7 24 24"
@@ -218,8 +220,8 @@ const Header = () => {
           </MenuIconContainer>
         </ActionContainer>
       </TitleRowContainer>
-      <NavigationContainer showMobileMenu={showMobileMenu}>
-        <Navigation theme={theme} showMobileMenu={showMobileMenu}>
+      <NavigationContainer $showMobileMenu={$showMobileMenu}>
+        <Navigation theme={theme} $showMobileMenu={$showMobileMenu}>
           <NavigationLink href="/">Home</NavigationLink>
           <NavigationLink href="/experience">Experience</NavigationLink>
         </Navigation>
