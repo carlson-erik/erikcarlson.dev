@@ -51,7 +51,7 @@ const TitleContainer = styled.div`
   align-items: center;
 
   & img {
-    border-radius: 3rem;
+    border-radius: 6rem;
   }
 
   @media only screen and (max-width: 350px) {
@@ -198,8 +198,8 @@ const Header = () => {
           <TitleContainer>
             <Image
               src={profilePic}
-              width={64}
-              height={64}
+              width={96}
+              height={96}
               alt="erik carlson portfolio picture"
             />
             <Title>Erik Carlson</Title>
