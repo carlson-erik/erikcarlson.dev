@@ -6,6 +6,7 @@ import { Heading, Link } from "../components/styled";
 /* ------------------ Theme ------------------ */
 import { ThemeProvider } from "@/theme/context";
 import Head from "next/head";
+import { getPageMetadata } from "@/lib/metadata";
 
 const Paragraph = styled.p`
   font-family: "Raleway", sans-serif;
@@ -25,9 +26,7 @@ const Introduction = styled.section`
 export default function HomePage() {
   return (
     <>
-      <Head>
-        <title>Home | Erik Carlson</title>
-      </Head>
+      <Head>{getPageMetadata("Home")}</Head>
       <ThemeProvider>
         <Layout>
           <Introduction>

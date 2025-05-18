@@ -7,6 +7,7 @@ import SkillList from "@/components/skill-list";
 import { Heading } from "@/components/styled";
 import { useEffect } from "react";
 import Head from "next/head";
+import { getPageMetadata } from "@/lib/metadata";
 
 const Container = styled.div`
   width: 100%;
@@ -73,9 +74,7 @@ const SkillListContainer = styled.div`
 export default function ExperiencePage() {
   return (
     <>
-      <Head>
-        <title>Experience | Erik Carlson</title>
-      </Head>
+      <Head>{getPageMetadata("Experience")}</Head>
       <ThemeProvider>
         <Layout>
           <Container>

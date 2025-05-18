@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 /* ------------------ Components ------------------ */
-import Header from "./header";
+import Header from "../header";
 /* ------------------ Theme ------------------ */
-import { ThemeContext } from "../theme/context";
-import { Theme } from "../theme/types";
+import { ThemeContext } from "../../theme/context";
+import { Theme } from "../../theme/types";
 /* ------------------ font ------------------ */
 import "@fontsource-variable/raleway"; // Supports weights 100-900
+
 /* ------------------ Global CSS Styles ------------------ */
-import "../styles/global.css";
-import "../styles/reset.css";
+import { globalCSS, resetCSS } from "./styles";
 
 const Container = styled.div<{ theme: Theme }>`
   padding: 0 2rem 0 2rem;
@@ -34,10 +34,12 @@ const Container = styled.div<{ theme: Theme }>`
 `;
 
 const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
+${globalCSS}
   body {
     background-color: ${(props) => props.theme.colors.backgroundColor};
     color: ${(props) => props.theme.colors.text};
   }
+  ${resetCSS}
 `;
 
 const MainContent = styled.main`
