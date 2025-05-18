@@ -5,6 +5,11 @@ import Header from "./header";
 /* ------------------ Theme ------------------ */
 import { ThemeContext } from "../theme/context";
 import { Theme } from "../theme/types";
+/* ------------------ font ------------------ */
+import "@fontsource-variable/raleway"; // Supports weights 100-900
+/* ------------------ Global CSS Styles ------------------ */
+import "../styles/global.css";
+import "../styles/reset.css";
 
 const Container = styled.div<{ theme: Theme }>`
   padding: 0 2rem 0 2rem;
@@ -39,11 +44,11 @@ const MainContent = styled.main`
   width: 100%;
 `;
 
-interface PageLayoutProps {
+interface LayoutProps {
   children?: React.ReactNode;
 }
 
-const PageLayout = (props: PageLayoutProps) => {
+const Layout = (props: LayoutProps) => {
   const { children } = props;
   const { theme } = useContext(ThemeContext);
   return (
@@ -57,4 +62,4 @@ const PageLayout = (props: PageLayoutProps) => {
   );
 };
 
-export default PageLayout;
+export default Layout;
