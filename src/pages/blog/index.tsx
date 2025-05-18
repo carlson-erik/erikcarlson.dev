@@ -1,11 +1,7 @@
-import PageLayout from "@/components/page-layout";
 import { ThemeProvider } from "@/theme/context";
 import Head from "next/head";
-/* ------------------ Fonts ------------------ */
-import "@fontsource-variable/raleway"; // Supports weights 100-900
-/* ------------------ Global CSS Styles ------------------ */
-import "@/styles/global.css";
-import "@/styles/reset.css";
+/* ------------------ Components ------------------ */
+import Layout from "@/components/layout";
 /* ------------------ Utils ------------------ */
 import { getSortedPostsData } from "../../../lib/posts";
 
@@ -25,11 +21,12 @@ export default function BlogPage({ allPosts }: { allPosts: any }) {
         <title>Blog | Erik Carlson</title>
       </Head>
       <ThemeProvider>
-        <PageLayout>
+        <Layout>
+          <h2>Blog</h2>
           {allPosts.map((post: any) => {
             return <div key={post.id}>{post.title}</div>;
           })}
-        </PageLayout>
+        </Layout>
       </ThemeProvider>
     </>
   );
