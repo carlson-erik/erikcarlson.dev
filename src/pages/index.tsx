@@ -1,12 +1,11 @@
-"use client";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
-import PageLayout from "@/components/page-layout";
+import Layout from "@/components/layout";
 import ProjectList from "../components/project-list";
 import { Heading, Link } from "../components/styled";
-/* ------------------ Theme ------------------ */
-import { ThemeProvider } from "@/theme/context";
-import { useEffect } from "react";
+/* ------------------ Metadata ------------------ */
+import Head from "next/head";
+import { getPageMetadata } from "@/lib/metadata";
 
 const Paragraph = styled.p`
   font-family: "Raleway", sans-serif;
@@ -24,12 +23,10 @@ const Introduction = styled.section`
 `;
 
 export default function HomePage() {
-  useEffect(() => {
-    document.title = "Home | Erik Carlson";
-  }, []);
   return (
-    <ThemeProvider>
-      <PageLayout>
+    <>
+      <Head>{getPageMetadata("Home")}</Head>
+      <Layout>
         <Introduction>
           <Heading>Hi there!</Heading>
           <Paragraph>
@@ -62,7 +59,7 @@ export default function HomePage() {
           </Paragraph>
         </Introduction>
         <ProjectList />
-      </PageLayout>
-    </ThemeProvider>
+      </Layout>
+    </>
   );
 }

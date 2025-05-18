@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+/* ------------------ Components ------------------ */
 import ThemeSwitch from "./theme-switch";
 /* ------------------ Icons ------------------ */
 import profilePic from "../../images/portfolio.png";
@@ -62,6 +63,7 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h1`
+  font-family: "Montserrat", sans-serif;
   font-size: 2.5rem;
   padding-left: 1rem;
   text-decoration: none;
@@ -125,7 +127,7 @@ const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
           margin-bottom: 1rem;
 
           & > a {
-            padding: 1rem 1rem 1rem 0;
+            padding: 0.5rem 0.5rem 0.5rem 0;
           }
         }
       `}
@@ -224,6 +226,7 @@ const Header = () => {
         <Navigation theme={theme} $showMobileMenu={$showMobileMenu}>
           <NavigationLink href="/">Home</NavigationLink>
           <NavigationLink href="/experience">Experience</NavigationLink>
+          {/* <NavigationLink href="/blog">Blog</NavigationLink> */}
         </Navigation>
         <Interactions>
           <SocialContainer>

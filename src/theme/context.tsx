@@ -1,6 +1,9 @@
 import React, { useState, createContext, useEffect } from "react";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+/* ------------------ Themes ------------------ */
 import LightTheme from "./light-theme";
 import DarkTheme from "./dark-theme";
+/* ------------------ Types ------------------ */
 import { Theme, ThemeContextType, ThemeNames } from "./types";
 
 const useThemeDetector = () => {
@@ -85,7 +88,7 @@ const ThemeProvider = (props: ThemeProviderProps) => {
         setTheme: setActiveTheme,
       }}
     >
-      {children}
+      <StyledThemeProvider theme={activeTheme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };
