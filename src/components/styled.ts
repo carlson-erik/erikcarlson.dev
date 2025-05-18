@@ -1,13 +1,21 @@
-import Link from "next/link";
 import styled from "styled-components";
+import Link from "next/link";
 
 const Heading = styled.h2`
-  font-size: 1.75rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
   margin-block: 0;
   padding-bottom: 0.5rem;
 `;
 
-const StyledLink = styled(Link) <{ hasIcon?: boolean }>`
+const Subheading = styled.h3`
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  margin-block: 0;
+  padding-bottom: 0.5rem;
+`;
+
+const StyledLink = styled(Link)<{ hasIcon?: boolean }>`
   ${(props) =>
     props.hasIcon
       ? `
@@ -26,4 +34,4 @@ const Paragraph = styled.p`
   line-height: 1.75rem;
 `;
 
-export { Heading, StyledLink as Link, Paragraph };
+export { Heading, Subheading, StyledLink as Link, Paragraph };

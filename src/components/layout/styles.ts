@@ -79,7 +79,7 @@ export const globalCSS = `
   body {
     margin: 0;
     font-size: 16px;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Raleway", sans-serif;
     display: flex;
     justify-content: center;
     width: 100%;

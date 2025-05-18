@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 /* ------------------ Components ------------------ */
-import { Heading, Paragraph } from "../components/styled";
+import { Paragraph, Subheading } from "../components/styled";
 import SkillList, { IconLink } from "./skill-list";
 import Github from "../images/icons/alt/github";
 import ExternalLink from "../images/icons/simple/external-link";
@@ -93,8 +93,8 @@ const SkillListContainer = styled.div`
   flex-grow: 1;
 `;
 
-const ProjectName = styled.h3`
-  font-size: 1.5rem;
+const ProjectName = styled.h4`
+  font-size: 1.25rem;
 `;
 
 const DetailLabel = styled.span`
@@ -125,7 +125,7 @@ const ProjectList = () => {
   return (
     <ProjectSectionContainer>
       <Section>
-        <Heading>What I'm Working On</Heading>
+        <Subheading>What I'm Working On</Subheading>
         <ProjectRow id="elastic-editor">
           <PictureContainer theme={theme}>
             {theme.name === "Light" ? (
@@ -175,7 +175,7 @@ const ProjectList = () => {
         </ProjectRow>
       </Section>
       <Section>
-        <Heading>Past Projects</Heading>
+        <Subheading>Past Projects</Subheading>
         <ProjectContainer>
           <Project id="coddit" theme={theme}>
             <ProjectHeader>

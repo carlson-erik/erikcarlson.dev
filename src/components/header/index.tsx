@@ -63,6 +63,7 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h1`
+  font-family: "Montserrat", sans-serif;
   font-size: 2.5rem;
   padding-left: 1rem;
   text-decoration: none;
@@ -126,7 +127,7 @@ const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
           margin-bottom: 1rem;
 
           & > a {
-            padding: 1rem 1rem 1rem 0;
+            padding: 0.5rem 0.5rem 0.5rem 0;
           }
         }
       `}
