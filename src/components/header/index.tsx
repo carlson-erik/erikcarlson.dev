@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+/* ------------------ Components ------------------ */
 import ThemeSwitch from "./theme-switch";
 /* ------------------ Icons ------------------ */
 import profilePic from "../../images/portfolio.png";
