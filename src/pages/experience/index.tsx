@@ -1,12 +1,12 @@
+import Head from "next/head";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import Layout from "@/components/layout";
-/* ------------------ Theme ------------------ */
-import { ThemeProvider } from "@/theme/context";
 import SkillList from "@/components/skill-list";
 import { Heading } from "@/components/styled";
-import { useEffect } from "react";
-import Head from "next/head";
+/* ------------------ Theme ------------------ */
+import { ThemeProvider } from "@/theme/context";
+/* ------------------ Utils ------------------ */
 import { getPageMetadata } from "@/lib/metadata";
 
 const Container = styled.div`
