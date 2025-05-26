@@ -82,7 +82,7 @@ export default function ExperiencePage() {
             <DetailContainer>
               <InformationContainer $noPadding>
                 <Title>Principal Software Engineer</Title>
-                <Duration>'24 - Present</Duration>
+                <Duration>2024 - Present</Duration>
               </InformationContainer>
               <InformationContainer>
                 <Business>Pegasystems</Business>
@@ -134,7 +134,7 @@ export default function ExperiencePage() {
                 </BulletList>
               </InformationContainer>
               <InformationContainer>
-                <Label>Relevant technologies:</Label>
+                <Label>Tech stack:</Label>
                 <SkillListContainer>
                   <SkillList
                     skills={[
@@ -152,7 +152,7 @@ export default function ExperiencePage() {
             <DetailContainer>
               <InformationContainer $noPadding>
                 <Title>Senior Software Engineer</Title>
-                <Duration>'21 - '24</Duration>
+                <Duration>2021 - 2024</Duration>
               </InformationContainer>
               <InformationContainer>
                 <Business>Pegasystems</Business>
@@ -200,7 +200,7 @@ export default function ExperiencePage() {
                 </BulletList>
               </InformationContainer>
               <InformationContainer>
-                <Label>Relevant technologies:</Label>
+                <Label>Tech stack:</Label>
                 <SkillListContainer>
                   <SkillList
                     skills={[
@@ -218,7 +218,7 @@ export default function ExperiencePage() {
             <DetailContainer>
               <InformationContainer $noPadding>
                 <Title>Software Engineer</Title>
-                <Duration>'19 - '20</Duration>
+                <Duration>2019 - 2020</Duration>
               </InformationContainer>
               <InformationContainer>
                 <Business>Pegasystems</Business>
@@ -249,7 +249,7 @@ export default function ExperiencePage() {
                 </BulletList>
               </InformationContainer>
               <InformationContainer>
-                <Label>Relevant technologies:</Label>
+                <Label>Tech stack:</Label>
                 <SkillListContainer>
                   <SkillList
                     skills={[
@@ -267,7 +267,7 @@ export default function ExperiencePage() {
             <DetailContainer>
               <InformationContainer $noPadding>
                 <Title>Associate Software Engineer</Title>
-                <Duration>'17 - '19</Duration>
+                <Duration>2017 - 2019</Duration>
               </InformationContainer>
               <InformationContainer>
                 <Business>Pegasystems</Business>
@@ -290,7 +290,7 @@ export default function ExperiencePage() {
                 </BulletList>
               </InformationContainer>
               <InformationContainer>
-                <Label>Relevant technologies:</Label>
+                <Label>Tech stack:</Label>
                 <SkillListContainer>
                   <SkillList skills={["javascript", "css", "java"]} />
                 </SkillListContainer>
@@ -298,8 +298,8 @@ export default function ExperiencePage() {
             </DetailContainer>
             <DetailContainer>
               <InformationContainer $noPadding>
-                <Title>Software Engineer Intern</Title>
-                <Duration>Summer '16</Duration>
+                <Title>(Summer) Software Engineer Intern</Title>
+                <Duration>2016</Duration>
               </InformationContainer>
               <InformationContainer>
                 <Business>Pegasystems</Business>
@@ -322,7 +322,7 @@ export default function ExperiencePage() {
                 </BulletList>
               </InformationContainer>
               <InformationContainer>
-                <Label>Relevant technologies:</Label>
+                <Label>Tech stack:</Label>
                 <SkillListContainer>
                   <SkillList skills={["javascript", "css", "java"]} />
                 </SkillListContainer>
@@ -331,7 +331,7 @@ export default function ExperiencePage() {
             <DetailContainer>
               <InformationContainer $noPadding>
                 <Title>IPSec and IKEv2 Technician</Title>
-                <Duration>'14 - '16</Duration>
+                <Duration>2014 - 2016</Duration>
               </InformationContainer>
               <InformationContainer>
                 <Business>UNH Interoperability Lab</Business>
@@ -366,7 +366,7 @@ export default function ExperiencePage() {
             <DetailContainer>
               <InformationContainer>
                 <Title>B.S. in Computer Science</Title>
-                <Duration>'13 - '17</Duration>
+                <Duration>2013 - 2017</Duration>
               </InformationContainer>
               <InformationContainer>
                 <Business>University of New Hampshire</Business>

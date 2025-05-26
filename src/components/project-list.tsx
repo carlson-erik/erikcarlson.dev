@@ -64,6 +64,7 @@ const Project = styled.div<{ theme: Theme }>`
 
 const ProjectHeader = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const ProjectLinks = styled.div`

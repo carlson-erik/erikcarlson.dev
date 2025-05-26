@@ -57,12 +57,14 @@ export default function BlogPage({ allArticles }: { allArticles: any }) {
       <ThemeProvider>
         <Layout>
           <Container>
-            <Heading>Blog</Heading>
+            <Heading>Brainstorms & Deep Dives</Heading>
             <Introduction>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Welcome to my blog! This is a space where I share thoughts, ideas,
+              and lessons learned from my various travels. Here you'll find
+              articles ranging from web development to creative projects amongst
+              other technobabble. I believe in learning in public, so this blog
+              is as much a record of progress as it is a place to share
+              knowledge. Thanks for stopping by!
             </Introduction>
             <Subheading>Articles</Subheading>
             <ArticleList>
@@ -72,6 +74,7 @@ export default function BlogPage({ allArticles }: { allArticles: any }) {
                     <ArticleTitle href={`/blog/articles/${article.id}`}>
                       {article.title}
                     </ArticleTitle>
+                    <div>{article.date}</div>
                   </ArticleEntry>
                 );
               })}
