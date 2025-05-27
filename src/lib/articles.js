@@ -1,13 +1,15 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
+import rehypeSlug from "rehype-slug";
 
-const postsDirectory = path.join(process.cwd(), "articles");
-
+const articlesDirectory = path.join(process.cwd(), "articles");
 export function getAllArticleIDs() {
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(articlesDirectory);
   return fileNames.map((fileName) => {
     return {
       params: {
@@ -18,17 +20,20 @@ export function getAllArticleIDs() {
 }
 
 export async function getArticleData(id) {
-  const fullPath = path.join(postsDirectory, `${id}.mdx`);
+  const fullPath = path.join(articlesDirectory, `${id}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  const contentHtml = String(
+    await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypeSlug)
+      .use(rehypeStringify)
+      .process(matterResult.content),
+  );
 
   // Combine the data with the id and contentHtml
   return {
@@ -40,13 +45,13 @@ export async function getArticleData(id) {
 
 export function getSortedArticles() {
   // Get file names under /articles
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(articlesDirectory);
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.mdx$/, "");
 
     // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
+    const fullPath = path.join(articlesDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
 
     // Use gray-matter to parse the post metadata section
