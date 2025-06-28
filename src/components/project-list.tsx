@@ -10,8 +10,8 @@ import ExternalLink from "../images/icons/simple/external-link";
 import { ThemeContext } from "../theme/context";
 import { Theme } from "../theme/types";
 /* ------------------ Images ------------------ */
-import elasticEditorLight from "../images/projects/elastic-editor-light.png";
-import elasticEditorDark from "../images/projects/elastic-editor-dark.png";
+import gneissEditorLight from "../images/projects/gneiss-editor-light.png";
+import gneissEditorDark from "../images/projects/gneiss-editor-dark.png";
 
 const ProjectRow = styled.div<{ reversed?: boolean }>`
   width: 100%;
@@ -126,24 +126,24 @@ const ProjectList = () => {
     <ProjectSectionContainer>
       <Section>
         <Heading>What I'm Working On</Heading>
-        <ProjectRow id="elastic-editor">
+        <ProjectRow id="gneiss-editor">
           <PictureContainer theme={theme}>
             {theme.name === "Light" ? (
-              <Image src={elasticEditorLight} alt="ElasticEditor picture" />
+              <Image src={gneissEditorLight} alt="GneissEditor picture" />
             ) : (
-              <Image src={elasticEditorDark} alt="ElasticEditor picture" />
+              <Image src={gneissEditorDark} alt="GneissEditor picture" />
             )}
           </PictureContainer>
           <ContentContainer>
             <ProjectHeader>
-              <ProjectName>ElasticEditor</ProjectName>
+              <ProjectName>GneissEditor</ProjectName>
               <ProjectLinks>
                 <IconLink
                   key="project-github"
-                  href="https://github.com/carlson-erik/elastic-editor"
+                  href="https://github.com/carlson-erik/gneiss-editor"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="ElasticEditor github repo"
+                  title="GneissEditor github repo"
                   theme={theme}
                 >
                   {
@@ -158,8 +158,8 @@ const ProjectList = () => {
             </ProjectHeader>
             <DetailContainer $largeContent>
               <Paragraph>
-                ElasticEditor allows developers to include modifiable rich
-                content in their React projects. At the core of ElasticEditor is
+                GneissEditor allows developers to include modifiable rich
+                content in their React projects. At the core of GneissEditor is
                 a customizable editor. This editor allows you to easily create,
                 save, and export your content into other formats for usage
                 elsewhere.
