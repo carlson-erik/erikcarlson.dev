@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 /* ------------------ Components ------------------ */
-import { Heading, Paragraph } from "../components/styled";
+import { Paragraph, Subheading } from "../components/styled";
 import SkillList, { IconLink } from "./skill-list";
 import Github from "../images/icons/alt/github";
 import ExternalLink from "../images/icons/simple/external-link";
@@ -64,6 +64,7 @@ const Project = styled.div<{ theme: Theme }>`
 
 const ProjectHeader = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const ProjectLinks = styled.div`
@@ -93,8 +94,8 @@ const SkillListContainer = styled.div`
   flex-grow: 1;
 `;
 
-const ProjectName = styled.h3`
-  font-size: 1.5rem;
+const ProjectName = styled.h4`
+  font-size: 1.25rem;
 `;
 
 const DetailLabel = styled.span`
@@ -125,7 +126,7 @@ const ProjectList = () => {
   return (
     <ProjectSectionContainer>
       <Section>
-        <Heading>What I'm Working On</Heading>
+        <Subheading>What I'm Working On</Subheading>
         <ProjectRow id="gneiss-editor">
           <PictureContainer theme={theme}>
             {theme.name === "Light" ? (
@@ -158,11 +159,11 @@ const ProjectList = () => {
             </ProjectHeader>
             <DetailContainer $largeContent>
               <Paragraph>
-                GneissEditor allows developers to include modifiable rich
+                GneissEditor allows developers to include modifiable Rich Text
                 content in their React projects. At the core of GneissEditor is
-                a customizable editor. This editor allows you to easily create,
-                save, and export your content into other formats for usage
-                elsewhere.
+                a customizable editor. It allows you to easily create, save, and
+                export your content. This component library is built with React,
+                TypeScript, and Slate.js.
               </Paragraph>
             </DetailContainer>
             <DetailContainer>
@@ -175,7 +176,7 @@ const ProjectList = () => {
         </ProjectRow>
       </Section>
       <Section>
-        <Heading>Past Projects</Heading>
+        <Subheading>Past Projects</Subheading>
         <ProjectContainer>
           <Project id="coddit" theme={theme}>
             <ProjectHeader>

@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 /* ------------------ Components ------------------ */
-import Header from "./header";
+import Header from "../header";
 /* ------------------ Theme ------------------ */
-import { ThemeContext } from "../theme/context";
-import { Theme } from "../theme/types";
+import { ThemeProvider } from "../../theme/context";
+/* ------------------ Font ------------------ */
+import "@fontsource-variable/raleway"; // Supports weights 100-900
+/* ------------------ Global CSS Styles ------------------ */
+import { globalCSS, resetCSS } from "./styles";
 
-const Container = styled.div<{ theme: Theme }>`
+const Container = styled.div`
   padding: 0 2rem 0 2rem;
   width: 100%;
   max-width: 1000px;
@@ -28,33 +31,34 @@ const Container = styled.div<{ theme: Theme }>`
   }
 `;
 
-const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
+const GlobalStyle = createGlobalStyle`
+${globalCSS}
   body {
     background-color: ${(props) => props.theme.colors.backgroundColor};
     color: ${(props) => props.theme.colors.text};
   }
+  ${resetCSS}
 `;
 
 const MainContent = styled.main`
   width: 100%;
 `;
 
-interface PageLayoutProps {
+interface LayoutProps {
   children?: React.ReactNode;
 }
 
-const PageLayout = (props: PageLayoutProps) => {
+const Layout = (props: LayoutProps) => {
   const { children } = props;
-  const { theme } = useContext(ThemeContext);
   return (
-    <>
-      <GlobalStyle theme={theme} />
-      <Container theme={theme}>
+    <ThemeProvider>
+      <GlobalStyle />
+      <Container>
         <Header />
         <MainContent>{children}</MainContent>
       </Container>
-    </>
+    </ThemeProvider>
   );
 };
 
-export default PageLayout;
+export default Layout;

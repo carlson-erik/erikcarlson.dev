@@ -28,3 +28,8 @@ export type ThemeContextType = {
   theme: Theme;
   setTheme: (newTheme: Theme) => void;
 };
+
+// Styled-components module declaration
+declare module "styled-components" {
+  export interface DefaultTheme extends Theme {}
+}
