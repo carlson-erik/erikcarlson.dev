@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Link } from "./styled";
-import { ThemeContext } from "../theme/context";
-import { Theme } from "../theme/types";
+import { IconLink, Link } from "./styled";
 /* ------------------ Types ------------------ */
 import { AltIconProps, IconProps } from "../images/types";
 /* ------------------ Simple Icons ------------------ */
@@ -30,19 +28,6 @@ const Container = styled.div`
   display: flex;
 
   flex-wrap: wrap;
-`;
-
-const IconLink = styled(Link) <{ theme: Theme }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 0.5rem;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: ${(props) => props.theme.colors.link.iconHover};
-  }
 `;
 
 type Skill = IconType;
@@ -159,7 +144,6 @@ const ICON_MAP: Record<Skill, SkillDetails> = {
 
 const SkillList = (props: SkillListProps) => {
   const { skills } = props;
-  const { theme } = useContext(ThemeContext);
   return (
     <Container>
       {skills.map((skill) => {
@@ -171,7 +155,6 @@ const SkillList = (props: SkillListProps) => {
             target="_blank"
             rel="noopener noreferrer"
             title={title}
-            theme={theme}
           >
             <Icon iconType={skill} Component={component} />
           </IconLink>

@@ -10,15 +10,14 @@ import "@fontsource-variable/raleway"; // Supports weights 100-900
 import { globalCSS, resetCSS } from "./styles";
 
 const Container = styled.div`
-  padding: 0 2rem 0 2rem;
   width: 100%;
   max-width: 1000px;
-  padding-bottom: 4rem;
+
+  padding-bottom: 2rem;
 
   @media only screen and (max-width: 650px) {
     padding-right: 0;
     padding-left: 0;
-    padding-bottom: 2rem;
   }
 
   & a,
@@ -28,6 +27,11 @@ const Container = styled.div`
 
   & a:hover {
     color: ${(props) => props.theme.colors.link.textHover};
+  }
+
+  ul > li,
+  ol > li {
+    font-size: 1.25rem;
   }
 `;
 
@@ -42,6 +46,14 @@ ${globalCSS}
 
 const MainContent = styled.main`
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media only screen and (max-width: 500px) {
+    gap: 1rem;
+  }
 `;
 
 interface LayoutProps {

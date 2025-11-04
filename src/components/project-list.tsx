@@ -2,16 +2,19 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 /* ------------------ Components ------------------ */
-import { Paragraph, Subheading } from "../components/styled";
+import { IconLinkText, Paragraph, Subheading } from "../components/styled";
 import SkillList, { IconLink } from "./skill-list";
 import Github from "../images/icons/alt/github";
 import ExternalLink from "../images/icons/simple/external-link";
+import InternalLink from "../images/icons/simple/internal-link";
 /* ------------------ Theme ------------------ */
 import { ThemeContext } from "../theme/context";
 import { Theme } from "../theme/types";
 /* ------------------ Images ------------------ */
 import gneissEditorLight from "../images/projects/gneiss-editor-light.png";
 import gneissEditorDark from "../images/projects/gneiss-editor-dark.png";
+import netgraphLight from "../images/projects/netgraph-light.png";
+import netgraphDark from "../images/projects/netgraph-dark.png";
 
 const ProjectRow = styled.div<{ reversed?: boolean }>`
   width: 100%;
@@ -20,14 +23,16 @@ const ProjectRow = styled.div<{ reversed?: boolean }>`
   @media only screen and (max-width: 850px) {
     flex-direction: ${(props) =>
       props.reversed ? "column-reverse" : "column"};
+    gap: 1rem;
   }
 `;
 
 const PictureContainer = styled.div<{ theme: Theme }>`
   flex-basis: 50%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding: 0 1rem 1rem 1rem;
 
   & img {
     width: 85%;
@@ -36,15 +41,32 @@ const PictureContainer = styled.div<{ theme: Theme }>`
       ${(props) => props.theme.colors?.borderLine || "#888888"};
     border: 1px solid ${(props) => props.theme.colors.borderLine || "#888888"};
     border-radius: 0.25rem;
+
+    @media only screen and (max-width: 850px) {
+      width: 60%;
+    }
+
+    @media only screen and (max-width: 500px) {
+      width: 85%;
+    }
+
+    @media only screen and (max-width: 650px) {
+      padding: 0;
+    }
   }
 `;
 
 const ContentContainer = styled.div`
   flex-basis: 50%;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  @media only screen and (max-width: 500px) {
+    gap: 0;
+    padding: 0.5rem;
+  }
 `;
 
 const Project = styled.div<{ theme: Theme }>`
@@ -60,6 +82,10 @@ const Project = styled.div<{ theme: Theme }>`
     width: 100%;
     flex-basis: 100%;
   }
+  @media only screen and (max-width: 500px) {
+    gap: 0;
+    padding: 0.5rem;
+  }
 `;
 
 const ProjectHeader = styled.div`
@@ -73,21 +99,10 @@ const ProjectLinks = styled.div`
   justify-content: flex-end;
 `;
 
-const DetailContainer = styled.div<{ $largeContent?: boolean }>`
+const DetailContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-
-  ${(props) =>
-    props.$largeContent
-      ? `
-        flex-direction: column;
-        align-items: unset;
-        & > span {
-          padding: 0;
-        }
-      `
-      : ""}
 `;
 
 const SkillListContainer = styled.div`
@@ -119,6 +134,10 @@ const ProjectSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media only screen and (max-width: 500px) {
+    gap: 1rem;
+  }
 `;
 
 const ProjectList = () => {
@@ -127,14 +146,48 @@ const ProjectList = () => {
     <ProjectSectionContainer>
       <Section>
         <Subheading>What I'm Working On</Subheading>
-        <ProjectRow id="gneiss-editor">
+        <ProjectRow id="netgraph" reversed>
+          <ContentContainer>
+            <ProjectHeader>
+              <ProjectName>Netgraph</ProjectName>
+              <ProjectLinks>
+                <IconLink
+                  key="netgraph-project-showcase"
+                  href="/projects/netgraph"
+                  title="Netgraph project showcase"
+                >
+                  <InternalLink type="dev" color={theme.colors.link.text} />
+                  <IconLinkText>Showcase</IconLinkText>
+                </IconLink>
+              </ProjectLinks>
+            </ProjectHeader>
+            <DetailContainer>
+              <Paragraph>
+                Netgraph enables React developers to create interactive network
+                graph visualizations.This component provides customizable
+                physics-based layouts, interactive controls, and intelligent
+                highlighting. Whether visualizing complex networks, or any other
+                data relationships, Netgraph abstracts away the complexity while
+                you maintain full control over every aspect of the
+                visualization.
+              </Paragraph>
+            </DetailContainer>
+            <DetailContainer>
+              <DetailLabel>Technologies:</DetailLabel>
+              <SkillListContainer>
+                <SkillList skills={["d3", "typescript", "react"]} />
+              </SkillListContainer>
+            </DetailContainer>
+          </ContentContainer>
           <PictureContainer theme={theme}>
             {theme.name === "Light" ? (
-              <Image src={gneissEditorLight} alt="GneissEditor picture" />
+              <Image src={netgraphLight} alt="Netgraph Light picture" />
             ) : (
-              <Image src={gneissEditorDark} alt="GneissEditor picture" />
+              <Image src={netgraphDark} alt="Netgraph Dark picture" />
             )}
           </PictureContainer>
+        </ProjectRow>
+        <ProjectRow id="gneiss-editor" reversed>
           <ContentContainer>
             <ProjectHeader>
               <ProjectName>GneissEditor</ProjectName>
@@ -144,22 +197,27 @@ const ProjectList = () => {
                   href="https://github.com/carlson-erik/gneiss-editor"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="GneissEditor github repo"
-                  theme={theme}
+                  title="GneissEditor github repository"
                 >
-                  {
-                    <Github
-                      type="dev"
-                      useAlt={false}
-                      color={theme.colors.projectList.project.iconColor}
-                    />
-                  }
+                  <Github
+                    type="dev"
+                    useAlt={false}
+                    color={theme.colors.projectList.project.iconColor}
+                  />
+                </IconLink>
+                <IconLink
+                  key="gneisseditor-project-showcase"
+                  href="/projects/gneiss-editor"
+                  title="GneissEditor project showcase"
+                >
+                  <InternalLink type="dev" color={theme.colors.link.text} />
+                  <IconLinkText>Showcase</IconLinkText>
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer $largeContent>
+            <DetailContainer>
               <Paragraph>
-                GneissEditor allows developers to include modifiable Rich Text
+                GneissEditor enables developers to include modifiable Rich Text
                 content in their React projects. At the core of GneissEditor is
                 a customizable editor. It allows you to easily create, save, and
                 export your content. This component library is built with React,
@@ -169,10 +227,17 @@ const ProjectList = () => {
             <DetailContainer>
               <DetailLabel>Technologies:</DetailLabel>
               <SkillListContainer>
-                <SkillList skills={["react", "typescript", "jest", "rollup"]} />
+                <SkillList skills={["react", "typescript"]} />
               </SkillListContainer>
             </DetailContainer>
           </ContentContainer>
+          <PictureContainer theme={theme}>
+            {theme.name === "Light" ? (
+              <Image src={gneissEditorLight} alt="GneissEditor picture" />
+            ) : (
+              <Image src={gneissEditorDark} alt="GneissEditor picture" />
+            )}
+          </PictureContainer>
         </ProjectRow>
       </Section>
       <Section>
@@ -188,34 +253,16 @@ const ProjectList = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="coddit github repo"
-                  theme={theme}
                 >
-                  {
-                    <Github
-                      type="dev"
-                      useAlt={false}
-                      color={theme.colors.projectList.project.iconColor}
-                    />
-                  }
-                </IconLink>
-                <IconLink
-                  key="project-website"
-                  href="https://coddit.dev/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="coddit website"
-                  theme={theme}
-                >
-                  {
-                    <ExternalLink
-                      type="dev"
-                      color={theme.colors.projectList.project.iconColor}
-                    />
-                  }
+                  <Github
+                    type="dev"
+                    useAlt={false}
+                    color={theme.colors.projectList.project.iconColor}
+                  />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer $largeContent>
+            <DetailContainer>
               <Paragraph>
                 Coddit is a web application that renders Reddit as if it were
                 code. Coddit allows users to take advantage features such as
@@ -242,19 +289,16 @@ const ProjectList = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="componentry github repo"
-                  theme={theme}
                 >
-                  {
-                    <Github
-                      type="dev"
-                      useAlt={false}
-                      color={theme.colors.projectList.project.iconColor}
-                    />
-                  }
+                  <Github
+                    type="dev"
+                    useAlt={false}
+                    color={theme.colors.projectList.project.iconColor}
+                  />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer $largeContent>
+            <DetailContainer>
               <Paragraph>
                 Often I come across interesting React Component ideas on design
                 websites. When I find something that challenges or inspires me,
@@ -279,19 +323,16 @@ const ProjectList = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="site-building github repo"
-                  theme={theme}
                 >
-                  {
-                    <Github
-                      type="dev"
-                      useAlt={false}
-                      color={theme.colors.projectList.project.iconColor}
-                    />
-                  }
+                  <Github
+                    type="dev"
+                    useAlt={false}
+                    color={theme.colors.projectList.project.iconColor}
+                  />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer $largeContent>
+            <DetailContainer>
               <Paragraph>
                 Often I come across interesting Website ideas on design
                 websites. When I find something that challenges or inspires me,
@@ -316,19 +357,16 @@ const ProjectList = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="componentry github repo"
-                  theme={theme}
                 >
-                  {
-                    <Github
-                      type="dev"
-                      useAlt={false}
-                      color={theme.colors.projectList.project.iconColor}
-                    />
-                  }
+                  <Github
+                    type="dev"
+                    useAlt={false}
+                    color={theme.colors.projectList.project.iconColor}
+                  />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
-            <DetailContainer $largeContent>
+            <DetailContainer>
               <Paragraph>
                 Using Nextjs and TypeScript, I built the very site you're using
                 now. With this site, I want to show off the cool projects that

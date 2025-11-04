@@ -1,21 +1,5 @@
 import { IconProps, AltIconProps } from "@/images/types";
 
-type IconType = AltIconType | SimpleIconType;
-
-interface BaseIcon {
-  type: IconType;
-  color?: string;
-}
-
-interface SimpleIcon extends BaseIcon {
-  type: SimpleIconType;
-}
-
-interface AltIcon extends BaseIcon {
-  type: AltIconType;
-  useAlt?: boolean;
-}
-
 type AltIconType = "github" | "nodejs" | "react";
 
 type SimpleIconType =
@@ -33,6 +17,22 @@ type SimpleIconType =
   | "typescript"
   | "webpack";
 
+type IconType = AltIconType | SimpleIconType;
+
+interface BaseIcon {
+  type: IconType;
+  color?: string;
+}
+
+interface SimpleIcon extends BaseIcon {
+  type: SimpleIconType;
+}
+
+interface AltIcon extends BaseIcon {
+  type: AltIconType;
+  useAlt?: boolean;
+}
+
 interface IconComponentProps {
   iconType: IconType;
   Component: (props: IconProps | AltIconProps) => JSX.Element;
@@ -40,10 +40,8 @@ interface IconComponentProps {
 
 const Icon = (props: IconComponentProps) => {
   const { iconType, Component } = props;
-  return (
-    <Component key={iconType} type="dev" />
-  )
-}
+  return <Component key={iconType} type="dev" />;
+};
 
 export default Icon;
 
@@ -54,5 +52,5 @@ export type {
   AltIcon,
   AltIconType,
   SimpleIconType,
-  IconComponentProps
-}
+  IconComponentProps,
+};

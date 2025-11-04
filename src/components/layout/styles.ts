@@ -16,6 +16,8 @@ export const resetCSS = `
   figure,
   blockquote,
   dl,
+  ul,
+  ol
   dd {
     margin: 0;
   }
@@ -83,12 +85,18 @@ export const globalCSS = `
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 2rem 4rem 0 4rem;
+    padding: 0 0 4rem 0;
   }
 
   @media only screen and (max-width: 1000px) {
     body  {
       padding: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    body  {
+      padding: 0.5rem;
     }
   }
 `;
