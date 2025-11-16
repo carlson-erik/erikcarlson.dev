@@ -18,6 +18,10 @@ const DarkTheme: Theme = {
         iconColor: "lightgrey",
       },
     },
+    menu: {
+      background: "#343740",
+      backgroundHover: "#434651",
+    },
   },
 };
 

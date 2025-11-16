@@ -16,6 +16,10 @@ export type Theme = {
         iconColor: string;
       };
     };
+    menu: {
+      background: string;
+      backgroundHover: string;
+    };
   };
 };
 

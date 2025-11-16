@@ -9,20 +9,13 @@ import { getPageMetadata } from "@/lib/metadata";
 
 const Container = styled.div`
   width: 100%;
-  padding-bottom: 1.5rem;
 
-  &:last-child {
-    padding-bottom: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
-const DetailContainer = styled.div`
-  padding-bottom: 1.5rem;
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-`;
+const DetailContainer = styled.div``;
 
 const InformationContainer = styled.div<{
   $flipFlexDirection?: boolean;

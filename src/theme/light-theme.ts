@@ -9,7 +9,7 @@ const LightTheme: Theme = {
     link: {
       text: "#1f5aff",
       textHover: "#0036cc",
-      iconHover: "#E5E8EC",
+      iconHover: "#F3F5F7",
     },
     projectList: {
       background: "#F3F5F7",
@@ -17,6 +17,10 @@ const LightTheme: Theme = {
       project: {
         iconColor: "#707070",
       },
+    },
+    menu: {
+      background: "#F3F5F7",
+      backgroundHover: "#E5E8EC",
     },
   },
 };

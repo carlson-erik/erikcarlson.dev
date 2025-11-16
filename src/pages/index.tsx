@@ -2,24 +2,15 @@ import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import Layout from "@/components/layout";
 import ProjectList from "../components/project-list";
-import { Heading, Link } from "../components/styled";
+import { Heading, Link, Paragraph } from "../components/styled";
 /* ------------------ Metadata ------------------ */
 import Head from "next/head";
 import { getPageMetadata } from "@/lib/metadata";
 
-const Paragraph = styled.p`
-  font-family: "Raleway", sans-serif;
-  font-size: 1.25rem;
-  line-height: 2rem;
-  padding-bottom: 1rem;
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-`;
-
 const Introduction = styled.section`
-  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 
 export default function HomePage() {
