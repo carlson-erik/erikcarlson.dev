@@ -4,7 +4,15 @@ import Head from "next/head";
 /* ------------------ Components ------------------ */
 import Layout from "@/components/layout";
 import SkillList from "@/components/skill-list";
-import { Heading, Paragraph, Subheading, Link } from "@/components/styled";
+import {
+  Heading,
+  Paragraph,
+  Section,
+  Subheading,
+  Link,
+  BulletedList,
+  ListItem,
+} from "@/components/styled";
 import { getPageMetadata } from "@/lib/metadata";
 /* ------------------ Gneiss Editor ------------------ */
 import { EditorElement, GneissEditor, ThemeTypes } from "gneiss-editor";
@@ -13,12 +21,6 @@ import { getEditorTheme, SHOWCASE_CONTENT } from "@/utils/editor";
 import { ThemeContext } from "@/theme/context";
 import { ThemeNames } from "@/theme/types";
 /* ------------------ Styled Components ------------------ */
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-
 const DemoContainer = styled.div`
   width: 100%;
   height: 500px;
@@ -89,20 +91,20 @@ function Showcase() {
       </Section>
       <Section>
         <Paragraph>GneissEditor provides the following features:</Paragraph>
-        <ul>
-          <li>Multiple rich content options</li>
-          <ul>
-            <li>Text (bold, italic, underline, strikethrough)</li>
-            <li>Headings (H1-H6)</li>
-            <li>Links</li>
-            <li>Ordered and unordered lists</li>
-            <li>Blockquotes</li>
-          </ul>
-          <li>Easy to use theming</li>
-          <li>Save and export your content</li>
-          <li>Undo/redo support</li>
-          <li>Full TypeScript support</li>
-        </ul>
+        <BulletedList>
+          <ListItem>Multiple rich content options</ListItem>
+          <BulletedList>
+            <ListItem>Text (bold, italic, underline, strikethrough)</ListItem>
+            <ListItem>Headings (H1-H6)</ListItem>
+            <ListItem>Links</ListItem>
+            <ListItem>Ordered and unordered lists</ListItem>
+            <ListItem>Blockquotes</ListItem>
+          </BulletedList>
+          <ListItem>Easy to use theming</ListItem>
+          <ListItem>Save and export your content</ListItem>
+          <ListItem>Undo/redo support</ListItem>
+          <ListItem>Full TypeScript support</ListItem>
+        </BulletedList>
       </Section>
       <Section>
         <Subheading>Technologies Used</Subheading>

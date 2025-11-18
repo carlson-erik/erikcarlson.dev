@@ -6,18 +6,20 @@ import { ThemeContext } from "@/theme/context";
 /* ------------------ Components ------------------ */
 import Layout from "@/components/layout";
 import SkillList from "@/components/skill-list";
-import { Heading, Paragraph, Subheading } from "@/components/styled";
+import {
+  Heading,
+  Paragraph,
+  Section,
+  Subheading,
+  OrderList,
+  BulletedList,
+  ListItem,
+} from "@/components/styled";
 /* ------------------ Metadata ------------------ */
 import { getPageMetadata } from "@/lib/metadata";
 /* ------------------ Netgraph ------------------ */
 import Netgraph from "@carlsonerik/netgraph";
 import { NETWORK_GRAPH_DATA, getNetworkGraphConfig } from "@/utils/netgraph";
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
 
 const DemoContainer = styled.div`
   width: 100%;
@@ -114,33 +116,35 @@ function NetgraphPage() {
       </Section>
       <Section>
         <Paragraph>Netgraph provides the following features:</Paragraph>
-        <ul>
-          <li>Two simulation modes</li>
-          <ol>
-            <li>
+        <BulletedList>
+          <ListItem>Two simulation modes</ListItem>
+          <OrderList>
+            <ListItem>
               <u>Dynamic</u> - The graph continuously renders and nodes are
               interactive. When the user drags a node, the simulation is updated
               and all forces are re-applied to the nodes.
-            </li>
-            <li>
+            </ListItem>
+            <ListItem>
               <u>Static</u> - The graph renders once and nodes are not
               interactive. However, the graph can still be zoomed and panned to
               see all aspects of the graph.
-            </li>
-          </ol>
-          <li>
+            </ListItem>
+          </OrderList>
+          <ListItem>
             Intuitive physics-based forces for graph layout behavior control.
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             Customizable node and link styling with group-based color coding for
             intuitive visual distinction.
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
             Hover tooltips for node details, supporting custom content and
             adjustable positioning
-          </li>
-          <li>Zoom and pan controls to view the entirity of your graph.</li>
-        </ul>
+          </ListItem>
+          <ListItem>
+            Zoom and pan controls to view the entirity of your graph.
+          </ListItem>
+        </BulletedList>
       </Section>
       <Section>
         <Subheading>Technologies Used</Subheading>

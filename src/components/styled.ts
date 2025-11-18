@@ -15,6 +15,12 @@ const Subheading = styled.h3`
   padding: 0;
 `;
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -74,13 +80,23 @@ const CodeBlock = styled.code`
   font-family: inherit;
 `;
 
+const OrderList = styled.ol``;
+const BulletedList = styled.ul``;
+const ListItem = styled.li`
+  font-size: 1.25rem;
+`;
+
 export {
   CodeContainer,
   CodeBlock,
   Heading,
   Subheading,
+  Section,
   IconLink,
   IconLinkText,
   StyledLink as Link,
   Paragraph,
+  OrderList,
+  BulletedList,
+  ListItem,
 };

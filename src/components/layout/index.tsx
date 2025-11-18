@@ -28,11 +28,6 @@ const Container = styled.div`
   & a:hover {
     color: ${(props) => props.theme.colors.link.textHover};
   }
-
-  ul > li,
-  ol > li {
-    font-size: 1.25rem;
-  }
 `;
 
 const GlobalStyle = createGlobalStyle`
