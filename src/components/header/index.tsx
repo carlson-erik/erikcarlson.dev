@@ -3,7 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import { Link } from "../styled";
-import Overlay from "../overlay";
+import { NavigationLink } from "./styled";
 import ThemeSwitch from "./theme-switch";
 /* ------------------ Hooks ------------------ */
 import { useWindowResize } from "@/hooks/useWindowResize";
@@ -14,23 +14,14 @@ import Gmail from "../../images/icons/simple/gmail";
 /* ------------------ Theme ------------------ */
 import { Theme } from "../../theme/types";
 import { ThemeContext } from "../../theme/context";
-
-const Interactions = styled.div`
-  display: flex;
-  flex-grow: 1;
-  justify-content: flex-end;
-
-  @media only screen and (max-width: 650px) {
-    flex-direction: row;
-    justify-content: unset;
-  }
-`;
+/* ------------------ Utilities ------------------ */
+import { getMenuListComponent } from "./menu-list";
 
 const Container = styled.header<{ theme: Theme }>`
   width: 100%;
   padding: 1rem 0 1rem 0;
   border-bottom: 1px solid ${(props) => props.theme.colors.borderLine};
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 
   @media only screen and (max-width: 650px) {
     display: flex;
@@ -65,9 +56,17 @@ const TitleContainer = styled.div`
     border-radius: 6rem;
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 450px) {
     & img {
-      display: none !important;
+      height: 80px !important;
+      width: 80px !important;
+    }
+  }
+
+  @media only screen and (max-width: 375px) {
+    & img {
+      height: 64px !important;
+      width: 64px !important;
     }
   }
 `;
@@ -79,12 +78,13 @@ const Title = styled.h1`
   text-decoration: none;
 
   @media only screen and (max-width: 500px) {
-    font-size: 2rem;
-  }
-
-  @media only screen and (max-width: 400px) {
     font-size: 2.5rem;
-    padding: 0;
+  }
+  @media only screen and (max-width: 450px) {
+    font-size: 2.25rem;
+  }
+  @media only screen and (max-width: 375px) {
+    font-size: 2rem;
   }
 `;
 
@@ -103,8 +103,13 @@ const NavigationContainer = styled.div<{ $showMobileMenu: boolean }>`
     padding-left: 7rem;
   }
 
-  @media only screen and (max-width: 400px) {
-    padding-left: 0;
+  @media only screen and (max-width: 450px) {
+    padding-left: 6rem;
+    gap: 0.5rem;
+  }
+
+  @media only screen and (max-width: 375px) {
+    padding-left: 5rem;
     gap: 0.5rem;
   }
 `;
@@ -146,22 +151,6 @@ const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
       `}
 `;
 
-const NavigationLink = styled(Link)`
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 0.5rem;
-
-  text-decoration: none;
-  color: ${(props) => props.theme.colors.link.text} !important;
-
-  &:hover {
-    text-decoration: underline;
-    color: ${(props) => props.theme.colors.link.text} !important;
-  }
-`;
-
 const ProjectLinkButton = styled.button`
   font-size: 1rem;
   letter-spacing: 0.1rem;
@@ -192,33 +181,6 @@ const ActionContainer = styled.div`
   align-items: center;
 `;
 
-const ThemeSwitchContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  @media only screen and (max-width: 650px) {
-    flex-grow: 1;
-    height: 100%;
-    justify-content: flex-end;
-    align-items: center;
-  }
-`;
-
-const SocialContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  padding-right: 0.5rem;
-`;
-
-const SocialLink = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 4px;
-`;
-
 const MobileMenuIconContainer = styled.div`
   display: none;
 
@@ -233,57 +195,12 @@ const MobileMenuIcon = styled.svg`
   width: 32px;
 `;
 
-const MenuList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background-color: ${(props) => props.theme.colors.menu.background};
-`;
-
-const MenuItem = styled.li`
-  padding: 0.5rem;
-
-  &:hover {
-    background-color: ${(props) => props.theme.colors.menu.backgroundHover};
-  }
-`;
-
-const MenuOverlay = styled(Overlay)`
-  box-shadow: 
-    /* inner glow */ inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
-    /* shadow ring */ 0 0 0 1px hsla(0, 0%, 0%, 0.05),
-    /* multiple soft shadows */ 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
-    0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
-`;
-
 const Header = () => {
   const { theme } = useContext(ThemeContext);
   const { width } = useWindowResize();
   const [$showMobileMenu, set$showMobileMenu] = useState<boolean>(false);
   const [showProjectsMenu, setShowProjectsMenu] = useState<boolean>(false);
   const [buttonElement, setButtonElement] = useState<HTMLElement | null>(null);
-  let MenuListComponent = (
-    <MenuList>
-      <MenuItem>
-        <NavigationLink href="/projects/gneiss-editor">
-          Gneiss Editor
-        </NavigationLink>
-      </MenuItem>
-      <MenuItem>
-        <NavigationLink href="/projects/netgraph">Netgraph</NavigationLink>
-      </MenuItem>
-    </MenuList>
-  );
-  if (width > 650 && buttonElement) {
-    MenuListComponent = (
-      <MenuOverlay
-        referenceElement={buttonElement}
-        outsideClick={() => setShowProjectsMenu(false)}
-      >
-        {MenuListComponent}
-      </MenuOverlay>
-    );
-  }
   return (
     <Container theme={theme}>
       <TitleRowContainer>
@@ -323,31 +240,12 @@ const Header = () => {
           >
             <span>Projects</span>
           </ProjectLinkButton>
-          {showProjectsMenu && MenuListComponent}
+          {showProjectsMenu &&
+            getMenuListComponent(buttonElement, width > 650, () =>
+              setShowProjectsMenu(false)
+            )}
           {/* <NavigationLink href="/blog">Blog</NavigationLink> */}
         </Navigation>
-        <Interactions>
-          <SocialContainer>
-            <SocialLink
-              href="mailto:erik@erikcarlson.com"
-              title="Email Erik Carlson"
-              style={{ backgroundColor: "#FFFFFF" }}
-            >
-              <Gmail type="social" />
-            </SocialLink>
-            <SocialLink
-              href="https://github.com/carlson-erik/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ backgroundColor: "#151013" }}
-            >
-              <Github color="#FFFFFF" type="social" />
-            </SocialLink>
-          </SocialContainer>
-          <ThemeSwitchContainer>
-            <ThemeSwitch />
-          </ThemeSwitchContainer>
-        </Interactions>
       </NavigationContainer>
     </Container>
   );
