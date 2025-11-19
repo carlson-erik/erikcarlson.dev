@@ -153,6 +153,9 @@ const NavigationLink = styled(Link)`
   text-transform: uppercase;
   padding: 0.5rem;
 
+  width: 100%;
+  height: 100%;
+
   text-decoration: none;
   color: ${(props) => props.theme.colors.link.text} !important;
 
@@ -240,12 +243,21 @@ const MenuList = styled.ul`
   background-color: ${(props) => props.theme.colors.menu.background};
 `;
 
-const MenuItem = styled.li`
-  padding: 0.5rem;
+const MenuItem = styled.li<{ $isDesktopMenu: boolean }>`
+  display: flex;
 
   &:hover {
     background-color: ${(props) => props.theme.colors.menu.backgroundHover};
   }
+
+  ${(props) =>
+    props.$isDesktopMenu
+      ? `
+        & > a {
+        padding: 1rem !important;
+        }
+      `
+      : ""}
 `;
 
 const MenuOverlay = styled(Overlay)`
@@ -256,34 +268,44 @@ const MenuOverlay = styled(Overlay)`
     0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
 `;
 
+const getMenuListComponent = (
+  buttonElement: HTMLElement | null,
+  isDesktopMenu: boolean,
+  handleOutsideClick: () => void
+) => {
+  let MenuListComponent = (
+    <MenuList>
+      <MenuItem $isDesktopMenu={isDesktopMenu}>
+        <NavigationLink href="/projects/gneiss-editor">
+          Gneiss Editor
+        </NavigationLink>
+      </MenuItem>
+      <MenuItem $isDesktopMenu={isDesktopMenu}>
+        <NavigationLink href="/projects/netgraph">Netgraph</NavigationLink>
+      </MenuItem>
+    </MenuList>
+  );
+
+  if (isDesktopMenu && buttonElement) {
+    return (
+      <MenuOverlay
+        referenceElement={buttonElement}
+        outsideClick={handleOutsideClick}
+      >
+        {MenuListComponent}
+      </MenuOverlay>
+    );
+  }
+
+  return MenuListComponent;
+};
+
 const Header = () => {
   const { theme } = useContext(ThemeContext);
   const { width } = useWindowResize();
   const [$showMobileMenu, set$showMobileMenu] = useState<boolean>(false);
   const [showProjectsMenu, setShowProjectsMenu] = useState<boolean>(false);
   const [buttonElement, setButtonElement] = useState<HTMLElement | null>(null);
-  let MenuListComponent = (
-    <MenuList>
-      <MenuItem>
-        <NavigationLink href="/projects/gneiss-editor">
-          Gneiss Editor
-        </NavigationLink>
-      </MenuItem>
-      <MenuItem>
-        <NavigationLink href="/projects/netgraph">Netgraph</NavigationLink>
-      </MenuItem>
-    </MenuList>
-  );
-  if (width > 650 && buttonElement) {
-    MenuListComponent = (
-      <MenuOverlay
-        referenceElement={buttonElement}
-        outsideClick={() => setShowProjectsMenu(false)}
-      >
-        {MenuListComponent}
-      </MenuOverlay>
-    );
-  }
   return (
     <Container theme={theme}>
       <TitleRowContainer>
@@ -323,7 +345,10 @@ const Header = () => {
           >
             <span>Projects</span>
           </ProjectLinkButton>
-          {showProjectsMenu && MenuListComponent}
+          {showProjectsMenu &&
+            getMenuListComponent(buttonElement, width > 650, () =>
+              setShowProjectsMenu(false)
+            )}
           {/* <NavigationLink href="/blog">Blog</NavigationLink> */}
         </Navigation>
         <Interactions>
