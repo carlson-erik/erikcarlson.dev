@@ -21,14 +21,12 @@ export default function HomePage() {
         <Introduction>
           <Heading>Hi there!</Heading>
           <Paragraph>
-            Based in Maine, USA, I'm a Full Stack Software Engineer who loves
-            turning ideas into reality. My expertise lies in crafting frontend
-            experiences with React.js and TypeScript, complemented by backend
-            development skills. I'm always building something new and learning
+            I'm a Full Stack Software Engineer based in Maine, who loves turning
+            ideas into reality. I'm always building something new and learning
             along the way.
           </Paragraph>
           <Paragraph>
-            Check out my projects to see what I've been working on lately!
+            Check out my projects to see what I've been working on!
           </Paragraph>
           <Paragraph>
             I currently work at{" "}
@@ -49,7 +47,8 @@ export default function HomePage() {
             >
               Data Reporting
             </Link>{" "}
-            software.
+            software. I specialize in crafting experiences with React.js and
+            TypeScript, complemented by strong backend development skills.
           </Paragraph>
         </Introduction>
         <ProjectList />

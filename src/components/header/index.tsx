@@ -3,7 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import { Link } from "../styled";
-import Overlay from "../overlay";
+import { NavigationLink } from "./styled";
 import ThemeSwitch from "./theme-switch";
 /* ------------------ Hooks ------------------ */
 import { useWindowResize } from "@/hooks/useWindowResize";
@@ -14,6 +14,8 @@ import Gmail from "../../images/icons/simple/gmail";
 /* ------------------ Theme ------------------ */
 import { Theme } from "../../theme/types";
 import { ThemeContext } from "../../theme/context";
+/* ------------------ Utilities ------------------ */
+import { getMenuListComponent } from "./menu-list";
 
 const Interactions = styled.div`
   display: flex;
@@ -65,9 +67,17 @@ const TitleContainer = styled.div`
     border-radius: 6rem;
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 450px) {
     & img {
-      display: none !important;
+      height: 80px !important;
+      width: 80px !important;
+    }
+  }
+
+  @media only screen and (max-width: 375px) {
+    & img {
+      height: 64px !important;
+      width: 64px !important;
     }
   }
 `;
@@ -79,12 +89,13 @@ const Title = styled.h1`
   text-decoration: none;
 
   @media only screen and (max-width: 500px) {
-    font-size: 2rem;
-  }
-
-  @media only screen and (max-width: 400px) {
     font-size: 2.5rem;
-    padding: 0;
+  }
+  @media only screen and (max-width: 450px) {
+    font-size: 2.25rem;
+  }
+  @media only screen and (max-width: 375px) {
+    font-size: 2rem;
   }
 `;
 
@@ -103,8 +114,13 @@ const NavigationContainer = styled.div<{ $showMobileMenu: boolean }>`
     padding-left: 7rem;
   }
 
-  @media only screen and (max-width: 400px) {
-    padding-left: 0;
+  @media only screen and (max-width: 450px) {
+    padding-left: 6rem;
+    gap: 0.5rem;
+  }
+
+  @media only screen and (max-width: 375px) {
+    padding-left: 5rem;
     gap: 0.5rem;
   }
 `;
@@ -144,25 +160,6 @@ const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
           }
         }
       `}
-`;
-
-const NavigationLink = styled(Link)`
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 0.5rem;
-
-  width: 100%;
-  height: 100%;
-
-  text-decoration: none;
-  color: ${(props) => props.theme.colors.link.text} !important;
-
-  &:hover {
-    text-decoration: underline;
-    color: ${(props) => props.theme.colors.link.text} !important;
-  }
 `;
 
 const ProjectLinkButton = styled.button`
@@ -235,70 +232,6 @@ const MobileMenuIcon = styled.svg`
   height: 32px;
   width: 32px;
 `;
-
-const MenuList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background-color: ${(props) => props.theme.colors.menu.background};
-`;
-
-const MenuItem = styled.li<{ $isDesktopMenu: boolean }>`
-  display: flex;
-
-  &:hover {
-    background-color: ${(props) => props.theme.colors.menu.backgroundHover};
-  }
-
-  ${(props) =>
-    props.$isDesktopMenu
-      ? `
-        & > a {
-        padding: 1rem !important;
-        }
-      `
-      : ""}
-`;
-
-const MenuOverlay = styled(Overlay)`
-  box-shadow: 
-    /* inner glow */ inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
-    /* shadow ring */ 0 0 0 1px hsla(0, 0%, 0%, 0.05),
-    /* multiple soft shadows */ 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
-    0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
-`;
-
-const getMenuListComponent = (
-  buttonElement: HTMLElement | null,
-  isDesktopMenu: boolean,
-  handleOutsideClick: () => void
-) => {
-  let MenuListComponent = (
-    <MenuList>
-      <MenuItem $isDesktopMenu={isDesktopMenu}>
-        <NavigationLink href="/projects/gneiss-editor">
-          Gneiss Editor
-        </NavigationLink>
-      </MenuItem>
-      <MenuItem $isDesktopMenu={isDesktopMenu}>
-        <NavigationLink href="/projects/netgraph">Netgraph</NavigationLink>
-      </MenuItem>
-    </MenuList>
-  );
-
-  if (isDesktopMenu && buttonElement) {
-    return (
-      <MenuOverlay
-        referenceElement={buttonElement}
-        outsideClick={handleOutsideClick}
-      >
-        {MenuListComponent}
-      </MenuOverlay>
-    );
-  }
-
-  return MenuListComponent;
-};
 
 const Header = () => {
   const { theme } = useContext(ThemeContext);
