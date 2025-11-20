@@ -1,26 +1,49 @@
+import designSystem from "./design-system";
 import { Theme, ThemeNames } from "./types";
 
 const DarkTheme: Theme = {
   name: ThemeNames.DARK,
   colors: {
-    backgroundColor: "#1E2127",
-    borderLine: "#343740",
-    text: "#D1D4D9",
+    backgroundColor: designSystem.colors.grays.shade900,
+    borderLine: designSystem.colors.grays.shade700,
+    text: designSystem.colors.grays.shade300,
     link: {
-      text: "#70A7F5",
-      textHover: "#0F62D7",
-      iconHover: "#434651",
+      text: designSystem.colors.primary.shade200,
+      textHover: designSystem.colors.primary.shade400,
+      iconHover: designSystem.colors.grays.shade700,
     },
     projectList: {
-      background: "#343740",
-      text: "#D1D4D9",
+      background: designSystem.colors.grays.shade800,
+      text: designSystem.colors.grays.shade300,
       project: {
-        iconColor: "lightgrey",
+        iconColor: designSystem.colors.grays.shade300,
       },
     },
     menu: {
-      background: "#343740",
-      backgroundHover: "#434651",
+      background: designSystem.colors.grays.shade800,
+      backgroundHover: designSystem.colors.grays.shade700,
+    },
+    gneiss: {
+      background: designSystem.colors.grays.shade900,
+      text: designSystem.colors.grays.shade300,
+      link: designSystem.colors.primary.shade200,
+      toolbar: {
+        border: designSystem.colors.grays.shade900,
+        background: {
+          primary: designSystem.colors.grays.shade900,
+          selected: designSystem.colors.grays.shade700,
+          disabled: designSystem.colors.grays.shade800,
+        },
+        text: {
+          primary: designSystem.colors.grays.shade300,
+          selected: designSystem.colors.grays.shade300,
+          disabled: designSystem.colors.grays.shade300,
+        },
+        button: {
+          background: designSystem.colors.primary.shadeDefault,
+          text: "#FFFFFF",
+        },
+      },
     },
   },
 };

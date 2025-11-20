@@ -1,3 +1,5 @@
+import type { ThemeConfiguration as GneissThemeConfiguration } from "gneiss-editor";
+
 export type Theme = {
   name: string;
   colors: {
@@ -19,6 +21,12 @@ export type Theme = {
     menu: {
       background: string;
       backgroundHover: string;
+    };
+    gneiss: {
+      background: string;
+      text: string;
+      link: string;
+      toolbar: GneissThemeConfiguration["toolbar"];
     };
   };
 };

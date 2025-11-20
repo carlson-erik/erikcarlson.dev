@@ -6,13 +6,13 @@ import {
 } from "gneiss-editor";
 
 export const getEditorTheme = (theme: Theme): EditorTheme => {
-  const themeColors = theme.colors;
+  const themeColors = theme.colors.gneiss;
   const editorTheme: ThemeConfiguration = {
     editor: {
-      background: themeColors.backgroundColor,
+      background: themeColors.background,
       text: {
         primary: themeColors.text,
-        link: themeColors.link.text,
+        link: themeColors.link,
         headings: {
           one: themeColors.text,
           two: themeColors.text,
@@ -24,21 +24,10 @@ export const getEditorTheme = (theme: Theme): EditorTheme => {
       },
     },
     toolbar: {
-      border: themeColors.borderLine,
-      background: {
-        primary: themeColors.backgroundColor,
-        selected: themeColors.link.textHover,
-        disabled: themeColors.borderLine,
-      },
-      text: {
-        primary: themeColors.text,
-        selected: themeColors.link.textHover,
-        disabled: themeColors.borderLine,
-      },
-      button: {
-        background: "blue",
-        text: "white",
-      },
+      border: themeColors.toolbar.border,
+      background: themeColors.toolbar.background,
+      text: themeColors.toolbar.text,
+      button: themeColors.toolbar.button,
     },
   };
   return {
