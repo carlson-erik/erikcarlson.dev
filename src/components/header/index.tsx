@@ -197,7 +197,6 @@ const ThemeSwitchContainer = styled.div`
   align-items: center;
 
   @media only screen and (max-width: 650px) {
-    flex-grow: 1;
     height: 100%;
     justify-content: flex-end;
     align-items: center;

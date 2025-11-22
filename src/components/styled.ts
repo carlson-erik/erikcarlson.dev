@@ -50,6 +50,7 @@ const IconLink = styled(Link)`
 const IconLinkText = styled.span`
   margin-left: 0.25rem;
   color: ${(props) => props.theme.colors.link.text};
+  font-weight: bold;
 `;
 
 const Paragraph = styled.p`

@@ -21,19 +21,19 @@ export default function HomePage() {
         <Introduction>
           <Heading>Hi there!</Heading>
           <Paragraph>
-            I'm a Full Stack Software Engineer based in Maine, who loves turning
-            ideas into reality. I'm always building something new and learning
-            along the way.
+            I'm a Full Stack Software Engineer based in Maine. I love building
+            software and turning ideas into reality. I'm always trying new
+            things and learning along the way.
           </Paragraph>
           <Paragraph>
             Check out my projects to see what I've been working on!
           </Paragraph>
           <Paragraph>
-            I currently work at{" "}
+            I work as a Principal Software Engineer for{" "}
             <Link href="https://pega.com/" target="_blank">
               Pegasystems
             </Link>{" "}
-            as a Principal Software Engineer. At Pegasystems, I build{" "}
+            . At Pegasystems, I build{" "}
             <Link
               href="https://en.wikipedia.org/wiki/Data_visualization"
               target="_blank"
