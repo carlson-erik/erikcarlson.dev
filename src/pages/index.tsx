@@ -21,12 +21,19 @@ export default function HomePage() {
         <Introduction>
           <Heading>Hi there!</Heading>
           <Paragraph>
-            I'm a Full Stack Software Engineer based out of Maine, USA. I work
-            at{" "}
+            I'm a Erik, Full Stack Software Engineer based in Maine. I love
+            building software and turning ideas into reality. I'm always trying
+            new things and learning along the way.
+          </Paragraph>
+          <Paragraph>
+            Check out my projects to see what I've been working on!
+          </Paragraph>
+          <Paragraph>
+            I work as a Principal Software Engineer for{" "}
             <Link href="https://pega.com/" target="_blank">
               Pegasystems
             </Link>{" "}
-            as a Principal Software Engineer. At Pegasystems, I build{" "}
+            . At Pegasystems, I build{" "}
             <Link
               href="https://en.wikipedia.org/wiki/Data_visualization"
               target="_blank"
@@ -40,13 +47,8 @@ export default function HomePage() {
             >
               Data Reporting
             </Link>{" "}
-            software.
-          </Paragraph>
-          <Paragraph>
-            I specialize in designing and creating Frontend solutions with
-            React.js, and TypeScript. Although, I have expertise in building
-            Backend technologies. I like to build cool things and learn from the
-            experience. Check out my projects to see that process!
+            software. I specialize in crafting experiences with React.js and
+            TypeScript, complemented by strong backend development skills.
           </Paragraph>
         </Introduction>
         <ProjectList />

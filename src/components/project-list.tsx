@@ -2,10 +2,14 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 /* ------------------ Components ------------------ */
-import { IconLinkText, Paragraph, Subheading } from "../components/styled";
+import {
+  IconLinkText,
+  Paragraph,
+  Section,
+  Subheading,
+} from "../components/styled";
 import SkillList, { IconLink } from "./skill-list";
 import Github from "../images/icons/alt/github";
-import ExternalLink from "../images/icons/simple/external-link";
 import InternalLink from "../images/icons/simple/internal-link";
 /* ------------------ Theme ------------------ */
 import { ThemeContext } from "../theme/context";
@@ -124,9 +128,7 @@ const ProjectContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
+const ProjectSection = styled(Section)`
   gap: 1rem;
 `;
 
@@ -144,7 +146,7 @@ const ProjectList = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <ProjectSectionContainer>
-      <Section>
+      <ProjectSection>
         <Subheading>What I'm Working On</Subheading>
         <ProjectRow id="netgraph" reversed>
           <ContentContainer>
@@ -239,8 +241,8 @@ const ProjectList = () => {
             )}
           </PictureContainer>
         </ProjectRow>
-      </Section>
-      <Section>
+      </ProjectSection>
+      <ProjectSection>
         <Subheading>Past Projects</Subheading>
         <ProjectContainer>
           <Project id="coddit" theme={theme}>
@@ -382,7 +384,7 @@ const ProjectList = () => {
             </DetailContainer>
           </Project>
         </ProjectContainer>
-      </Section>
+      </ProjectSection>
     </ProjectSectionContainer>
   );
 };

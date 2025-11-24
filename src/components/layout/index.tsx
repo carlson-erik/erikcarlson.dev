@@ -2,6 +2,7 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 /* ------------------ Components ------------------ */
 import Header from "../header";
+import Footer from "./footer";
 /* ------------------ Theme ------------------ */
 import { ThemeProvider } from "../../theme/context";
 /* ------------------ Font ------------------ */
@@ -12,8 +13,6 @@ import { globalCSS, resetCSS } from "./styles";
 const Container = styled.div`
   width: 100%;
   max-width: 1000px;
-
-  padding-bottom: 2rem;
 
   @media only screen and (max-width: 650px) {
     padding-right: 0;
@@ -27,11 +26,6 @@ const Container = styled.div`
 
   & a:hover {
     color: ${(props) => props.theme.colors.link.textHover};
-  }
-
-  ul > li,
-  ol > li {
-    font-size: 1.25rem;
   }
 `;
 
@@ -68,6 +62,7 @@ const Layout = (props: LayoutProps) => {
       <Container>
         <Header />
         <MainContent>{children}</MainContent>
+        <Footer />
       </Container>
     </ThemeProvider>
   );

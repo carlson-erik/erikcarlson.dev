@@ -1,26 +1,58 @@
+import designSystem from "./design-system";
 import { Theme, ThemeNames } from "./types";
 
 const LightTheme: Theme = {
   name: ThemeNames.LIGHT,
   colors: {
     backgroundColor: "#FFFFFF",
-    borderLine: "#E5E8EC",
-    text: "#1E2127",
+    borderLine: designSystem.colors.grays.shade300,
+    text: designSystem.colors.grays.shade900,
     link: {
-      text: "#1f5aff",
-      textHover: "#0036cc",
-      iconHover: "#F3F5F7",
-    },
-    projectList: {
-      background: "#F3F5F7",
-      text: "#1E2127",
-      project: {
-        iconColor: "#707070",
-      },
+      text: designSystem.colors.primary.shadeDefault,
+      textHover: designSystem.colors.primary.shade700,
+      iconHover: designSystem.colors.grays.shade200,
     },
     menu: {
-      background: "#F3F5F7",
-      backgroundHover: "#E5E8EC",
+      background: designSystem.colors.grays.shade200,
+      backgroundHover: designSystem.colors.grays.shade300,
+    },
+    projectList: {
+      background: designSystem.colors.grays.shade200,
+      text: designSystem.colors.grays.shade900,
+      project: {
+        iconColor: designSystem.colors.grays.shade700,
+      },
+    },
+    gneiss: {
+      background: "#FFFFFF",
+      text: designSystem.colors.grays.shade900,
+      link: designSystem.colors.primary.shadeDefault,
+      toolbar: {
+        border: "#FFFFFF",
+        background: {
+          primary: "#FFFFFF",
+          selected: designSystem.colors.grays.shade200,
+          disabled: designSystem.colors.grays.shade300,
+        },
+        text: {
+          primary: designSystem.colors.grays.shade900,
+          selected: designSystem.colors.grays.shade900,
+          disabled: designSystem.colors.grays.shade300,
+        },
+        button: {
+          background: designSystem.colors.primary.shadeDefault,
+          text: "#FFFFFF",
+        },
+      },
+    },
+    footer: {
+      background: designSystem.colors.grays.shade200,
+      text: designSystem.colors.grays.shade900,
+      link: {
+        text: designSystem.colors.grays.shade900,
+        textHover: designSystem.colors.grays.shade900,
+        iconHover: designSystem.colors.grays.shade200,
+      },
     },
   },
 };

@@ -85,18 +85,17 @@ export const globalCSS = `
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 0 0 4rem 0;
   }
 
   @media only screen and (max-width: 1000px) {
     body  {
-      padding: 1rem;
+      padding: 1rem 1rem 0 1rem;
     }
   }
 
   @media only screen and (max-width: 400px) {
     body  {
-      padding: 0.5rem;
+      padding: 0.5rem 0.5rem 0 0.5rem;
     }
   }
 `;
