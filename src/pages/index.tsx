@@ -21,7 +21,7 @@ export default function HomePage() {
         <Introduction>
           <Heading>Hi there!</Heading>
           <Paragraph>
-            I'm a Erik, Full Stack Software Engineer based in Maine. I love
+            I'm Erik, a Full Stack Software Engineer based in Maine. I love
             building software and turning ideas into reality. I'm always trying
             new things and learning along the way.
           </Paragraph>
