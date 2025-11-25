@@ -3,41 +3,48 @@ import styled from "styled-components";
 import { IconLink, Link } from "./styled";
 /* ------------------ Types ------------------ */
 import { AltIconProps, IconProps } from "../images/types";
-/* ------------------ Simple Icons ------------------ */
-import D3 from "../images/icons/simple/d3";
-import Dev from "../images/icons/simple/dev";
-import Gmail from "../images/icons/simple/gmail";
-import TypeScript from "../images/icons/simple/typescript";
-import Redux from "../images/icons/simple/redux";
-import JavaScript from "../images/icons/simple/javascript";
-import Jest from "../images/icons/simple/jest";
-import CSS from "../images/icons/simple/css";
-import Gatsby from "../images/icons/simple/gatsby";
-import Java from "../images/icons/simple/java";
-/* ------------------ Alt Icons ------------------ */
-import NodeJS from "../images/icons/alt/nodejs";
-import ReactIcon from "../images/icons/alt/react";
-import Github from "../images/icons/alt/github";
-import Rollup from "../images/icons/simple/rollup";
-import Webpack from "../images/icons/simple/webpack";
-import NextJS from "@/images/icons/simple/nextjs";
-import Icon, { IconType } from "./icon";
+/* ------------------ Project Icons ------------------ */
+import CSS from "../images/icons/project/css";
+import D3 from "../images/icons/project/d3";
+import Gatsby from "../images/icons/project/gatsby";
+import Java from "../images/icons/project/java";
+import JavaScript from "../images/icons/project/javascript";
+import Jest from "../images/icons/project/jest";
+import NextJS from "@/images/icons/project/nextjs";
+import NodeJS from "../images/icons/project/nodejs";
+import ReactIcon from "../images/icons/project/react";
+import Redux from "../images/icons/project/redux";
+import Rollup from "../images/icons/project/rollup";
+import TypeScript from "../images/icons/project/typescript";
+import Webpack from "../images/icons/project/webpack";
+
+type Skill =
+  | "css"
+  | "d3"
+  | "gatsby"
+  | "java"
+  | "javascript"
+  | "jest"
+  | "nextjs"
+  | "typescript"
+  | "redux"
+  | "rollup"
+  | "webpack"
+  | "nodejs"
+  | "react";
 
 const Container = styled.div`
   width: 100%;
   display: flex;
-
   flex-wrap: wrap;
 `;
-
-type Skill = IconType;
 
 export interface SkillListProps {
   skills: Skill[];
 }
 
 type SkillDetails = {
-  component: (props: IconProps | AltIconProps) => JSX.Element;
+  Component: (props: IconProps | AltIconProps) => JSX.Element;
   type: "simple" | "alt";
   title: string;
   url: string;
@@ -45,119 +52,113 @@ type SkillDetails = {
 
 const ICON_MAP: Record<Skill, SkillDetails> = {
   css: {
-    component: CSS,
+    Component: CSS,
     title: "CSS3",
     type: "simple",
     url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
   },
   d3: {
-    component: D3,
+    Component: D3,
     title: "D3.js",
     type: "simple",
     url: "https://d3js.org/",
   },
-  dev: {
-    component: Dev,
-    title: "dev.to",
-    type: "simple",
-    url: "https://dev.to/",
-  },
   gatsby: {
-    component: Gatsby,
+    Component: Gatsby,
     title: "Gatsby.js",
     type: "simple",
     url: "https://www.gatsbyjs.com/",
   },
-  gmail: {
-    component: Gmail,
-    title: "Google's gmail",
-    type: "simple",
-    url: "https://www.google.com/gmail/about/",
-  },
   java: {
-    component: Java,
+    Component: Java,
     title: "Oracle Java",
     type: "simple",
     url: "https://www.java.com/en/",
   },
   javascript: {
-    component: JavaScript,
+    Component: JavaScript,
     title: "JavaScript",
     type: "simple",
     url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   jest: {
-    component: Jest,
+    Component: Jest,
     title: "Jest.js",
     type: "simple",
     url: "https://jestjs.io/",
   },
   nextjs: {
-    component: NextJS,
+    Component: NextJS,
     title: "Next.js",
     type: "simple",
     url: "https://nextjs.org/",
   },
   typescript: {
-    component: TypeScript,
+    Component: TypeScript,
     title: "TypeScript",
     type: "simple",
     url: "https://www.typescriptlang.org/",
   },
   redux: {
-    component: Redux,
+    Component: Redux,
     title: "Redux.js",
     type: "simple",
     url: "https://redux.js.org/",
   },
   rollup: {
-    component: Rollup,
+    Component: Rollup,
     title: "rollup.js",
     type: "simple",
     url: "https://rollupjs.org/",
   },
   webpack: {
-    component: Webpack,
+    Component: Webpack,
     title: "Webpack",
     type: "simple",
     url: "https://webpack.js.org/",
   },
-  github: {
-    component: Github,
-    title: "Github",
-    type: "alt",
-    url: "https://github.com/",
-  },
   nodejs: {
-    component: NodeJS,
+    Component: NodeJS,
     title: "Node.js",
     type: "alt",
     url: "https://nodejs.org/en/",
   },
   react: {
-    component: ReactIcon,
+    Component: ReactIcon,
     title: "React.js",
     type: "alt",
     url: "https://reactjs.org/",
   },
 };
 
+const StyledIconLink = styled(IconLink)`
+  &:hover {
+    background-color: ${(props) =>
+      props.theme.colors.projectList.project.iconHover};
+  }
+
+  & > svg {
+    height: 20px;
+    width: 20px;
+  }
+`;
+
 const SkillList = (props: SkillListProps) => {
   const { skills } = props;
   return (
     <Container>
       {skills.map((skill) => {
-        const { url, title, component }: SkillDetails = ICON_MAP[skill];
+        const { url, title, Component }: SkillDetails = ICON_MAP[skill];
         return (
-          <IconLink
+          <StyledIconLink
             key={skill}
             href={url}
             target="_blank"
             rel="noopener noreferrer"
             title={title}
           >
-            <Icon iconType={skill} Component={component} />
-          </IconLink>
+            <Component key={skill} />
+          </StyledIconLink>
         );
       })}
     </Container>

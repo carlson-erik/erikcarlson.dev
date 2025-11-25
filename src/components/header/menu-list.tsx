@@ -22,7 +22,7 @@ const MenuItem = styled.li<{ $isDesktopMenu: boolean }>`
     props.$isDesktopMenu
       ? `
         & > a {
-        padding: 1rem !important;
+        padding: 0.5rem !important;
         }
       `
       : ""}

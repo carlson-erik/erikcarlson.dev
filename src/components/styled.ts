@@ -23,7 +23,7 @@ const Section = styled.section`
 
 const StyledLink = styled(Link)`
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 6px;
 `;
 
 const IconLink = styled(StyledLink)`

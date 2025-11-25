@@ -1,10 +1,7 @@
-type IconType = 'social' | 'dev'
+type IconType = "social" | "dev";
 
 export interface IconProps {
   color?: string;
-  type: IconType
 }
 
-export interface AltIconProps extends IconProps {
-  useAlt?: boolean
-}
+export interface AltIconProps extends IconProps {}

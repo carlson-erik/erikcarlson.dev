@@ -4,13 +4,10 @@ import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import { Link } from "../styled";
 import { NavigationLink } from "./styled";
-import ThemeSwitch from "./theme-switch";
 /* ------------------ Hooks ------------------ */
 import { useWindowResize } from "@/hooks/useWindowResize";
 /* ------------------ Icons ------------------ */
 import profilePic from "../../images/portfolio.png";
-import Github from "../../images/icons/alt/github";
-import Gmail from "../../images/icons/simple/gmail";
 /* ------------------ Theme ------------------ */
 import { Theme } from "../../theme/types";
 import { ThemeContext } from "../../theme/context";
@@ -170,7 +167,7 @@ const ProjectLinkButton = styled.button`
   &:hover {
     color: ${(props) => props.theme.colors.link.text};
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 6px;
   }
 `;
 

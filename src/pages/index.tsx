@@ -32,7 +32,7 @@ export default function HomePage() {
             I work as a Principal Software Engineer for{" "}
             <Link href="https://pega.com/" target="_blank">
               Pegasystems
-            </Link>{" "}
+            </Link>
             . At Pegasystems, I build{" "}
             <Link
               href="https://en.wikipedia.org/wiki/Data_visualization"

@@ -21,7 +21,12 @@ const LightTheme: Theme = {
       text: designSystem.colors.grays.shade900,
       project: {
         iconColor: designSystem.colors.grays.shade700,
+        iconHover: designSystem.colors.grays.shade300,
       },
+    },
+    scrollToTop: {
+      iconBackground: designSystem.colors.grays.shade300,
+      iconBackgroundHover: designSystem.colors.grays.shade400,
     },
     gneiss: {
       background: "#FFFFFF",

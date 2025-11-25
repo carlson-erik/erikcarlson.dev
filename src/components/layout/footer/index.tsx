@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
-import ThemeSwitch from "../header/theme-switch";
-import { IconLink, IconLinkText, Link } from "../styled";
+import { IconLink, IconLinkText, Link } from "../../styled";
+import ThemeSwitch from "./theme-switch";
+import ScrollToTop from "./scroll-to-top";
 /* ------------------ Theme ------------------ */
 import { ThemeContext } from "@/theme/context";
 /* ------------------ Icons ------------------ */
-import Email from "@/images/icons/simple/email";
-import Github from "@/images/icons/alt/github";
+import Email from "@/images/icons/email";
+import Github from "@/images/icons/project/github";
 
 const StyledFooter = styled.footer`
   width: 100%;
@@ -37,6 +38,7 @@ const SocialContainer = styled.div`
   flex-direction: column;
   flex-basis: 50%;
   align-items: center;
+  gap: 0.5rem;
 
   justify-content: center;
 `;
@@ -109,47 +111,50 @@ const FooterLinkText = styled(IconLinkText)`
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <StyledFooter>
-      <SocialContainer>
-        <SocialIcons>
-          <FooterLink
-            href="mailto:erik@erikcarlson.dev"
-            target="_blank"
-            title="Email Erik Carlson"
-          >
-            <Email type="dev" color={theme.colors.footer.link.text} />
-            <FooterLinkText>Reach out!</FooterLinkText>
-          </FooterLink>
-          <FooterLink
-            href="https://github.com/carlson-erik"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Erik Carlson's Github"
-          >
-            <Github type="dev" color={theme.colors.footer.link.text} />
-            <FooterLinkText>carlson-erik</FooterLinkText>
-          </FooterLink>
-          <ThemeSwitch />
-        </SocialIcons>
-        <Copyright>
-          &copy; {new Date().getFullYear()} Erik Carlson. All rights reserved.
-        </Copyright>
-      </SocialContainer>
-      <SiteLinksContainer>
-        <CategoryContainer>
-          <SiteCategory>
-            <CategoryTitle>Site Map</CategoryTitle>
-            <SiteLink href="/">Home</SiteLink>
-            <SiteLink href="/experience">Experience</SiteLink>
-          </SiteCategory>
-          <SiteCategory>
-            <CategoryTitle>Projects</CategoryTitle>
-            <SiteLink href="/projects/gneiss-editor">Gneiss Editor</SiteLink>
-            <SiteLink href="/projects/netgraph">Netgraph</SiteLink>
-          </SiteCategory>
-        </CategoryContainer>
-      </SiteLinksContainer>
-    </StyledFooter>
+    <>
+      <StyledFooter>
+        <SocialContainer>
+          <SocialIcons>
+            <FooterLink
+              href="mailto:erik@erikcarlson.dev"
+              target="_blank"
+              title="Email Erik Carlson"
+            >
+              <Email type="dev" color={theme.colors.footer.link.text} />
+              <FooterLinkText>Reach out!</FooterLinkText>
+            </FooterLink>
+            <FooterLink
+              href="https://github.com/carlson-erik"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Erik Carlson's Github"
+            >
+              <Github type="dev" color={theme.colors.footer.link.text} />
+              <FooterLinkText>carlson-erik</FooterLinkText>
+            </FooterLink>
+            <ThemeSwitch />
+          </SocialIcons>
+          <Copyright>
+            &copy; {new Date().getFullYear()} Erik Carlson. All rights reserved.
+          </Copyright>
+        </SocialContainer>
+        <SiteLinksContainer>
+          <CategoryContainer>
+            <SiteCategory>
+              <CategoryTitle>Site Map</CategoryTitle>
+              <SiteLink href="/">Home</SiteLink>
+              <SiteLink href="/experience">Experience</SiteLink>
+            </SiteCategory>
+            <SiteCategory>
+              <CategoryTitle>Projects</CategoryTitle>
+              <SiteLink href="/projects/gneiss-editor">Gneiss Editor</SiteLink>
+              <SiteLink href="/projects/netgraph">Netgraph</SiteLink>
+            </SiteCategory>
+          </CategoryContainer>
+        </SiteLinksContainer>
+      </StyledFooter>
+      <ScrollToTop />
+    </>
   );
 };
 

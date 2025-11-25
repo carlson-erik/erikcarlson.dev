@@ -1,19 +1,24 @@
 import React, { useContext } from "react";
-import { DevIcon, SocialIcon } from "../../styled";
+/* ------------------ Styled ------------------ */
+import { StandardIcon } from "../../styled";
+/* ------------------ Types ------------------ */
 import { IconProps } from "../../types";
+/* ------------------ Theme ------------------ */
 import { ThemeContext } from "@/theme/context";
 
 const ICON_LIGHTPAGE = "#000000";
 const ICON_DARKPAGE = "#FFFFFF";
 
 const NextJS = (props: IconProps) => {
-  const { type } = props;
   const { theme } = useContext(ThemeContext);
-  const Icon = type === "social" ? SocialIcon : DevIcon;
   const fillColor = theme.name === "Dark" ? ICON_DARKPAGE : ICON_LIGHTPAGE;
   const fontColor = theme.name === "Dark" ? "#000000" : "#FFFFFF";
   return (
-    <Icon role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+    <StandardIcon
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 180 180"
+    >
       <mask
         height="180"
         id=":r8:mask0_408_134"
@@ -68,7 +73,7 @@ const NextJS = (props: IconProps) => {
           <stop offset="1" stopColor={fontColor} stopOpacity="0"></stop>
         </linearGradient>
       </defs>
-    </Icon>
+    </StandardIcon>
   );
 };
 

@@ -21,7 +21,12 @@ const DarkTheme: Theme = {
       text: designSystem.colors.grays.shade300,
       project: {
         iconColor: designSystem.colors.grays.shade300,
+        iconHover: designSystem.colors.grays.shade700,
       },
+    },
+    scrollToTop: {
+      iconBackground: designSystem.colors.grays.shade700,
+      iconBackgroundHover: designSystem.colors.grays.shade600,
     },
     gneiss: {
       background: designSystem.colors.grays.shade900,

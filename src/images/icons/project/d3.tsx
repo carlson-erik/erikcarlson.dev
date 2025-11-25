@@ -1,15 +1,14 @@
 import React from "react";
-import { DevIcon, SocialIcon } from "../../styled";
+import { StandardIcon } from "../../styled";
 import { IconProps } from "../../types";
 
 const ICON_DEFAULT = "#f9a03c";
 
 const D3 = (props: IconProps) => {
-  const { color, type } = props;
+  const { color } = props;
   const fillColor = color && color !== "" ? color : ICON_DEFAULT;
-  const Icon = type === "social" ? SocialIcon : DevIcon;
   return (
-    <Icon viewBox="0 0 128 128">
+    <StandardIcon viewBox="0 0 128 128">
       <linearGradient
         id="d3js-plain-a"
         gradientUnits="userSpaceOnUse"
@@ -40,7 +39,7 @@ const D3 = (props: IconProps) => {
         fill={fillColor}
         d="M61.03 97.543l.003-.18c.07-.1.138-.292.207-.39.077-.118.152-.275.228-.392.002-.002 0-.03.003-.034 6.14-9.33 9.727-20.41 9.727-32.39C71.197 31.5 44.624 5 11.962 5H1v26h10.962c18.32 0 33.23 14.823 33.23 33.144 0 4.984-1.113 9.675-3.088 13.924-.006.013-.013.36-.02.374C36.79 89.782 25.283 98 11.963 98H1v26h10.962c20.396 0 38.41-10.722 49.068-26.457z"
       ></path>
-    </Icon>
+    </StandardIcon>
   );
 };
 
