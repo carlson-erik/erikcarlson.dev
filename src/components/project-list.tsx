@@ -9,8 +9,8 @@ import {
   Subheading,
 } from "../components/styled";
 import SkillList, { IconLink } from "./skill-list";
-import Github from "../images/icons/alt/github";
-import InternalLink from "../images/icons/simple/internal-link";
+import Github from "../images/icons/project/github";
+import InternalLink from "../images/icons/internal-link";
 /* ------------------ Theme ------------------ */
 import { ThemeContext } from "../theme/context";
 import { Theme } from "../theme/types";

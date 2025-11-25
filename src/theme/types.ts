@@ -16,11 +16,16 @@ export type Theme = {
       text: string;
       project: {
         iconColor: string;
+        iconHover: string;
       };
     };
     menu: {
       background: string;
       backgroundHover: string;
+    };
+    scrollToTop: {
+      iconBackground: string;
+      iconBackgroundHover: string;
     };
     footer: {
       background: string;
