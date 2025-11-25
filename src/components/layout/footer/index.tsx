@@ -120,7 +120,7 @@ const Footer = () => {
               target="_blank"
               title="Email Erik Carlson"
             >
-              <Email type="dev" color={theme.colors.footer.link.text} />
+              <Email color={theme.colors.footer.link.text} />
               <FooterLinkText>Reach out!</FooterLinkText>
             </FooterLink>
             <FooterLink
@@ -129,7 +129,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               title="Erik Carlson's Github"
             >
-              <Github type="dev" color={theme.colors.footer.link.text} />
+              <Github color={theme.colors.footer.link.text} />
               <FooterLinkText>carlson-erik</FooterLinkText>
             </FooterLink>
             <ThemeSwitch />

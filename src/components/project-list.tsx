@@ -158,7 +158,7 @@ const ProjectList = () => {
                   href="/projects/netgraph"
                   title="Netgraph project showcase"
                 >
-                  <InternalLink type="dev" color={theme.colors.link.text} />
+                  <InternalLink color={theme.colors.link.text} />
                   <IconLinkText>Showcase</IconLinkText>
                 </IconLink>
               </ProjectLinks>
@@ -201,18 +201,14 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="GneissEditor github repository"
                 >
-                  <Github
-                    type="dev"
-                    useAlt={false}
-                    color={theme.colors.projectList.project.iconColor}
-                  />
+                  <Github color={theme.colors.projectList.project.iconColor} />
                 </IconLink>
                 <IconLink
                   key="gneisseditor-project-showcase"
                   href="/projects/gneiss-editor"
                   title="GneissEditor project showcase"
                 >
-                  <InternalLink type="dev" color={theme.colors.link.text} />
+                  <InternalLink color={theme.colors.link.text} />
                   <IconLinkText>Showcase</IconLinkText>
                 </IconLink>
               </ProjectLinks>
@@ -256,11 +252,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="coddit github repo"
                 >
-                  <Github
-                    type="dev"
-                    useAlt={false}
-                    color={theme.colors.projectList.project.iconColor}
-                  />
+                  <Github color={theme.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
@@ -292,11 +284,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="componentry github repo"
                 >
-                  <Github
-                    type="dev"
-                    useAlt={false}
-                    color={theme.colors.projectList.project.iconColor}
-                  />
+                  <Github color={theme.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
@@ -326,11 +314,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="site-building github repo"
                 >
-                  <Github
-                    type="dev"
-                    useAlt={false}
-                    color={theme.colors.projectList.project.iconColor}
-                  />
+                  <Github color={theme.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
@@ -360,11 +344,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="componentry github repo"
                 >
-                  <Github
-                    type="dev"
-                    useAlt={false}
-                    color={theme.colors.projectList.project.iconColor}
-                  />
+                  <Github color={theme.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
