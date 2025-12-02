@@ -11,6 +11,7 @@ import {
 import SkillList, { IconLink } from "./skill-list";
 import Github from "../images/icons/project/github";
 import InternalLink from "../images/icons/internal-link";
+import ExternalLink from "@/images/icons/external-link";
 /* ------------------ Theme ------------------ */
 import { ThemeContext } from "../theme/context";
 import { Theme } from "../theme/types";
@@ -19,7 +20,7 @@ import gneissEditorLight from "../images/projects/gneiss-editor-light.png";
 import gneissEditorDark from "../images/projects/gneiss-editor-dark.png";
 import netgraphLight from "../images/projects/netgraph-light.png";
 import netgraphDark from "../images/projects/netgraph-dark.png";
-
+/* ------------------ Styled Components1 ------------------ */
 const ProjectRow = styled.div<{ reversed?: boolean }>`
   width: 100%;
   display: flex;
@@ -246,8 +247,19 @@ const ProjectList = () => {
               <ProjectName>coddit</ProjectName>
               <ProjectLinks>
                 <IconLink
+                  key="project-live-demo"
+                  href="https://coddit.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="coddit live demo"
+                >
+                  <ExternalLink
+                    color={theme.colors.projectList.project.iconColor}
+                  />
+                </IconLink>
+                <IconLink
                   key="project-github"
-                  href="https://github.com/carlson-erik/coddit"
+                  href="https://github.com/carlson-erik/"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="coddit github repo"
