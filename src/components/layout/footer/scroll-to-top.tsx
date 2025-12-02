@@ -1,7 +1,10 @@
-import DoubleUp from "@/images/icons/double-up";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-
+/* ------------------ Icons ------------------ */
+import DoubleUp from "@/images/icons/double-up";
+/* ------------------ Theme ------------------ */
+import { ThemeContext } from "@/theme/context";
+/* ------------------ Styled Components ------------------ */
 const IconWrapper = styled.div<{ $isScrolled: boolean }>`
   display: none;
   border-radius: 4px;
@@ -26,7 +29,7 @@ const IconWrapper = styled.div<{ $isScrolled: boolean }>`
 
 const ScrollToTop = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     function handleScroll() {
       // Show element after ANY scroll, or set a threshold like > 20px
@@ -43,7 +46,7 @@ const ScrollToTop = () => {
   };
   return (
     <IconWrapper onClick={handleScrollToTop} $isScrolled={isScrolled}>
-      <DoubleUp />
+      <DoubleUp color={theme.colors.text} />
     </IconWrapper>
   );
 };
