@@ -31,15 +31,6 @@ const Container = styled.header<{ theme: Theme }>`
   }
 `;
 
-const StyledTitleLink = styled(Link)<{ theme: Theme }>`
-  text-decoration: none;
-  color: ${(props) => props.theme.colors.text} !important;
-
-  &:hover {
-    text-decoration: none !important;
-  }
-`;
-
 const TitleRowContainer = styled.div`
   width: 100%;
   display: flex;
@@ -201,17 +192,21 @@ const Header = () => {
   return (
     <Container theme={theme}>
       <TitleRowContainer>
-        <StyledTitleLink href="/" theme={theme}>
-          <TitleContainer>
-            <Image
-              src={profilePic}
-              width={96}
-              height={96}
-              alt="erik carlson portfolio picture"
-            />
-            <Title>Erik Carlson</Title>
-          </TitleContainer>
-        </StyledTitleLink>
+        <TitleContainer
+          onClick={() => {
+            if (width < 650) {
+              set$showMobileMenu(!$showMobileMenu);
+            }
+          }}
+        >
+          <Image
+            src={profilePic}
+            width={96}
+            height={96}
+            alt="erik carlson portfolio picture"
+          />
+          <Title>Erik Carlson</Title>
+        </TitleContainer>
         <ActionContainer>
           <MobileMenuIconContainer
             onClick={() => set$showMobileMenu(!$showMobileMenu)}
@@ -237,7 +232,7 @@ const Header = () => {
           >
             <span>Projects</span>
           </ProjectLinkButton>
-          {showProjectsMenu &&
+          {(showProjectsMenu || width < 650) &&
             getMenuListComponent(buttonElement, width > 650, () =>
               setShowProjectsMenu(false)
             )}
