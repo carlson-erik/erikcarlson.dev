@@ -14,6 +14,11 @@ const IconWrapper = styled.div<{ $isScrolled: boolean }>`
   background-color: ${(props) => props.theme.colors.scrollToTop.iconBackground};
   padding: 0.5rem;
 
+  & > svg {
+    width: 32px;
+    height: 32px;
+  }
+
   &:hover {
     background-color: ${(props) =>
       props.theme.colors.scrollToTop.iconBackgroundHover};
@@ -22,8 +27,8 @@ const IconWrapper = styled.div<{ $isScrolled: boolean }>`
   @media only screen and (max-width: 650px) {
     display: ${(props) => (props.$isScrolled ? "flex" : "none")};
     position: fixed;
-    bottom: 16px;
-    right: 16px;
+    bottom: 20px;
+    right: 20px;
   }
 `;
 

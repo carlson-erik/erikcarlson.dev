@@ -24,6 +24,7 @@ const Container = styled.header<{ theme: Theme }>`
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 1rem;
   }
 
   @media only screen and (max-width: 400px) {
@@ -228,7 +229,11 @@ const Header = () => {
           <NavigationLink href="/experience">Experience</NavigationLink>
           <ProjectLinkButton
             ref={setButtonElement}
-            onClick={() => setShowProjectsMenu(!showProjectsMenu)}
+            onClick={() => {
+              if (width > 650) {
+                setShowProjectsMenu(!showProjectsMenu);
+              }
+            }}
           >
             <span>Projects</span>
           </ProjectLinkButton>

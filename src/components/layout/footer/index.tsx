@@ -24,6 +24,7 @@ const StyledFooter = styled.footer`
   height: 10rem;
 
   @media only screen and (max-width: 650px) {
+    padding: 2rem 0 2rem 0;
     height: fit-content;
     flex-direction: column-reverse;
     gap: 0.5rem;
