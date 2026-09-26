@@ -36,6 +36,7 @@ export const resetCSS = `
   /* Set core body defaults */
   body {
     min-height: 100vh;
+    min-height: 100dvh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
   }
@@ -85,6 +86,12 @@ export const globalCSS = `
     display: flex;
     justify-content: center;
     width: 100%;
+  }
+
+  /* Next's root wrapper stretches to the body's height so the page can fill it */
+  #__next {
+    display: flex;
+    flex-direction: column;
   }
 
   @media only screen and (max-width: 1000px) {

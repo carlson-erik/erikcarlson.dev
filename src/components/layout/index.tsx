@@ -15,6 +15,11 @@ const Container = styled.div`
   width: 100%;
   max-width: 1000px;
 
+  /* Fill the window so short pages keep the footer at the bottom of it */
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+
   @media only screen and (max-width: 650px) {
     padding-right: 0;
     padding-left: 0;
@@ -42,6 +47,7 @@ ${globalCSS}
 
 const MainContent = styled.main`
   width: 100%;
+  flex: 1 0 auto;
 
   display: flex;
   flex-direction: column;
