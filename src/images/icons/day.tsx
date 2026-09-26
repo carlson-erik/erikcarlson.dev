@@ -12,7 +12,7 @@ const Day = (props: IconProps) => {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
-      fill={fillColor}
+      style={{ fill: fillColor }}
     >
       <path
         fillRule="evenodd"

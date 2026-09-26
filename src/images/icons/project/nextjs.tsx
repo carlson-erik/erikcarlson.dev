@@ -1,20 +1,29 @@
-import React, { useContext } from "react";
+import React from "react";
+import styled from "styled-components";
 /* ------------------ Styled ------------------ */
 import { StandardIcon } from "../../styled";
 /* ------------------ Types ------------------ */
 import { IconProps } from "../../types";
 /* ------------------ Theme ------------------ */
-import { ThemeContext } from "@/theme/context";
+import { darkThemeSelector } from "@/theme/css-vars";
 
-const ICON_LIGHTPAGE = "#000000";
-const ICON_DARKPAGE = "#FFFFFF";
+// Colors invert in dark mode; switched in CSS so the prerendered icon is right on first paint.
+const NextJSIcon = styled(StandardIcon)`
+  --nextjs-fill: #000000;
+  --nextjs-font: #ffffff;
+
+  ${darkThemeSelector} & {
+    --nextjs-fill: #ffffff;
+    --nextjs-font: #000000;
+  }
+`;
+
+const fillColor = "var(--nextjs-fill)";
+const fontColor = "var(--nextjs-font)";
 
 const NextJS = (props: IconProps) => {
-  const { theme } = useContext(ThemeContext);
-  const fillColor = theme.name === "Dark" ? ICON_DARKPAGE : ICON_LIGHTPAGE;
-  const fontColor = theme.name === "Dark" ? "#000000" : "#FFFFFF";
   return (
-    <StandardIcon
+    <NextJSIcon
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 180 180"
@@ -34,7 +43,7 @@ const NextJS = (props: IconProps) => {
           cx="90"
           cy="90"
           data-circle="true"
-          fill={fillColor}
+          style={{ fill: fillColor }}
           r="90"
         ></circle>
         <path
@@ -58,8 +67,8 @@ const NextJS = (props: IconProps) => {
           y1="116.5"
           y2="160.5"
         >
-          <stop stopColor={fontColor}></stop>
-          <stop offset="1" stopColor={fontColor} stopOpacity="0"></stop>
+          <stop style={{ stopColor: fontColor }}></stop>
+          <stop offset="1" style={{ stopColor: fontColor }} stopOpacity="0"></stop>
         </linearGradient>
         <linearGradient
           gradientUnits="userSpaceOnUse"
@@ -69,11 +78,11 @@ const NextJS = (props: IconProps) => {
           y1="54"
           y2="106.875"
         >
-          <stop stopColor={fontColor}></stop>
-          <stop offset="1" stopColor={fontColor} stopOpacity="0"></stop>
+          <stop style={{ stopColor: fontColor }}></stop>
+          <stop offset="1" style={{ stopColor: fontColor }} stopOpacity="0"></stop>
         </linearGradient>
       </defs>
-    </StandardIcon>
+    </NextJSIcon>
   );
 };
 

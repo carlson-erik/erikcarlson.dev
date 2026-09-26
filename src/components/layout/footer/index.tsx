@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import { IconLink, IconLinkText, Link } from "../../styled";
 import ThemeSwitch from "./theme-switch";
 import ScrollToTop from "./scroll-to-top";
 /* ------------------ Theme ------------------ */
-import { ThemeContext } from "@/theme/context";
+import { themeVars } from "@/theme/css-vars";
 /* ------------------ Icons ------------------ */
 import Email from "@/images/icons/email";
 import Github from "@/images/icons/project/github";
@@ -110,7 +109,6 @@ const FooterLinkText = styled(IconLinkText)`
 `;
 
 const Footer = () => {
-  const { theme } = useContext(ThemeContext);
   return (
     <>
       <StyledFooter>
@@ -121,7 +119,7 @@ const Footer = () => {
               target="_blank"
               title="Email Erik Carlson"
             >
-              <Email color={theme.colors.footer.link.text} />
+              <Email color={themeVars.colors.footer.link.text} />
               <FooterLinkText>Reach out!</FooterLinkText>
             </FooterLink>
             <FooterLink
@@ -130,14 +128,12 @@ const Footer = () => {
               rel="noopener noreferrer"
               title="Erik Carlson's Github"
             >
-              <Github color={theme.colors.footer.link.text} />
+              <Github color={themeVars.colors.footer.link.text} />
               <FooterLinkText>carlson-erik</FooterLinkText>
             </FooterLink>
             <ThemeSwitch />
           </SocialIcons>
-          <Copyright>
-            &copy; {new Date().getFullYear()} Erik Carlson. All rights reserved.
-          </Copyright>
+          <Copyright>&copy; 2026 Erik Carlson. All rights reserved.</Copyright>
         </SocialContainer>
         <SiteLinksContainer>
           <CategoryContainer>

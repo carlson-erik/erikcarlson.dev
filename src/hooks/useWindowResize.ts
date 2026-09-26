@@ -6,9 +6,11 @@ interface WindowSize {
 }
 
 export const useWindowResize = (): WindowSize => {
+  // Starts at 0 on both server and client so hydration matches; the effect below
+  // fills in the real size right after mount.
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-    height: typeof window !== "undefined" ? window.innerHeight : 0,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {

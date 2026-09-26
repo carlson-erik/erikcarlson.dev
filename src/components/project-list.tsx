@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 /* ------------------ Components ------------------ */
@@ -13,8 +13,7 @@ import Github from "../images/icons/project/github";
 import InternalLink from "../images/icons/internal-link";
 import ExternalLink from "@/images/icons/external-link";
 /* ------------------ Theme ------------------ */
-import { ThemeContext } from "../theme/context";
-import { Theme } from "../theme/types";
+import { darkThemeSelector, themeVars } from "../theme/css-vars";
 /* ------------------ Images ------------------ */
 import gneissEditorLight from "../images/projects/gneiss-editor-light.png";
 import gneissEditorDark from "../images/projects/gneiss-editor-dark.png";
@@ -32,7 +31,7 @@ const ProjectRow = styled.div<{ reversed?: boolean }>`
   }
 `;
 
-const PictureContainer = styled.div<{ theme: Theme }>`
+const PictureContainer = styled.div`
   flex-basis: 50%;
   display: flex;
   align-items: flex-start;
@@ -59,6 +58,20 @@ const PictureContainer = styled.div<{ theme: Theme }>`
       padding: 0;
     }
   }
+
+  /* Both screenshots are rendered; CSS shows the active theme's so it's right on first paint */
+  & .dark-screenshot {
+    display: none;
+  }
+
+  ${darkThemeSelector} & {
+    & .light-screenshot {
+      display: none;
+    }
+    & .dark-screenshot {
+      display: block;
+    }
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -74,7 +87,7 @@ const ContentContainer = styled.div`
   }
 `;
 
-const Project = styled.div<{ theme: Theme }>`
+const Project = styled.div`
   flex-basis: calc(50% - 1rem);
   height: fit-content;
   padding: 1rem;
@@ -144,7 +157,6 @@ const ProjectSectionContainer = styled.div`
 `;
 
 const ProjectList = () => {
-  const { theme } = useContext(ThemeContext);
   return (
     <ProjectSectionContainer>
       <ProjectSection>
@@ -159,7 +171,7 @@ const ProjectList = () => {
                   href="/projects/netgraph"
                   title="Netgraph project showcase"
                 >
-                  <InternalLink color={theme.colors.link.text} />
+                  <InternalLink color={themeVars.colors.link.text} />
                   <IconLinkText>Showcase</IconLinkText>
                 </IconLink>
               </ProjectLinks>
@@ -182,12 +194,17 @@ const ProjectList = () => {
               </SkillListContainer>
             </DetailContainer>
           </ContentContainer>
-          <PictureContainer theme={theme}>
-            {theme.name === "Light" ? (
-              <Image src={netgraphLight} alt="Netgraph Light picture" />
-            ) : (
-              <Image src={netgraphDark} alt="Netgraph Dark picture" />
-            )}
+          <PictureContainer>
+            <Image
+              className="light-screenshot"
+              src={netgraphLight}
+              alt="Netgraph Light picture"
+            />
+            <Image
+              className="dark-screenshot"
+              src={netgraphDark}
+              alt="Netgraph Dark picture"
+            />
           </PictureContainer>
         </ProjectRow>
         <ProjectRow id="gneiss-editor" reversed>
@@ -202,14 +219,14 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="GneissEditor github repository"
                 >
-                  <Github color={theme.colors.projectList.project.iconColor} />
+                  <Github color={themeVars.colors.projectList.project.iconColor} />
                 </IconLink>
                 <IconLink
                   key="gneisseditor-project-showcase"
                   href="/projects/gneiss-editor"
                   title="GneissEditor project showcase"
                 >
-                  <InternalLink color={theme.colors.link.text} />
+                  <InternalLink color={themeVars.colors.link.text} />
                   <IconLinkText>Showcase</IconLinkText>
                 </IconLink>
               </ProjectLinks>
@@ -230,19 +247,24 @@ const ProjectList = () => {
               </SkillListContainer>
             </DetailContainer>
           </ContentContainer>
-          <PictureContainer theme={theme}>
-            {theme.name === "Light" ? (
-              <Image src={gneissEditorLight} alt="GneissEditor picture" />
-            ) : (
-              <Image src={gneissEditorDark} alt="GneissEditor picture" />
-            )}
+          <PictureContainer>
+            <Image
+              className="light-screenshot"
+              src={gneissEditorLight}
+              alt="GneissEditor picture"
+            />
+            <Image
+              className="dark-screenshot"
+              src={gneissEditorDark}
+              alt="GneissEditor picture"
+            />
           </PictureContainer>
         </ProjectRow>
       </ProjectSection>
       <ProjectSection>
         <Subheading>Past Projects</Subheading>
         <ProjectContainer>
-          <Project id="coddit" theme={theme}>
+          <Project id="coddit">
             <ProjectHeader>
               <ProjectName>coddit</ProjectName>
               <ProjectLinks>
@@ -254,7 +276,7 @@ const ProjectList = () => {
                   title="coddit live demo"
                 >
                   <ExternalLink
-                    color={theme.colors.projectList.project.iconColor}
+                    color={themeVars.colors.projectList.project.iconColor}
                   />
                 </IconLink>
                 <IconLink
@@ -264,7 +286,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="coddit github repo"
                 >
-                  <Github color={theme.colors.projectList.project.iconColor} />
+                  <Github color={themeVars.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
@@ -285,7 +307,7 @@ const ProjectList = () => {
               </SkillListContainer>
             </DetailContainer>
           </Project>
-          <Project id="componentry" theme={theme}>
+          <Project id="componentry">
             <ProjectHeader>
               <ProjectName>Componentry</ProjectName>
               <ProjectLinks>
@@ -296,7 +318,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="componentry github repo"
                 >
-                  <Github color={theme.colors.projectList.project.iconColor} />
+                  <Github color={themeVars.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
@@ -315,7 +337,7 @@ const ProjectList = () => {
               </SkillListContainer>
             </DetailContainer>
           </Project>
-          <Project id="site-building" theme={theme}>
+          <Project id="site-building">
             <ProjectHeader>
               <ProjectName>Site Building</ProjectName>
               <ProjectLinks>
@@ -326,7 +348,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="site-building github repo"
                 >
-                  <Github color={theme.colors.projectList.project.iconColor} />
+                  <Github color={themeVars.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>
@@ -345,7 +367,7 @@ const ProjectList = () => {
               </SkillListContainer>
             </DetailContainer>
           </Project>
-          <Project id="portfolio" theme={theme}>
+          <Project id="portfolio">
             <ProjectHeader>
               <ProjectName>This Site!</ProjectName>
               <ProjectLinks>
@@ -356,7 +378,7 @@ const ProjectList = () => {
                   rel="noopener noreferrer"
                   title="componentry github repo"
                 >
-                  <Github color={theme.colors.projectList.project.iconColor} />
+                  <Github color={themeVars.colors.projectList.project.iconColor} />
                 </IconLink>
               </ProjectLinks>
             </ProjectHeader>

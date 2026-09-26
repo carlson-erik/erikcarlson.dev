@@ -9,7 +9,7 @@ const Github = (props: IconProps) => {
   const fillColor = color && color !== "" ? color : ICON_DEFAULT;
   return (
     <StandardIcon viewBox="0 0 128 128">
-      <g fill={fillColor}>
+      <g style={{ fill: fillColor }}>
         <path
           fillRule="evenodd"
           clipRule="evenodd"

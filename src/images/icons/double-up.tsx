@@ -14,7 +14,7 @@ const DoubleUp = (props: IconProps) => {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1.5}
-      stroke={fillColor}
+      style={{ stroke: fillColor }}
     >
       <path
         strokeLinecap="round"

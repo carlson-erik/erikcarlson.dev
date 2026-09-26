@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
@@ -8,13 +8,10 @@ import { NavigationLink } from "./styled";
 import { useWindowResize } from "@/hooks/useWindowResize";
 /* ------------------ Icons ------------------ */
 import profilePic from "../../images/portfolio.png";
-/* ------------------ Theme ------------------ */
-import { Theme } from "../../theme/types";
-import { ThemeContext } from "../../theme/context";
 /* ------------------ Utilities ------------------ */
 import { getMenuListComponent } from "./menu-list";
 
-const Container = styled.header<{ theme: Theme }>`
+const Container = styled.header`
   width: 100%;
   padding: 1rem 0 1rem 0;
   border-bottom: 1px solid ${(props) => props.theme.colors.borderLine};
@@ -103,7 +100,7 @@ const NavigationContainer = styled.div<{ $showMobileMenu: boolean }>`
   }
 `;
 
-const Navigation = styled.nav<{ $showMobileMenu: boolean; theme: Theme }>`
+const Navigation = styled.nav<{ $showMobileMenu: boolean }>`
   display: flex;
   margin: 0;
   padding: 0;
@@ -182,16 +179,16 @@ const MobileMenuIconContainer = styled.div`
 const MobileMenuIcon = styled.svg`
   height: 32px;
   width: 32px;
+  fill: ${(props) => props.theme.colors.text};
 `;
 
 const Header = () => {
-  const { theme } = useContext(ThemeContext);
   const { width } = useWindowResize();
   const [$showMobileMenu, set$showMobileMenu] = useState<boolean>(false);
   const [showProjectsMenu, setShowProjectsMenu] = useState<boolean>(false);
   const [buttonElement, setButtonElement] = useState<HTMLElement | null>(null);
   return (
-    <Container theme={theme}>
+    <Container>
       <TitleRowContainer>
         <TitleContainer
           onClick={() => {
@@ -216,7 +213,6 @@ const Header = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="-5 -7 24 24"
               width="32"
-              fill={theme.colors.text}
             >
               <path d="M1 0h5a1 1 0 1 1 0 2H1a1 1 0 1 1 0-2zm7 8h5a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2zM1 4h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z" />
             </MobileMenuIcon>
@@ -224,7 +220,7 @@ const Header = () => {
         </ActionContainer>
       </TitleRowContainer>
       <NavigationContainer $showMobileMenu={$showMobileMenu}>
-        <Navigation theme={theme} $showMobileMenu={$showMobileMenu}>
+        <Navigation $showMobileMenu={$showMobileMenu}>
           <NavigationLink href="/">Home</NavigationLink>
           <NavigationLink href="/experience">Experience</NavigationLink>
           <ProjectLinkButton
@@ -237,7 +233,8 @@ const Header = () => {
           >
             <span>Projects</span>
           </ProjectLinkButton>
-          {(showProjectsMenu || width < 650) &&
+          {/* width is 0 until mounted; don't prerender the mobile list, it would flash on desktop */}
+          {(showProjectsMenu || (width > 0 && width < 650)) &&
             getMenuListComponent(buttonElement, width > 650, () =>
               setShowProjectsMenu(false)
             )}

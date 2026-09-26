@@ -11,7 +11,7 @@ const InternalLink = (props: IconProps) => {
     <StandardIcon
       role="img"
       viewBox="0 0 24 24"
-      fill={fillColor}
+      style={{ fill: fillColor }}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

@@ -55,7 +55,10 @@ export type ThemeContextType = {
   setTheme: (newTheme: Theme) => void;
 };
 
-// Styled-components module declaration
+// Styled-components module declaration.
+// Styled components only see CSS variable references (see ./css-vars), not a concrete theme.
 declare module "styled-components" {
-  export interface DefaultTheme extends Theme {}
+  export interface DefaultTheme {
+    colors: Theme["colors"];
+  }
 }

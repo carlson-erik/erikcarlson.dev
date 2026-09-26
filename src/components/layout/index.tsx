@@ -5,6 +5,7 @@ import Header from "../header";
 import Footer from "./footer";
 /* ------------------ Theme ------------------ */
 import { ThemeProvider } from "../../theme/context";
+import { themeCssVariables } from "../../theme/css-vars";
 /* ------------------ Font ------------------ */
 import "@fontsource-variable/raleway"; // Supports weights 100-900
 /* ------------------ Global CSS Styles ------------------ */
@@ -30,6 +31,7 @@ const Container = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
+${themeCssVariables}
 ${globalCSS}
   body {
     background-color: ${(props) => props.theme.colors.backgroundColor};

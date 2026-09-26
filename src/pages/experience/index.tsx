@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
@@ -9,7 +8,8 @@ import { Heading, IconLink, IconLinkText } from "@/components/styled";
 import Download from "@/images/icons/download";
 /* ------------------ Metadata ------------------ */
 import { getPageMetadata } from "@/lib/metadata";
-import { ThemeContext } from "@/theme/context";
+/* ------------------ Theme ------------------ */
+import { themeVars } from "@/theme/css-vars";
 
 const Container = styled.div`
   width: 100%;
@@ -78,7 +78,6 @@ const StyledIcon = styled.svg`
 `;
 
 function Experience() {
-  const { theme } = useContext(ThemeContext);
   return (
     <>
       <Container>
@@ -91,7 +90,7 @@ function Experience() {
             rel="noopener noreferrer"
             title="Download Resume"
           >
-            <Download color={theme.colors.link.text} />
+            <Download color={themeVars.colors.link.text} />
             <IconLinkText>Resume</IconLinkText>
           </IconLink>
         </ExperienceHeader>
