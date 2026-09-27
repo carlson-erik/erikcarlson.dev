@@ -18,7 +18,7 @@ import Rollup from "../images/icons/project/rollup";
 import TypeScript from "../images/icons/project/typescript";
 import Webpack from "../images/icons/project/webpack";
 
-type Skill =
+export type Skill =
   | "css"
   | "d3"
   | "gatsby"

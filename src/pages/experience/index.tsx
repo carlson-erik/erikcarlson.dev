@@ -6,6 +6,9 @@ import SkillList from "@/components/skill-list";
 import { Heading, IconLink, IconLinkText } from "@/components/styled";
 /* ------------------ Metadata ------------------ */
 import { getPageMetadata } from "@/lib/metadata";
+/* ------------------ Data ------------------ */
+import { resume } from "@/data/resume";
+import type { Education, Job, Resume, YearRange } from "@/data/types";
 
 const Container = styled.div`
   width: 100%;
@@ -68,12 +71,83 @@ const SkillListContainer = styled.div`
   flex-grow: 1;
 `;
 
-const StyledIcon = styled.svg`
-  height: 24px;
-  width: 24px;
-`;
+const formatYears = ({ start, end }: YearRange) =>
+  `${start} - ${end === "present" ? "Present" : end}`;
 
-function Experience() {
+interface EntryHeaderProps {
+  title: string;
+  organization: string;
+  location: string;
+  years: YearRange;
+}
+
+/** Title and years, then organization and location. Used by jobs and degrees. */
+function EntryHeader({
+  title,
+  organization,
+  location,
+  years,
+}: EntryHeaderProps) {
+  return (
+    <>
+      <InformationContainer $noPadding>
+        <Title>{title}</Title>
+        <Duration>{formatYears(years)}</Duration>
+      </InformationContainer>
+      <InformationContainer>
+        <Business>{organization}</Business>
+        <Location>({location})</Location>
+      </InformationContainer>
+    </>
+  );
+}
+
+function JobEntry({ job }: { job: Job }) {
+  const tense = job.years.end === "present" ? "includes" : "included";
+  return (
+    <DetailContainer>
+      <EntryHeader
+        title={job.title}
+        organization={job.employer}
+        location={job.location}
+        years={job.years}
+      />
+      {job.highlights.length > 0 && (
+        <InformationContainer $flipFlexDirection>
+          <div>This role {tense} responsibilities such as the following:</div>
+          <BulletList>
+            {job.highlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </BulletList>
+        </InformationContainer>
+      )}
+      {job.skills.length > 0 && (
+        <InformationContainer>
+          <Label>Tech stack:</Label>
+          <SkillListContainer>
+            <SkillList skills={job.skills} />
+          </SkillListContainer>
+        </InformationContainer>
+      )}
+    </DetailContainer>
+  );
+}
+
+function EducationEntry({ education }: { education: Education }) {
+  return (
+    <DetailContainer>
+      <EntryHeader
+        title={education.degree}
+        organization={education.school}
+        location={education.location}
+        years={education.years}
+      />
+    </DetailContainer>
+  );
+}
+
+function Experience({ resume }: { resume: Resume }) {
   return (
     <>
       <Container>
@@ -89,185 +163,15 @@ function Experience() {
             <IconLinkText>Download resume</IconLinkText>
           </IconLink>
         </ExperienceHeader>
-        <DetailContainer>
-          <InformationContainer $noPadding>
-            <Title>Principal Software Engineer</Title>
-            <Duration>2024 - Present</Duration>
-          </InformationContainer>
-          <InformationContainer>
-            <Business>Pegasystems</Business>
-            <Location>(Remote)</Location>
-          </InformationContainer>
-          <InformationContainer $flipFlexDirection>
-            <div>This role includes responsbilities such as the following:</div>
-            <BulletList>
-              <li>
-                Architect and lead end-to-end delivery of core product
-                capabilities, guiding engineering teams toward scalable design
-                decisions.
-              </li>
-              <li>
-                Develop key components of a large-scale data visualization
-                platform, improving product reliability and accelerating release
-                confidence through comprehensive automation.
-              </li>
-              <li>
-                Mentor engineers in system design, software craftsmanship, and
-                delivery best practices, accelerating skill growth and improving
-                team effectiveness.
-              </li>
-              <li>
-                Lead technical design reviews, backlog refinement, and Agile
-                planning ceremonies to ensure alignment between engineering
-                execution and product goals.
-              </li>
-              <li>
-                Influence product strategy by providing technical insight that
-                shaped roadmap decisions and accelerated delivery of high-value
-                features.
-              </li>
-              <li>
-                Serve as Security Champion, promoting secure development
-                practices and driving continuous improvement of the team's
-                security posture.
-              </li>
-            </BulletList>
-          </InformationContainer>
-          <InformationContainer>
-            <Label>Tech stack:</Label>
-            <SkillListContainer>
-              <SkillList
-                skills={[
-                  "typescript",
-                  "javascript",
-                  "react",
-                  "d3",
-                  "jest",
-                  "java",
-                ]}
-              />
-            </SkillListContainer>
-          </InformationContainer>
-        </DetailContainer>
-        <DetailContainer>
-          <InformationContainer $noPadding>
-            <Title>Senior Software Engineer</Title>
-            <Duration>2021 - 2024</Duration>
-          </InformationContainer>
-          <InformationContainer>
-            <Business>Pegasystems</Business>
-            <Location>(Remote)</Location>
-          </InformationContainer>
-          <InformationContainer $flipFlexDirection>
-            <div>This role included responsbilities such as the following:</div>
-            <BulletList>
-              <li>
-                Developed components of a large-scale data visualization
-                platform and accelerated release confidence through
-                comprehensive automation.
-              </li>
-              <li>
-                Led team technical/design discussions, user story refinement,
-                and other re-occurring Agile planning meetings.
-              </li>
-              <li>
-                Collaborated directly with customers to diagnose and resolve
-                production issues, improving product reliability and user
-                satisfaction.
-              </li>
-              <li>
-                Serve as Security Champion, promoting secure development
-                practices and driving continuous improvement of the team's
-                security posture.
-              </li>
-            </BulletList>
-          </InformationContainer>
-          <InformationContainer>
-            <Label>Tech stack:</Label>
-            <SkillListContainer>
-              <SkillList
-                skills={[
-                  "typescript",
-                  "javascript",
-                  "react",
-                  "d3",
-                  "jest",
-                  "java",
-                ]}
-              />
-            </SkillListContainer>
-          </InformationContainer>
-        </DetailContainer>
-        <DetailContainer>
-          <InformationContainer $noPadding>
-            <Title>Software Engineer</Title>
-            <Duration>2017 - 2020</Duration>
-          </InformationContainer>
-          <InformationContainer>
-            <Business>Pegasystems</Business>
-            <Location>(Bedford, NH)</Location>
-          </InformationContainer>
-          <InformationContainer $flipFlexDirection>
-            <div>This role included responsbilities such as the following:</div>
-            <BulletList>
-              <li>
-                Developed new Customer Relationship Management (CRM) and
-                Business Process Management (BPM) product capabilities with
-                emphasis on maintainable design and robust automated test
-                coverage.
-              </li>
-              <li>
-                Collaborated directly with customers to diagnose and resolve
-                production issues, improving product reliability and user
-                satisfaction.
-              </li>
-            </BulletList>
-          </InformationContainer>
-          <InformationContainer>
-            <Label>Tech stack:</Label>
-            <SkillListContainer>
-              <SkillList skills={["javascript", "react", "css", "java"]} />
-            </SkillListContainer>
-          </InformationContainer>
-        </DetailContainer>
-        <DetailContainer>
-          <InformationContainer $noPadding>
-            <Title>IPSec and IKEv2 Technician</Title>
-            <Duration>2014 - 2016</Duration>
-          </InformationContainer>
-          <InformationContainer>
-            <Business>UNH Interoperability Lab</Business>
-            <Location>(Durham, NH)</Location>
-          </InformationContainer>
-          <InformationContainer $flipFlexDirection>
-            <div>This role included responsbilities such as the following:</div>
-            <BulletList>
-              <li>
-                Designed and administered virtual network environments
-                integrating physical routers, switches, and endpoints to support
-                reliable system connectivity.
-              </li>
-              <li>
-                Executed interoperability and conformance testing for customer
-                IPSec and IKEv2 implementations to validate compliance with IETF
-                standards.
-              </li>
-            </BulletList>
-          </InformationContainer>
-        </DetailContainer>
+        {resume.experience.map((job) => (
+          <JobEntry key={`${job.title}-${job.years.start}`} job={job} />
+        ))}
       </Container>
       <Container>
         <Heading>Education</Heading>
-        <DetailContainer>
-          <InformationContainer>
-            <Title>B.S. in Computer Science</Title>
-            <Duration>2013 - 2017</Duration>
-          </InformationContainer>
-          <InformationContainer>
-            <Business>University of New Hampshire</Business>
-            <Location>(Durham, NH)</Location>
-          </InformationContainer>
-        </DetailContainer>
+        {resume.education.map((education) => (
+          <EducationEntry key={education.degree} education={education} />
+        ))}
       </Container>
     </>
   );
@@ -278,7 +182,7 @@ export default function ExperiencePage() {
     <>
       <Head>{getPageMetadata("Experience")}</Head>
       <Layout>
-        <Experience />
+        <Experience resume={resume} />
       </Layout>
     </>
   );
