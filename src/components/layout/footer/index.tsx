@@ -17,6 +17,18 @@ const StyledFooter = styled.footer`
 
   background-color: ${(props) => props.theme.colors.footer.background};
 
+  /*
+   * Paint the background out to both edges of the window while the footer and its
+   * content stay in the page column. A border image drawn outside the box doesn't
+   * make the page scroll sideways.
+   */
+  border-image-source: linear-gradient(
+    ${(props) => props.theme.colors.footer.background},
+    ${(props) => props.theme.colors.footer.background}
+  );
+  border-image-slice: 0 fill;
+  border-image-outset: 0 100vw;
+
   display: flex;
   flex-direction: row;
 
