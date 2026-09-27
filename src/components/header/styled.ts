@@ -20,4 +20,22 @@ const NavigationLink = styled(Link)`
   }
 `;
 
-export { NavigationLink };
+const IconButton = styled.button`
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.link.iconHover};
+  }
+`;
+
+export { IconButton, NavigationLink };

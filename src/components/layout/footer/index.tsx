@@ -1,7 +1,6 @@
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import { IconLink, IconLinkText, Link } from "../../styled";
-import ThemeSwitch from "./theme-switch";
 import ScrollToTop from "./scroll-to-top";
 /* ------------------ Theme ------------------ */
 import { themeVars } from "@/theme/css-vars";
@@ -143,7 +142,6 @@ const Footer = () => {
               <Github color={themeVars.colors.footer.link.text} />
               <FooterLinkText>carlson-erik</FooterLinkText>
             </FooterLink>
-            <ThemeSwitch />
           </SocialIcons>
           <Copyright>&copy; 2026 Erik Carlson. All rights reserved.</Copyright>
         </SocialContainer>

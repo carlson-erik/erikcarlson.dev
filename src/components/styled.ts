@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import Link from "next/link";
+/* ------------------ Theme ------------------ */
+import { bodyFont, headingFont } from "@/theme/fonts";
 
 const Heading = styled.h2`
-  font-family: "Montserrat", sans-serif;
+  font-family: ${headingFont};
   font-size: 2rem;
   margin-block: 0;
   padding: 0;
 `;
 
 const Subheading = styled.h3`
-  font-family: "Montserrat", sans-serif;
+  font-family: ${headingFont};
   font-size: 1.5rem;
   margin-block: 0;
   padding: 0;
@@ -51,7 +53,7 @@ const IconLinkText = styled.span`
 `;
 
 const Paragraph = styled.p`
-  font-family: "Raleway", sans-serif;
+  font-family: ${bodyFont};
   font-size: 1.25rem;
   line-height: 1.5;
 `;

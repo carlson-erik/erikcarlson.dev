@@ -7,7 +7,9 @@ import Footer from "./footer";
 import { ThemeProvider } from "../../theme/context";
 import { themeCssVariables } from "../../theme/css-vars";
 /* ------------------ Font ------------------ */
-import "@fontsource-variable/raleway"; // Supports weights 100-900
+import "@fontsource-variable/montserrat"; // Headings, weights 100-900
+import "@fontsource-variable/raleway"; // Body text, weights 100-900
+import "@fontsource-variable/raleway/wght-italic.css"; // Body text in italics
 /* ------------------ Global CSS Styles ------------------ */
 import { globalCSS, resetCSS } from "./styles";
 

@@ -1,27 +1,17 @@
 import React, { useCallback, useContext } from "react";
 import styled from "styled-components";
+/* -------- Components -------- */
+import { IconButton } from "./styled";
 /* -------- Icons -------- */
 import Day from "@/images/icons/day";
 import Night from "@/images/icons/night";
 /* -------- Themes -------- */
-import { ThemeContext } from "../../../theme/context";
-import { darkThemeSelector, themeVars } from "../../../theme/css-vars";
-import DarkTheme from "../../../theme/dark-theme";
-import LightTheme from "../../../theme/light-theme";
+import { ThemeContext } from "@/theme/context";
+import { darkThemeSelector, themeVars } from "@/theme/css-vars";
+import DarkTheme from "@/theme/dark-theme";
+import LightTheme from "@/theme/light-theme";
 /* -------- Types -------- */
-import { ThemeNames } from "../../../theme/types";
-
-const IconWrapper = styled.span`
-  height: 40px;
-  width: 40px;
-  display: flex;
-  border-radius: 4px;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    background-color: ${(props) => props.theme.colors.link.iconHover};
-  }
-`;
+import { ThemeNames } from "@/theme/types";
 
 // Both icons are rendered and CSS shows the active theme's, so it's correct on first paint.
 const DayIcon = styled.span`
@@ -46,14 +36,24 @@ export default function ThemeSwitch() {
     setTheme(theme.name === ThemeNames.DARK ? LightTheme : DarkTheme);
   }, [theme, setTheme]);
 
+  const label =
+    theme.name === ThemeNames.DARK
+      ? "Switch to light theme"
+      : "Switch to dark theme";
+
   return (
-    <IconWrapper onClick={handleThemeChange}>
-      <NightIcon>
+    <IconButton
+      type="button"
+      onClick={handleThemeChange}
+      aria-label={label}
+      title={label}
+    >
+      <NightIcon aria-hidden="true">
         <Night color={themeVars.colors.text} />
       </NightIcon>
-      <DayIcon>
+      <DayIcon aria-hidden="true">
         <Day color={themeVars.colors.text} />
       </DayIcon>
-    </IconWrapper>
+    </IconButton>
   );
 }

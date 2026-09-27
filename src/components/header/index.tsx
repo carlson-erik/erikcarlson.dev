@@ -3,7 +3,10 @@ import Image from "next/image";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
 import { Link } from "../styled";
-import { NavigationLink } from "./styled";
+import { IconButton, NavigationLink } from "./styled";
+import ThemeSwitch from "./theme-switch";
+/* ------------------ Theme ------------------ */
+import { headingFont } from "@/theme/fonts";
 /* ------------------ Hooks ------------------ */
 import { useWindowResize } from "@/hooks/useWindowResize";
 /* ------------------ Icons ------------------ */
@@ -42,14 +45,7 @@ const TitleContainer = styled.div`
     border-radius: 6rem;
   }
 
-  @media only screen and (max-width: 450px) {
-    & img {
-      height: 80px !important;
-      width: 80px !important;
-    }
-  }
-
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 650px) {
     & img {
       height: 64px !important;
       width: 64px !important;
@@ -58,19 +54,13 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: "Montserrat", sans-serif;
+  font-family: ${headingFont};
   font-size: 2.5rem;
   padding-left: 1rem;
   text-decoration: none;
 
-  @media only screen and (max-width: 500px) {
-    font-size: 2.5rem;
-  }
-  @media only screen and (max-width: 450px) {
-    font-size: 2.25rem;
-  }
-  @media only screen and (max-width: 375px) {
-    font-size: 2rem;
+  @media only screen and (max-width: 650px) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -86,16 +76,10 @@ const NavigationContainer = styled.div<{ $showMobileMenu: boolean }>`
     flex-direction: column;
     width: 100%;
     padding-top: 0;
-    padding-left: 7rem;
+    padding-left: 5rem;
   }
 
   @media only screen and (max-width: 450px) {
-    padding-left: 6rem;
-    gap: 0.5rem;
-  }
-
-  @media only screen and (max-width: 375px) {
-    padding-left: 5rem;
     gap: 0.5rem;
   }
 `;
@@ -165,20 +149,20 @@ const ActionContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 0.25rem;
 `;
 
-const MobileMenuIconContainer = styled.div`
+const MenuButton = styled(IconButton)`
   display: none;
 
   @media only screen and (max-width: 650px) {
     display: flex;
-    padding: 0 0.5rem 0 0.5rem;
   }
 `;
 
 const MobileMenuIcon = styled.svg`
-  height: 32px;
-  width: 32px;
+  height: 24px;
+  width: 24px;
   fill: ${(props) => props.theme.colors.text};
 `;
 
@@ -206,21 +190,27 @@ const Header = () => {
           <Title>Erik Carlson</Title>
         </TitleContainer>
         <ActionContainer>
-          <MobileMenuIconContainer
+          <ThemeSwitch />
+          <MenuButton
+            type="button"
             onClick={() => set$showMobileMenu(!$showMobileMenu)}
+            aria-label="Menu"
+            aria-expanded={$showMobileMenu}
+            aria-controls="site-nav"
           >
             <MobileMenuIcon
               xmlns="http://www.w3.org/2000/svg"
               viewBox="-5 -7 24 24"
-              width="32"
+              width="24"
+              aria-hidden="true"
             >
               <path d="M1 0h5a1 1 0 1 1 0 2H1a1 1 0 1 1 0-2zm7 8h5a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2zM1 4h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z" />
             </MobileMenuIcon>
-          </MobileMenuIconContainer>
+          </MenuButton>
         </ActionContainer>
       </TitleRowContainer>
       <NavigationContainer $showMobileMenu={$showMobileMenu}>
-        <Navigation $showMobileMenu={$showMobileMenu}>
+        <Navigation id="site-nav" $showMobileMenu={$showMobileMenu}>
           <NavigationLink href="/">Home</NavigationLink>
           <NavigationLink href="/experience">Experience</NavigationLink>
           <ProjectLinkButton

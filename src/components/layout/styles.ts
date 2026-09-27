@@ -1,3 +1,5 @@
+import { bodyFont } from "@/theme/fonts";
+
 export const resetCSS = `
   /* Box sizing rules */
   *,
@@ -82,7 +84,7 @@ export const globalCSS = `
   body {
     margin: 0;
     font-size: 16px;
-    font-family: "Raleway", sans-serif;
+    font-family: ${bodyFont};
     display: flex;
     justify-content: center;
     width: 100%;
