@@ -4,12 +4,8 @@ import styled from "styled-components";
 import Layout from "@/components/layout";
 import SkillList from "@/components/skill-list";
 import { Heading, IconLink, IconLinkText } from "@/components/styled";
-/* ------------------ Icons ------------------ */
-import Download from "@/images/icons/download";
 /* ------------------ Metadata ------------------ */
 import { getPageMetadata } from "@/lib/metadata";
-/* ------------------ Theme ------------------ */
-import { themeVars } from "@/theme/css-vars";
 
 const Container = styled.div`
   width: 100%;
@@ -88,10 +84,9 @@ function Experience() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            title="Download Resume"
+            title="Download resume"
           >
-            <Download color={themeVars.colors.link.text} />
-            <IconLinkText>Resume</IconLinkText>
+            <IconLinkText>Download resume</IconLinkText>
           </IconLink>
         </ExperienceHeader>
         <DetailContainer>

@@ -10,7 +10,6 @@ import {
 } from "../components/styled";
 import SkillList, { IconLink } from "./skill-list";
 import Github from "../images/icons/project/github";
-import InternalLink from "../images/icons/internal-link";
 import ExternalLink from "@/images/icons/external-link";
 /* ------------------ Theme ------------------ */
 import { darkThemeSelector, themeVars } from "../theme/css-vars";
@@ -171,7 +170,6 @@ const ProjectList = () => {
                   href="/projects/netgraph"
                   title="Netgraph project showcase"
                 >
-                  <InternalLink color={themeVars.colors.link.text} />
                   <IconLinkText>Showcase</IconLinkText>
                 </IconLink>
               </ProjectLinks>
@@ -226,7 +224,6 @@ const ProjectList = () => {
                   href="/projects/gneiss-editor"
                   title="GneissEditor project showcase"
                 >
-                  <InternalLink color={themeVars.colors.link.text} />
                   <IconLinkText>Showcase</IconLinkText>
                 </IconLink>
               </ProjectLinks>

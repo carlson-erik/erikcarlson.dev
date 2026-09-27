@@ -47,7 +47,11 @@ const IconLink = styled(StyledLink)`
 `;
 
 const IconLinkText = styled.span`
-  margin-left: 0.25rem;
+  /* Space from the icon before it; links without an icon don't need it */
+  &:not(:first-child) {
+    margin-left: 0.25rem;
+  }
+
   color: ${(props) => props.theme.colors.link.text};
   font-weight: bold;
 `;
