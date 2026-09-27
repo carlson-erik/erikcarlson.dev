@@ -93,7 +93,7 @@ function NetgraphPage() {
         <Heading>Netgraph</Heading>
         <Paragraph>
           Netgraph enables React developers to create interactive network graph
-          visualizations.This component provides customizable physics-based
+          visualizations. This component provides customizable physics-based
           layouts, interactive controls, and intelligent highlighting. Whether
           visualizing complex networks, or any other data relationships,
           Netgraph abstracts away the complexity while you maintain full control

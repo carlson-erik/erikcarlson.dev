@@ -7,6 +7,8 @@ import { Paragraph } from "../components/styled";
 /* ------------------ Metadata ------------------ */
 import Head from "next/head";
 import { getPageMetadata } from "@/lib/metadata";
+/* ------------------ Data ------------------ */
+import { projects } from "@/data/projects";
 
 const INTRO_PHRASES = [
   "software.",
@@ -48,7 +50,7 @@ export default function HomePage() {
             </Paragraph>
           </IntroBody>
         </Introduction>
-        <ProjectList />
+        <ProjectList projects={projects} />
       </Layout>
     </>
   );

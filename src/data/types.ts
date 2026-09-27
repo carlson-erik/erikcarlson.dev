@@ -1,3 +1,4 @@
+import type { StaticImageData } from "next/image";
 import type { Skill } from "@/components/skill-list";
 
 /** Whole years, as the page shows them: "2021 - 2024" or "2024 - Present". */
@@ -31,4 +32,43 @@ export interface Resume {
   /** Newest first. The page shows them in this order. */
   experience: Job[];
   education: Education[];
+}
+
+export interface ProjectLinks {
+  /** A live version of the project. Shown as an external-link icon. */
+  demo?: `https://${string}`;
+  /** The project's repository. Shown as a GitHub icon. */
+  github?: `https://github.com/${string}`;
+  /** The project's showcase page on this site. Shown as a "Showcase" link. */
+  showcase?: `/projects/${string}`;
+}
+
+export interface Project {
+  /** The HTML id of the project's row or card, e.g. "netgraph" for /#netgraph. */
+  id: string;
+  name: string;
+  description: string;
+  /** The "Technologies" icons, in display order. */
+  skills: Skill[];
+  links: ProjectLinks;
+}
+
+/** One screenshot, taken in the light and in the dark theme. */
+export interface Screenshot {
+  light: StaticImageData;
+  dark: StaticImageData;
+  /** What the screenshot shows. Used for both versions. */
+  alt: string;
+}
+
+/** A project under "What I'm Working On", which is shown with a screenshot. */
+export interface CurrentProject extends Project {
+  screenshot: Screenshot;
+}
+
+export interface Projects {
+  /** "What I'm Working On", in display order. */
+  current: CurrentProject[];
+  /** "Past Projects", in display order. */
+  past: Project[];
 }

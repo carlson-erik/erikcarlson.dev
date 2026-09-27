@@ -3,29 +3,27 @@ import styled from "styled-components";
 import Image from "next/image";
 /* ------------------ Components ------------------ */
 import {
+  IconLink,
   IconLinkText,
   Paragraph,
   Section,
   Subheading,
 } from "../components/styled";
-import SkillList, { IconLink } from "./skill-list";
+import SkillList from "./skill-list";
 import Github from "../images/icons/project/github";
 import ExternalLink from "@/images/icons/external-link";
 /* ------------------ Theme ------------------ */
 import { darkThemeSelector, themeVars } from "../theme/css-vars";
-/* ------------------ Images ------------------ */
-import gneissEditorLight from "../images/projects/gneiss-editor-light.png";
-import gneissEditorDark from "../images/projects/gneiss-editor-dark.png";
-import netgraphLight from "../images/projects/netgraph-light.png";
-import netgraphDark from "../images/projects/netgraph-dark.png";
-/* ------------------ Styled Components1 ------------------ */
-const ProjectRow = styled.div<{ reversed?: boolean }>`
+/* ------------------ Types ------------------ */
+import type { CurrentProject, Project, Projects } from "@/data/types";
+/* ------------------ Styled Components ------------------ */
+const ProjectRow = styled.div<{ $reversed?: boolean }>`
   width: 100%;
   display: flex;
 
   @media only screen and (max-width: 850px) {
     flex-direction: ${(props) =>
-      props.reversed ? "column-reverse" : "column"};
+      props.$reversed ? "column-reverse" : "column"};
     gap: 1rem;
   }
 `;
@@ -86,7 +84,7 @@ const ContentContainer = styled.div`
   }
 `;
 
-const Project = styled.div`
+const ProjectCard = styled.div`
   flex-basis: calc(50% - 1rem);
   height: fit-content;
   padding: 1rem;
@@ -155,245 +153,103 @@ const ProjectSectionContainer = styled.div`
   }
 `;
 
-const ProjectList = () => {
+const iconColor = themeVars.colors.projectList.project.iconColor;
+
+/** Demo, GitHub and showcase links, in that order, for the ones the project has. */
+function ProjectLinkList({ project }: { project: Project }) {
+  const { name, links } = project;
+  return (
+    <ProjectLinks>
+      {links.demo && (
+        <IconLink
+          href={links.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`${name} live demo`}
+        >
+          <ExternalLink color={iconColor} />
+        </IconLink>
+      )}
+      {links.github && (
+        <IconLink
+          href={links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`${name} GitHub repository`}
+        >
+          <Github color={iconColor} />
+        </IconLink>
+      )}
+      {links.showcase && (
+        <IconLink href={links.showcase} title={`${name} project showcase`}>
+          <IconLinkText>Showcase</IconLinkText>
+        </IconLink>
+      )}
+    </ProjectLinks>
+  );
+}
+
+/** Name and links, description, and technologies. Used in both sections. */
+function ProjectDetails({ project }: { project: Project }) {
+  return (
+    <>
+      <ProjectHeader>
+        <ProjectName>{project.name}</ProjectName>
+        <ProjectLinkList project={project} />
+      </ProjectHeader>
+      <DetailContainer>
+        <Paragraph>{project.description}</Paragraph>
+      </DetailContainer>
+      <DetailContainer>
+        <DetailLabel>Technologies:</DetailLabel>
+        <SkillListContainer>
+          <SkillList skills={project.skills} />
+        </SkillListContainer>
+      </DetailContainer>
+    </>
+  );
+}
+
+function CurrentProjectRow({ project }: { project: CurrentProject }) {
+  const { screenshot } = project;
+  return (
+    <ProjectRow id={project.id} $reversed>
+      <ContentContainer>
+        <ProjectDetails project={project} />
+      </ContentContainer>
+      <PictureContainer>
+        <Image
+          className="light-screenshot"
+          src={screenshot.light}
+          alt={screenshot.alt}
+        />
+        <Image
+          className="dark-screenshot"
+          src={screenshot.dark}
+          alt={screenshot.alt}
+        />
+      </PictureContainer>
+    </ProjectRow>
+  );
+}
+
+const ProjectList = ({ projects }: { projects: Projects }) => {
   return (
     <ProjectSectionContainer>
       <ProjectSection>
         <Subheading>What I'm Working On</Subheading>
-        <ProjectRow id="netgraph" reversed>
-          <ContentContainer>
-            <ProjectHeader>
-              <ProjectName>Netgraph</ProjectName>
-              <ProjectLinks>
-                <IconLink
-                  key="netgraph-project-showcase"
-                  href="/projects/netgraph"
-                  title="Netgraph project showcase"
-                >
-                  <IconLinkText>Showcase</IconLinkText>
-                </IconLink>
-              </ProjectLinks>
-            </ProjectHeader>
-            <DetailContainer>
-              <Paragraph>
-                Netgraph enables React developers to create interactive network
-                graph visualizations.This component provides customizable
-                physics-based layouts, interactive controls, and intelligent
-                highlighting. Whether visualizing complex networks, or any other
-                data relationships, Netgraph abstracts away the complexity while
-                you maintain full control over every aspect of the
-                visualization.
-              </Paragraph>
-            </DetailContainer>
-            <DetailContainer>
-              <DetailLabel>Technologies:</DetailLabel>
-              <SkillListContainer>
-                <SkillList skills={["d3", "typescript", "react"]} />
-              </SkillListContainer>
-            </DetailContainer>
-          </ContentContainer>
-          <PictureContainer>
-            <Image
-              className="light-screenshot"
-              src={netgraphLight}
-              alt="Netgraph Light picture"
-            />
-            <Image
-              className="dark-screenshot"
-              src={netgraphDark}
-              alt="Netgraph Dark picture"
-            />
-          </PictureContainer>
-        </ProjectRow>
-        <ProjectRow id="gneiss-editor" reversed>
-          <ContentContainer>
-            <ProjectHeader>
-              <ProjectName>GneissEditor</ProjectName>
-              <ProjectLinks>
-                <IconLink
-                  key="project-github"
-                  href="https://github.com/carlson-erik/gneiss-editor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="GneissEditor github repository"
-                >
-                  <Github color={themeVars.colors.projectList.project.iconColor} />
-                </IconLink>
-                <IconLink
-                  key="gneisseditor-project-showcase"
-                  href="/projects/gneiss-editor"
-                  title="GneissEditor project showcase"
-                >
-                  <IconLinkText>Showcase</IconLinkText>
-                </IconLink>
-              </ProjectLinks>
-            </ProjectHeader>
-            <DetailContainer>
-              <Paragraph>
-                GneissEditor enables developers to include modifiable Rich Text
-                content in their React projects. At the core of GneissEditor is
-                a customizable editor. It allows you to easily create, save, and
-                export your content. This component library is built with React,
-                TypeScript, and Slate.js.
-              </Paragraph>
-            </DetailContainer>
-            <DetailContainer>
-              <DetailLabel>Technologies:</DetailLabel>
-              <SkillListContainer>
-                <SkillList skills={["react", "typescript"]} />
-              </SkillListContainer>
-            </DetailContainer>
-          </ContentContainer>
-          <PictureContainer>
-            <Image
-              className="light-screenshot"
-              src={gneissEditorLight}
-              alt="GneissEditor picture"
-            />
-            <Image
-              className="dark-screenshot"
-              src={gneissEditorDark}
-              alt="GneissEditor picture"
-            />
-          </PictureContainer>
-        </ProjectRow>
+        {projects.current.map((project) => (
+          <CurrentProjectRow key={project.id} project={project} />
+        ))}
       </ProjectSection>
       <ProjectSection>
         <Subheading>Past Projects</Subheading>
         <ProjectContainer>
-          <Project id="coddit">
-            <ProjectHeader>
-              <ProjectName>coddit</ProjectName>
-              <ProjectLinks>
-                <IconLink
-                  key="project-live-demo"
-                  href="https://coddit.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="coddit live demo"
-                >
-                  <ExternalLink
-                    color={themeVars.colors.projectList.project.iconColor}
-                  />
-                </IconLink>
-                <IconLink
-                  key="project-github"
-                  href="https://github.com/carlson-erik/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="coddit github repo"
-                >
-                  <Github color={themeVars.colors.projectList.project.iconColor} />
-                </IconLink>
-              </ProjectLinks>
-            </ProjectHeader>
-            <DetailContainer>
-              <Paragraph>
-                Coddit is a web application that renders Reddit as if it were
-                code. Coddit allows users to take advantage features such as
-                previewing posts, rendering in different programming languages
-                (JavaScript, Python and C#), as well as theming in different
-                color schemes. The user has the ability to browse reddit in
-                coddit as they would normally browse subreddits and posts.
-              </Paragraph>
-            </DetailContainer>
-            <DetailContainer>
-              <DetailLabel>Technologies:</DetailLabel>
-              <SkillListContainer>
-                <SkillList skills={["react", "javascript", "redux"]} />
-              </SkillListContainer>
-            </DetailContainer>
-          </Project>
-          <Project id="componentry">
-            <ProjectHeader>
-              <ProjectName>Componentry</ProjectName>
-              <ProjectLinks>
-                <IconLink
-                  key="project-github"
-                  href="https://github.com/carlson-erik/componentry"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="componentry github repo"
-                >
-                  <Github color={themeVars.colors.projectList.project.iconColor} />
-                </IconLink>
-              </ProjectLinks>
-            </ProjectHeader>
-            <DetailContainer>
-              <Paragraph>
-                Often I come across interesting React Component ideas on design
-                websites. When I find something that challenges or inspires me,
-                I instantly think "I need to build that!" When I actually build
-                the component, I store it in this project.
-              </Paragraph>
-            </DetailContainer>
-            <DetailContainer>
-              <DetailLabel>Technologies:</DetailLabel>
-              <SkillListContainer>
-                <SkillList skills={["react", "javascript", "typescript"]} />
-              </SkillListContainer>
-            </DetailContainer>
-          </Project>
-          <Project id="site-building">
-            <ProjectHeader>
-              <ProjectName>Site Building</ProjectName>
-              <ProjectLinks>
-                <IconLink
-                  key="project-github"
-                  href="https://github.com/carlson-erik/site-building"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="site-building github repo"
-                >
-                  <Github color={themeVars.colors.projectList.project.iconColor} />
-                </IconLink>
-              </ProjectLinks>
-            </ProjectHeader>
-            <DetailContainer>
-              <Paragraph>
-                Often I come across interesting Website ideas on design
-                websites. When I find something that challenges or inspires me,
-                I instantly think "I need to build that!" When I actually build
-                the website, I store it in this project.
-              </Paragraph>
-            </DetailContainer>
-            <DetailContainer>
-              <DetailLabel>Technologies:</DetailLabel>
-              <SkillListContainer>
-                <SkillList skills={["react", "javascript", "typescript"]} />
-              </SkillListContainer>
-            </DetailContainer>
-          </Project>
-          <Project id="portfolio">
-            <ProjectHeader>
-              <ProjectName>This Site!</ProjectName>
-              <ProjectLinks>
-                <IconLink
-                  key="project-github"
-                  href="https://github.com/carlson-erik/erikcarlson.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="componentry github repo"
-                >
-                  <Github color={themeVars.colors.projectList.project.iconColor} />
-                </IconLink>
-              </ProjectLinks>
-            </ProjectHeader>
-            <DetailContainer>
-              <Paragraph>
-                Using Nextjs and TypeScript, I built the very site you're using
-                now. With this site, I want to show off the cool projects that
-                I've built and (eventually) document my learning journey in a
-                blog!
-              </Paragraph>
-            </DetailContainer>
-            <DetailContainer>
-              <DetailLabel>Technologies:</DetailLabel>
-              <SkillListContainer>
-                <SkillList skills={["nextjs", "react", "typescript"]} />
-              </SkillListContainer>
-            </DetailContainer>
-          </Project>
+          {projects.past.map((project) => (
+            <ProjectCard key={project.id} id={project.id}>
+              <ProjectDetails project={project} />
+            </ProjectCard>
+          ))}
         </ProjectContainer>
       </ProjectSection>
     </ProjectSectionContainer>
