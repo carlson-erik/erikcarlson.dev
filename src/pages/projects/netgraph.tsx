@@ -36,9 +36,10 @@ const getPadding = (windowWidth: number) => {
   const borderWidth = 2;
   let paddingWidth = 0; // mobile: 0.5rem * 2
 
-  if (windowWidth < 400) {
+  // "<=" to match the body padding's max-width media queries, which include the boundary
+  if (windowWidth <= 400) {
     paddingWidth = 16;
-  } else if (windowWidth < 1000) {
+  } else if (windowWidth <= 1000) {
     paddingWidth = 64; // mobile: 0.5rem * 2
   }
 

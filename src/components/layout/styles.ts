@@ -90,10 +90,16 @@ export const globalCSS = `
     width: 100%;
   }
 
-  /* Next's root wrapper stretches to the body's height so the page can fill it */
+  /*
+   * Next's root wrapper stretches to the body's height so the page can fill it, and
+   * to its width so every page's column is equally wide, not shrunk to fit narrow
+   * content. The column is centered inside it.
+   */
   #__next {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
   @media only screen and (max-width: 1000px) {
