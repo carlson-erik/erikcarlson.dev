@@ -7,7 +7,22 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 
+export interface ArticleFrontMatter {
+  title: string;
+  date: string;
+  description: string;
+}
+
+export interface ArticleSummary extends ArticleFrontMatter {
+  id: string;
+}
+
+export interface Article extends ArticleSummary {
+  contentHtml: string;
+}
+
 const articlesDirectory = path.join(process.cwd(), "articles");
+
 export function getAllArticleIDs() {
   const fileNames = fs.readdirSync(articlesDirectory);
   return fileNames.map((fileName) => {
@@ -19,7 +34,7 @@ export function getAllArticleIDs() {
   });
 }
 
-export async function getArticleData(id) {
+export async function getArticleData(id: string): Promise<Article> {
   const fullPath = path.join(articlesDirectory, `${id}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
@@ -39,14 +54,14 @@ export async function getArticleData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as ArticleFrontMatter),
   };
 }
 
-export function getSortedArticles() {
+export function getSortedArticles(): ArticleSummary[] {
   // Get file names under /articles
   const fileNames = fs.readdirSync(articlesDirectory);
-  const allPostsData = fileNames.map((fileName) => {
+  const allPostsData = fileNames.map((fileName): ArticleSummary => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.mdx$/, "");
 
@@ -60,7 +75,7 @@ export function getSortedArticles() {
     // Combine the data with the id
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as ArticleFrontMatter),
     };
   });
   // Sort posts by date

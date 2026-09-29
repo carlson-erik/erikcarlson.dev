@@ -27,8 +27,17 @@ const Overlay = (props: OverlayProps) => {
   });
 
   useEffect(() => {
-    // remove existing
-    document.removeEventListener("mousedown", handleOutsideClick);
+    function handleOutsideClick(event: MouseEvent) {
+      const target = event.target as Node;
+      if (
+        referenceElement &&
+        !referenceElement.contains(target) &&
+        popperElement &&
+        !popperElement.contains(target)
+      ) {
+        outsideClick?.(event);
+      }
+    }
 
     // listen for clicks and close dropdown on body
     document.addEventListener("mousedown", handleOutsideClick);
@@ -36,19 +45,7 @@ const Overlay = (props: OverlayProps) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [referenceElement, popperElement, handleOutsideClick]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  function handleOutsideClick(event: any) {
-    if (
-      referenceElement &&
-      !referenceElement.contains(event.target) &&
-      popperElement &&
-      !popperElement.contains(event.target)
-    ) {
-      outsideClick?.(event);
-    }
-  }
+  }, [referenceElement, popperElement, outsideClick]);
 
   return (
     <OverlayContainer

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { IconLink, Link } from "./styled";
+import { IconLink } from "./styled";
 /* ------------------ Types ------------------ */
 import { AltIconProps, IconProps } from "../images/types";
 /* ------------------ Project Icons ------------------ */

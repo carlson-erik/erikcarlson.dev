@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 /* ------------------ Styled ------------------ */
 import { StandardIcon } from "../../styled";
-/* ------------------ Types ------------------ */
-import { IconProps } from "../../types";
 /* ------------------ Theme ------------------ */
 import { darkThemeSelector } from "@/theme/css-vars";
 
@@ -21,7 +19,7 @@ const NextJSIcon = styled(StandardIcon)`
 const fillColor = "var(--nextjs-fill)";
 const fontColor = "var(--nextjs-font)";
 
-const NextJS = (props: IconProps) => {
+const NextJS = () => {
   return (
     <NextJSIcon
       role="img"

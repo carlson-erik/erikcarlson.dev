@@ -41,7 +41,7 @@ const getMenuListComponent = (
   isDesktopMenu: boolean,
   handleOutsideClick: () => void
 ) => {
-  let MenuListComponent = (
+  const MenuListComponent = (
     <MenuList>
       <MenuItem $isDesktopMenu={isDesktopMenu}>
         <NavigationLink href="/projects/gneiss-editor">

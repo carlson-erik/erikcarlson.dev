@@ -1,6 +1,6 @@
 import Layout from "@/components/layout";
 import { Heading } from "@/components/styled";
-import { getAllArticleIDs, getArticleData } from "@/lib/articles";
+import { Article, getAllArticleIDs, getArticleData } from "@/lib/articles";
 import styled from "styled-components";
 
 const Header = styled.div`
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }: { params: any }) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
   const articleData = await getArticleData(params.id);
   return {
     props: {
@@ -30,7 +30,7 @@ export async function getStaticProps({ params }: { params: any }) {
   };
 }
 
-export default function Post({ articleData }: { articleData: any }) {
+export default function Post({ articleData }: { articleData: Article }) {
   return (
     <Layout>
       <Header>

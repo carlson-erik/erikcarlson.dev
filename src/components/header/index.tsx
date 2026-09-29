@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 /* ------------------ Components ------------------ */
-import { Link } from "../styled";
 import { IconButton, NavigationLink } from "./styled";
 import ThemeSwitch from "./theme-switch";
 /* ------------------ Theme ------------------ */

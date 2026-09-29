@@ -4,7 +4,7 @@ import Head from "next/head";
 import Layout from "@/components/layout";
 import { Heading, Subheading, Link } from "@/components/styled";
 /* ------------------ Metadata ------------------ */
-import { getSortedArticles } from "@/lib/articles";
+import { ArticleSummary, getSortedArticles } from "@/lib/articles";
 import { getPageMetadata } from "@/lib/metadata";
 
 export async function getStaticProps() {
@@ -47,7 +47,7 @@ const Introduction = styled.p`
   }
 `;
 
-export default function BlogPage({ allArticles }: { allArticles: any }) {
+export default function BlogPage({ allArticles }: { allArticles: ArticleSummary[] }) {
   return (
     <>
       <Head>{getPageMetadata("Blog")}</Head>
@@ -64,7 +64,7 @@ export default function BlogPage({ allArticles }: { allArticles: any }) {
           </Introduction>
           <Subheading>Articles</Subheading>
           <ArticleList>
-            {allArticles.map((article: any) => {
+            {allArticles.map((article) => {
               return (
                 <ArticleEntry key={article.id}>
                   <ArticleTitle href={`/blog/articles/${article.id}`}>
