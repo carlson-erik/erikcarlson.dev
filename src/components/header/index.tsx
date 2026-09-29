@@ -227,7 +227,7 @@ const Header = () => {
             getMenuListComponent(buttonElement, width > 650, () =>
               setShowProjectsMenu(false)
             )}
-          {/* <NavigationLink href="/blog">Blog</NavigationLink> */}
+          <NavigationLink href="/writing">Writing</NavigationLink>
         </Navigation>
       </NavigationContainer>
     </Container>

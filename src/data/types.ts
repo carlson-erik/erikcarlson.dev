@@ -72,3 +72,33 @@ export interface Projects {
   /** "Past Projects", in display order. */
   past: Project[];
 }
+
+/** The front matter every file in /articles must have. */
+export interface ArticleFrontMatter {
+  title: string;
+  /** Release date, "YYYY-MM-DD". */
+  date: string;
+  /** One or two sentences. Shown under the title on /writing. */
+  description: string;
+  /** Whole minutes. Shown as "8 minute read". */
+  minutesToRead: number;
+}
+
+/** What /writing needs for each post. */
+export interface ArticleSummary extends ArticleFrontMatter {
+  /** The file name without ".mdx". The post's URL is /writing/<slug>. */
+  slug: string;
+}
+
+/** One entry in a post's Contents. */
+export interface ArticleHeading {
+  /** The heading's id, added by rehype-slug. Contents links go to #<id>. */
+  id: string;
+  text: string;
+}
+
+export interface Article extends ArticleSummary {
+  contentHtml: string;
+  /** The post's "##" headings, in order. */
+  headings: ArticleHeading[];
+}

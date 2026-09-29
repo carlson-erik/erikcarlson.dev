@@ -7,10 +7,14 @@ const LightTheme: Theme = {
     backgroundColor: "#FFFFFF",
     borderLine: designSystem.colors.grays.shade300,
     text: designSystem.colors.grays.shade900,
+    mutedText: designSystem.colors.grays.shade700,
     link: {
       text: designSystem.colors.primary.shadeDefault,
       textHover: designSystem.colors.primary.shade700,
       iconHover: designSystem.colors.grays.shade200,
+    },
+    contents: {
+      background: designSystem.colors.grays.shade200,
     },
     menu: {
       background: designSystem.colors.grays.shade200,

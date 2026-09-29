@@ -6,6 +6,7 @@ export type Theme = {
     backgroundColor: string;
     borderLine: string;
     text: string;
+    mutedText: string;
     link: {
       text: string;
       textHover: string;
@@ -18,6 +19,9 @@ export type Theme = {
         iconColor: string;
         iconHover: string;
       };
+    };
+    contents: {
+      background: string;
     };
     menu: {
       background: string;

@@ -7,10 +7,14 @@ const DarkTheme: Theme = {
     backgroundColor: designSystem.colors.grays.shade900,
     borderLine: designSystem.colors.grays.shade700,
     text: designSystem.colors.grays.shade300,
+    mutedText: designSystem.colors.grays.shade500,
     link: {
       text: designSystem.colors.primary.shade200,
       textHover: designSystem.colors.primary.shade400,
       iconHover: designSystem.colors.grays.shade700,
+    },
+    contents: {
+      background: designSystem.colors.grays.shade800,
     },
     menu: {
       background: designSystem.colors.grays.shade800,
