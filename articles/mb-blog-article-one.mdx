@@ -1,179 +1,194 @@
 ---
-title: "The Ultimate Markdown Style Test Article 1"
-date: "2025-05-24"
-description: "A comprehensive post to test all Markdown features on your blog."
-minutesToRead: 2
+title: "Markdown & MDX style test, part 1: text, links, lists, and quotes"
+date: "1994-01-01"
+description: "The first of two test posts. It covers running text, from paragraphs and headings to links, lists, quotes, and footnotes, with notes on what each one should look like."
+minutesToRead: 8
 ---
 
-Welcome to the **ultimate Markdown style test**. This article demonstrates nearly every Markdown syntax element to help you preview how your blog renders them.
+This post and [part 2](/writing/mb-blog-article-two) are meant to be looked at more than read. Between them, they use every element a post on this site can contain, written the way a real post would use it, so the Writing pages can be checked against realistic content instead of filler. This part covers running text: paragraphs, headings, emphasis, links, lists, quotes, and footnotes. Part 2 covers code, tables, images, and HTML. Where there's something specific to look for, the section says what it should look like.
 
----
+Check it in both themes, and in a desktop window, a tablet-sized one, and a phone. The Contents is part of the test too. It lists this post's `##` headings, including one long enough to wrap and one with inline code, and it should follow along as you scroll.
 
-## Table of Contents
+## Paragraphs and line breaks
 
-1. [Headers](#headers)
-2. [Text Formatting](#text-formatting)
-3. [Lists](#lists)
-4. [Code Blocks](#code-blocks)
-5. [Blockquotes](#blockquotes)
-6. [Tables](#tables)
-7. [Images](#images)
-8. [Links](#links)
-9. [Horizontal Rule](#horizontal-rule)
-10. [Embedded HTML](#embedded-html)
-11. [Task Lists](#task-lists)
+Most of a post is paragraphs, so this one is long enough to judge line length and line height. Lines of 45 to 75 characters are the most comfortable to read.[^measure] Much longer and the eye loses its place on the way back to the start of the next line; much shorter and the text turns choppy. On desktop, check that this paragraph reads comfortably next to the Contents sidebar. On a phone, it should run the width of the screen without touching either edge.
 
----
+[^measure]: Robert Bringhurst, *The Elements of Typographic Style*, which calls anything from 45 to 75 characters a satisfactory line for a single column of text, and 66 ideal.
 
-## Headers
+Line breaks in the source don't matter.
+This sentence starts on a new line in the file,
+and so does this one,
+but all three should flow together as one paragraph.
 
-# H1 - Title  
-## H2 - Section Title  
-### H3 - Subsection Title  
-#### H4 - Smaller Heading  
-##### H5 - Even Smaller  
-###### H6 - The Smallest  
+To start a new line without starting a new paragraph, end the line with a backslash.\
+This line should sit directly below the one above, without a paragraph's worth of space between them.
 
----
+Two spaces at the end of a line also start a new line.  
+They're invisible, though, and many editors delete them on save, so prefer the backslash.
 
-## Text Formatting
+Long words and addresses can't wrap at a space, so they have to break somewhere else: Pneumonoultramicroscopicsilicovolcanoconiosis, or `https://example.com/writing/a-slug-long-enough-that-it-cannot-fit-on-one-line-of-a-phone-screen`. Neither should make the page wider than a phone's screen.
 
-- Regular text  
-- **Bold text**  
-- *Italic text*  
-- ***Bold and italic text***  
-- ~~Strikethrough~~  
-- `Inline code` looks like this.  
+## Headings
 
-Here's a paragraph  
-with a manual line break.
+Sections start with `##`, and only those appear in the Contents. Use `###` to split a long section, and deeper levels rarely. Never use a single `#`: the post title is already the page's main heading, and a second one would compete with it.
 
-> A blockquote:  
-> This is some _quoted_ text with **Markdown** inside it.
+### Third level: a subsection, with a heading long enough to wrap on a phone
 
----
+Each heading here is followed by a paragraph, because the space around a heading matters as much as its size. A heading should sit closer to the text it introduces than to the text above it.
 
-## Lists
+#### Fourth level
 
-### Unordered list
+For a small group of paragraphs inside a subsection.
 
-- Item one  
-  - Nested item A  
-  - Nested item B  
-- Item two  
-- Item three  
+##### Fifth level
 
-### Ordered list
+Rare. It still needs to look like a heading, not like bold text.
 
-1. First  
-2. Second  
-   1. Sub-item  
-   2. Sub-item  
-3. Third  
+###### Sixth level
 
----
+The smallest heading. A post that needs it probably needs restructuring instead.
 
-## Code Blocks
+## Emphasis and `inline code`
 
-### JavaScript
+Use *italics* for stress and for titles like *The Elements of Typographic Style*, and **bold** for the one phrase a skimming reader mustn't miss. ***Both at once*** should be rare. Underscores work too, so _this_ and __this__ match the asterisk versions. Emphasis nests: **bold can hold *italics***, and *italics can hold **bold***.
 
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet("Markdown Tester");
-```
+~~Strikethrough~~ is for corrections that should stay visible, as in "the build takes ~~three~~ four steps."
 
-### Python
+Inline code is for anything a reader might type or find in code: `npm run build`, `minutesToRead`, `src/lib/articles.ts`. To show a backtick inside it, wrap it in two backticks instead of one: ``const greeting = `Hello, ${name}`;``. Code works inside other formatting too, as in **`minutesToRead` must be a whole number**, and it should never make its line taller than the lines around it.
 
-```python
-def greet(name):
-    print(f"Hello, {name}!")
+Underscores inside a word don't start emphasis, so snake_case_names stay as written. Asterisks do, so un*believ*able has an italic middle.
 
-greet("Markdown Tester")
-```
-
-### Bash
-
-```bash
-echo "This is a test script"
-```
-
----
-
-## Blockquotes
-
-> “Markdown is not about making things look fancy.  
-> It’s about writing clearly.”  
-> — Someone Wise
-
-> ### Blockquote with a heading  
-> - And a list  
-> - Inside the quote  
-
----
-
-## Tables
-
-| Feature       | Supported | Notes                    |
-| ------------- | --------- | ------------------------ |
-| Headers       | ✅        | `<h1>`–`<h6>` supported   |
-| Code Blocks   | ✅        | With syntax highlighting |
-| Tables        | ✅        | Clean column layout      |
-| Blockquotes   | ✅        | Nested Markdown allowed  |
-
----
-
-## Images
-
-![Markdown Placeholder](https://placehold.co/600x300.png)
-
-HTML version:
-
-<img src="https://placehold.co/600x300.png" alt="HTML image" width="600" />
-
----
+A few HTML tags cover what Markdown can't. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy, or <kbd>⌘</kbd> + <kbd>C</kbd> on a Mac. Water is H<sub>2</sub>O, and E = mc<sup>2</sup>. <mark>Highlighted text</mark> stands out from the sentence around it, and <abbr title="Markdown with JSX">MDX</abbr> shows its full name on hover.
 
 ## Links
 
-- [OpenAI](https://openai.com)  
-- <https://example.com>  
-- Email: <mailto:you@example.com>  
+Link text should say where the link goes, so a reader can decide without hovering: link to [the Next.js documentation](https://nextjs.org/docs), not to "click here." A link can also have a title, which appears on hover: [MDN Web Docs](https://developer.mozilla.org/ "Documentation for web developers, from Mozilla").
+
+Links to other pages on this site start with a slash, like [all writing](/writing) or [the Netgraph project](/projects/netgraph). Links to a heading in this post start with `#` and the heading's id: [Headings](#headings) jumps to a section, and [Sixth level](#sixth-level) to a heading inside one. Either way, the heading should stop a little below the top of the window rather than flush against it.
+
+To link to a heading in another post, add `#` and the heading's id to that post's address. Headings with the same text get numbered ids: part 2 has two headings called "Too wide for the column," so the one under Tables is [`#too-wide-for-the-column-1`](/writing/mb-blog-article-two#too-wide-for-the-column-1). The link should open part 2 already scrolled to that heading.
+
+Reference-style links keep long addresses out of a paragraph. The reference can have its own name, as in [the CommonMark spec][commonmark]; reuse the link text, as in [GitHub Flavored Markdown][]; or be the link text alone, as in [MDX]. The addresses are listed at the end of this section in the source, and they never appear on the page.
+
+A bare address becomes a link by itself: https://example.com, www.example.com, and hello@example.com. For a link that starts an email, write it out: [email me](mailto:hello@example.com). Don't put an address in angle brackets, because MDX reads `<` as the start of a tag.
+
+A long link wraps like any other text, like this one to [the unified documentation on turning Markdown into HTML with remark and rehype](https://unifiedjs.com/learn/), and its underline should follow it onto the next line.
+
+[commonmark]: https://spec.commonmark.org/ "The CommonMark specification"
+[GitHub Flavored Markdown]: https://github.github.com/gfm/
+[MDX]: https://mdxjs.com/
+
+## Lists, from quick bullets to step-by-step instructions
+
+Use bullets when order doesn't matter. Each level of nesting should step in clearly from the one above it:
+
+- Next.js, using the Pages Router
+  - Each post becomes a page when the site is built
+- styled-components, for styling
+  - Theme colors are CSS variables, so a page built ahead of time looks right in either theme, and switching themes never waits on a new render
+- unified, which turns each post into HTML
+  - remark reads the Markdown
+  - rehype writes the HTML
+    - rehype-slug gives every heading an id for the Contents to link to
+
+The long item above wraps onto a second line. The wrapped text should line up with the words above it, not with the bullet.
+
+Use numbers when order matters. Numbered and bulleted lists can nest inside each other:
+
+1. Add a file to `articles/`. Its name, without `.mdx`, becomes the end of the post's address.
+2. Fill in the front matter:
+   - `title` and `description`, as plain text
+   - `date`, the release date, in quotes
+   - `minutesToRead`, the word count divided by 225 and rounded up
+3. Check the post:
+   1. Run the build, which stops on any field that's missing or invalid.
+   2. Open the post in both themes and at every width.
+
+A list can start at any number, which helps when a paragraph interrupts it:
+
+4. Publish the post.
+5. Share the link.
+
+When a step needs code, indent the code block to line up with the step's text, and the numbering carries on after it. Blank lines between the items space them further apart, and each item can hold more than one paragraph:
+
+1. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open `http://localhost:3000/writing` and pick a post.
+
+   Edits to the post appear when you reload the page, without restarting the server.
+
+Checklists track progress. Checked and unchecked items should be easy to tell apart, and neither should look like a form to fill in:
+
+- [x] Write the draft
+- [x] Fill in the front matter
+- [ ] Check it in both themes
+- [ ] Check it on a phone
+  - [x] The Contents opens and closes
+  - [ ] Wide code blocks and tables scroll sideways
+
+## Blockquotes
+
+Quote someone with `>`, and say who they are and where the words come from:
+
+> The overriding design goal for Markdown’s formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions.
+>
+> — John Gruber, [Markdown](https://daringfireball.net/projects/markdown/)
+
+Quoted words should be easy to tell apart from the post's own, even when a quote runs over several paragraphs. Every line of the quote starts with `>`, including the blank ones between paragraphs:
+
+> This is the first paragraph of a longer quote. It runs long enough to wrap, so the quote's styling can be checked across several lines of text, not just one.
+>
+> This is the second paragraph. The space between the two should look like the space between paragraphs outside the quote.
+
+A quote inside a quote adds a second `>`, and each level should stand apart from the one around it:
+
+> Can a blockquote go inside another one?
+>
+> > Yes. Each level adds another `>`.
+>
+> That's how a reply quotes the message it's answering.
+
+Quotes can hold most other elements, including headings, lists, and code:
+
+> ### A heading inside a quote
+>
+> - A list item with **bold** text
+> - A list item with `inline code`
+>
+> ```js
+> const quoted = true;
+> ```
+
+## Footnotes
+
+Footnotes hold sources and asides that would interrupt a sentence.[^aside] Put a marker where the note belongs, and write the note anywhere in the file. Every note appears in a list at the end of the post, numbered in the order its marker appears, whatever its label is in the source.[^label]
+
+[^aside]: Like this one. Each note should link back to its marker, so a reader can return to where they left off.
+
+[^label]: This note's label is `label`, but it's shown as a number. A label only has to be unique within its post.
+
+## Horizontal rules
+
+Three dashes, asterisks, or underscores on a line of their own draw a rule. Use one for a shift within a section, not between sections, where the headings already do the job. These three should look identical:
 
 ---
 
-## Horizontal Rule
+***
 
----
+___
 
----
+Always leave a blank line above the dashes. Without one, `---` turns the line of text above it into a heading, which then appears in the Contents.
 
-## Embedded HTML
+## Wrapping up
 
-<div style="padding: 1em; border: 1px solid #ccc; background: #f9f9f9;">
-  <strong>This is a raw HTML block inside Markdown.</strong><br/>
-  You can style or structure it however you like.
-</div>
-
----
-
-## Task Lists
-
-- [x] Headers  
-- [x] Lists  
-- [x] Quotes  
-- [x] Code Blocks  
-- [x] Links  
-- [x] Tables  
-- [x] Images  
-- [x] HTML  
-- [x] Horizontal Rules  
-- [x] Task Lists  
-
----
-
-## Final Thoughts
-
-If all these elements render well in your blog, your Markdown pipeline is working beautifully. ✅  
-Now go write something awesome. ✍️  
-
+This section is short on purpose. At the very bottom of the page, it should still be the one highlighted in the Contents. Code blocks, tables, images, and HTML continue in [part 2](/writing/mb-blog-article-two). ✍️

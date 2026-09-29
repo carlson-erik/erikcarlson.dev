@@ -1,0 +1,263 @@
+---
+title: "Markdown & MDX style test, part 2: code, tables, images, and HTML"
+date: "1994-01-01"
+description: "The second of two test posts. It covers code blocks, tables, images, HTML, and the characters MDX needs escaped, with notes on what each one should look like."
+minutesToRead: 6
+---
+
+This post picks up where [part 1](/writing/mb-blog-article-one) left off. Part 1 covers running text. This part covers the elements that are hardest to fit into a column of text, like code blocks, tables, and images, along with the rules MDX adds for HTML and special characters. Where there's something specific to look for, the section says what it should look like.
+
+Check it in both themes, and in a desktop window, a tablet-sized one, and a phone. Some elements here are wider than a phone's screen on purpose. Each one should scroll or shrink on its own, and the page itself should never scroll sideways.
+
+The release date is a test too. A date like `1994-01-01` is read as midnight UTC, so anywhere west of UTC, a time zone bug would show this post as released on December 31, 1993, and file it under 1993 on the Writing page. It should read January 1, 1994 everywhere. Both parts share that date, so the Writing page sorts them by title, which lists part 1 first.
+
+## Code blocks
+
+Fence code with three backticks, and name its language after the opening fence so syntax highlighting can color it. Every block should keep its indentation and blank lines exactly as written.
+
+TypeScript, from this site's own types:
+
+```ts
+/** The front matter every file in /articles must have. */
+export interface ArticleFrontMatter {
+  title: string;
+  /** Release date, "YYYY-MM-DD". */
+  date: string;
+  /** One or two sentences. Shown under the title on /writing. */
+  description: string;
+  /** Whole minutes. Shown as "8 minute read". */
+  minutesToRead: number;
+}
+```
+
+TSX, where the angle brackets and curly braces that MDX would reject in a paragraph are safe:
+
+```tsx
+export function ReadLength({ minutes }: { minutes: number }) {
+  return <span className="read-length">{`${minutes} minute read`}</span>;
+}
+```
+
+JavaScript:
+
+```js
+// Nodes push each other apart, and links pull connected nodes together
+const simulation = d3
+  .forceSimulation(nodes)
+  .force("charge", d3.forceManyBody().strength(-120))
+  .force("link", d3.forceLink(links).id((d) => d.id))
+  .force("center", d3.forceCenter(width / 2, height / 2));
+```
+
+CSS:
+
+```css
+/* Stop a little below the top of the window after jumping to a heading */
+.article-body [id] {
+  scroll-margin-top: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+```
+
+HTML, where the entities should appear exactly as typed, not as the characters they stand for:
+
+```html
+<p>Inside code, &copy; stays as typed, and &lt;p&gt; is not a tag.</p>
+```
+
+JSON and YAML:
+
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build"
+  }
+}
+```
+
+```yaml
+title: "Tuning force-directed layouts"
+date: "2026-09-12" # Keep the quotes
+description: "One or two sentences, shown under the title on /writing."
+minutesToRead: 8
+```
+
+A shell session:
+
+```bash
+# Build the site. A post with a bad field stops the build.
+npm run build
+
+# List the posts that are missing a field
+grep -L "minutesToRead" articles/*.mdx
+```
+
+Python:
+
+```python
+import math
+
+
+def minutes_to_read(text: str, words_per_minute: int = 225) -> int:
+    """Whole minutes to read `text`, rounded up, and never less than one."""
+    return max(1, math.ceil(len(text.split()) / words_per_minute))
+```
+
+A diff, where the `+`, `-`, or space at the start of each line keeps the code lined up:
+
+```diff
+ /** The headings listed in Contents. "##" in Markdown renders as <h2>. */
+-const CONTENTS_HEADING_TAG = "h2";
++const CONTENTS_HEADING_TAG = "h3";
+```
+
+Plain text, with no language, for output and diagrams. The box-drawing characters should line up in columns:
+
+```
+articles/
+├── mb-blog-article-one.mdx
+└── mb-blog-article-two.mdx
+src/
+├── lib/
+│   └── articles.ts
+└── pages/
+    └── writing/
+        ├── index.tsx
+        └── [slug].tsx
+```
+
+Showing how to write a code block takes a longer fence than the one being shown, so this block opens and closes with four backticks:
+
+````mdx
+Here's how a post shows code:
+
+```ts
+const answer = 42;
+```
+````
+
+### Too wide for the column
+
+A long line should scroll sideways inside its block. It shouldn't wrap, and it shouldn't make the page wider:
+
+```bash
+curl --silent --show-error "https://example.com/api/posts?fields=title,date,description,minutesToRead&sort=-date&limit=100" | jq '.posts[] | {title, date}'
+```
+
+## Tables
+
+The row of dashes under the header sets each column's alignment: `:---` for left, `---:` for right, and `:---:` for center. Right-align numbers so their digits line up:
+
+| Post length    | Words | Minutes to read |
+| :------------- | ----: | :-------------: |
+| A short note   |   200 |        1        |
+| A typical post | 1,500 |        7        |
+| A deep dive    | 4,500 |       20        |
+
+Cells can hold formatting, links, and code. A pipe inside a cell needs a backslash in front of it, even inside code, and `<br />` starts a new line within a cell. Cells can also be empty:
+
+| Task                         | Command                                | Notes                                                                 |
+| ---------------------------- | -------------------------------------- | --------------------------------------------------------------------- |
+| Start the development server | `npm run dev`                          | Then open [the Writing page](/writing)                                |
+| Build the site               | `npm run build`                        | **Stops** on a post with a bad field.<br />The error names the file.  |
+| Count the posts              | `ls articles/*.mdx \| wc -l`           |                                                                       |
+| Find posts missing a field   | `grep -L minutesToRead articles/*.mdx` | `-L` lists the files that *don't* match                               |
+
+### Too wide for the column
+
+On a phone, this table is wider than the screen. It should scroll sideways on its own rather than make the whole page scroll:
+
+| Syntax                  | Example                 | CommonMark | GFM | MDX | In a post                                   |
+| ----------------------- | ----------------------- | :--------: | :-: | :-: | ------------------------------------------- |
+| Tables                  | `\| a \| b \|`          |     ❌     | ✅  | ❌  | MDX needs the `remark-gfm` plugin           |
+| Strikethrough           | `~~done~~`              |     ❌     | ✅  | ❌  | Also needs `remark-gfm`                     |
+| Task lists              | `- [x] done`            |     ❌     | ✅  | ❌  | Also needs `remark-gfm`                     |
+| Bare links              | `https://example.com`   |     ❌     | ✅  | ❌  | Also needs `remark-gfm`                     |
+| Links in angle brackets | `<https://example.com>` |     ✅     | ✅  | ❌  | Write `[text](https://example.com)` instead |
+| HTML comments           | `<!-- note -->`         |     ✅     | ✅  | ❌  | Use an unused link reference instead        |
+| Indented code           | Four leading spaces     |     ✅     | ✅  | ❌  | Use a fenced code block instead             |
+| Expressions             | `{1 + 1}`               |     ❌     | ❌  | ✅  | Shown as plain text outside MDX             |
+
+## Images and figures
+
+Every image needs alt text that describes what it shows, for readers who can't see it and for when it doesn't load. An image wider than the column should shrink to fit:
+
+![A gray placeholder image, 1200 by 630 pixels](https://placehold.co/1200x630.png)
+
+A Markdown image can have a title, which appears on hover:
+
+![A smaller gray placeholder image, 600 by 300 pixels](https://placehold.co/600x300.png "Titles appear on hover")
+
+Images kept in the site's `public` folder use a path that starts with a slash. This one is the site's icon, a dark square with transparent corners, so check that it still stands out in the dark theme:
+
+![The site's icon: the letters EC in white on a dark rounded square](/apple-icon.png)
+
+An image inside a link shouldn't pick up an underline or a gap beneath it:
+
+[![A placeholder image that links to the Writing page](https://placehold.co/600x200.png)](/writing)
+
+A reference-style image keeps a long address out of the way, just like a reference-style link:
+
+![A placeholder image loaded through a reference][placeholder]
+
+[placeholder]: https://placehold.co/800x400.png
+
+Diagrams are best as SVG, which stays sharp at any size:
+
+![A placeholder SVG image, 600 by 300 pixels](https://placehold.co/600x300/svg)
+
+For a caption, or to set an image's size, use HTML. A width and height let the browser save room for an image before it loads, so the text below doesn't jump when it appears. On a phone, this image should shrink without being squashed:
+
+<img src="https://placehold.co/900x300.png" alt="A wide placeholder image with its width and height set in HTML" width="900" height="300" />
+
+<figure>
+  <img src="https://placehold.co/1200x500.png" alt="A wide placeholder image with a caption" width="1200" height="500" />
+  <figcaption>A caption sits under its image and should read as quieter than the text around it.</figcaption>
+</figure>
+
+## HTML inside a post
+
+Posts are `.mdx` files, so a few HTML tags can fill gaps that Markdown leaves, like the keyboard keys in [part 1](/writing/mb-blog-article-one#emphasis-and-inline-code) and the figure above. MDX reads them as JSX, which is stricter than HTML: close every tag, including empty ones like `<br />` and `<img />`, and quote every attribute value. Leave out `style` and `class`. Styling belongs to the site, and a `style` written as text stops an MDX page from rendering.
+
+A `<details>` element hides a tangent until the reader opens it. Leave a blank line after the summary and before the closing tag, so the Markdown inside still works:
+
+<details>
+  <summary>Why can't a post use HTML comments?</summary>
+
+  In MDX, `<` starts a tag, and `<!--` isn't one, so the file won't compile. MDX has its own comment syntax, `{/* like this */}`, but that shows up as text anywhere the post is read as plain Markdown. A link reference that nothing uses works everywhere:
+
+  ```mdx
+  [//]: # "A note to myself. It never appears on the page."
+  ```
+
+  There's a real one at the end of [Special characters & escapes](#special-characters--escapes).
+
+</details>
+
+## Special characters & escapes
+
+Type punctuation as the characters themselves: “curly quotes,” ‘single quotes,’ an apostrophe in it’s, an em dash — for a break in thought, an en dash for ranges like 2025–2026, an ellipsis…, and symbols like ×, →, ≠, and °. Other languages keep their accents and scripts: café, naïve, Zürich, 日本語, Ελληνικά. Emoji should sit on the line without pushing the lines apart: ✅ ✍️ 🚀
+
+HTML entities work too: &copy; &rarr; &mdash; &amp;. A non-breaking space, `&nbsp;`, keeps a number and its unit on the same line, as in 10&nbsp;km.
+
+A backslash shows the next character as typed instead of letting it format the text: \*not italic\*, \_not italic\_, \[not a link\](/writing), and \`not code\`. At the start of a line, it stops a `#` from making a heading and a number from starting a list:
+
+\# This line starts with a hash but isn't a heading.
+
+1986\. This line starts with a year but isn't a list.
+
+MDX adds two more characters to escape in text. Curly braces run JavaScript, so write \{ and \} to show them. A `<` followed by a letter or a digit starts a tag, so write \<div\> or `&lt;div&gt;`. Inside code, nothing needs escaping: `{ "a": 1 } < 2`.
+
+[//]: # "A comment. If this text appears anywhere on the page, comments are broken."
+
+There's a comment in the source just above this paragraph. Nothing from it should appear on the page.
+
+## Wrapping up
+
+This section is short on purpose. At the very bottom of the page, it should still be the one highlighted in the Contents. If everything in both parts looks right, the next real post has nothing to worry about. ✍️
