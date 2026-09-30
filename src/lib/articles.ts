@@ -168,17 +168,21 @@ export async function getArticle(slug: string): Promise<Article> {
 
   // Compiles the whole file, front matter included, so error line numbers match
   // the file. remark-frontmatter keeps the front matter off the page.
-  const compiled = await compile(
-    {
-      path: `articles/${slug}${ARTICLE_EXTENSION}`,
-      value: file.orig.toString(),
-    },
-    {
-      outputFormat: "function-body",
-      remarkPlugins: [remarkFrontmatter, remarkGfm],
-      rehypePlugins: [rehypeSlug, rehypeCollectHeadings],
-    },
-  );
+  const articlePath = `articles/${slug}${ARTICLE_EXTENSION}`;
+  let compiled;
+  try {
+    compiled = await compile(
+      { path: articlePath, value: file.orig.toString() },
+      {
+        outputFormat: "function-body",
+        remarkPlugins: [remarkFrontmatter, remarkGfm],
+        rehypePlugins: [rehypeSlug, rehypeCollectHeadings],
+      },
+    );
+  } catch (error) {
+    // MDX syntax errors give the line and column, but not the file
+    throw new Error(`${articlePath}:${String(error)}`, { cause: error });
+  }
 
   return {
     slug,
