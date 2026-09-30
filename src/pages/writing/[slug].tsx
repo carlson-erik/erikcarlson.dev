@@ -7,6 +7,7 @@ import type {
 } from "next";
 /* ------------------ Components ------------------ */
 import Layout from "@/components/layout";
+import ArticleContent from "@/components/writing/article-content";
 import ArticleHeader from "@/components/writing/article-header";
 import { ContentsSection, ContentsSidebar } from "@/components/writing/contents";
 /* ------------------ Metadata ------------------ */
@@ -65,7 +66,9 @@ export default function ArticlePage({
               minutesToRead={article.minutesToRead}
             />
             {hasContents && <ContentsSection headings={article.headings} />}
-            <ArticleBody dangerouslySetInnerHTML={{ __html: article.contentHtml }} />
+            <ArticleBody>
+              <ArticleContent code={article.code} />
+            </ArticleBody>
           </article>
           {hasContents && <ContentsSidebar headings={article.headings} />}
         </ArticleLayout>

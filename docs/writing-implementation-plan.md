@@ -460,31 +460,10 @@ Run these after all the steps:
 
 **Article content and styling (the next piece of work):**
 
-- **Body styling.** Style the post body following the mock's `.article-body` rules: 68ch width; 1.1875rem text with
-  1.7 line height (1.125rem on phones); spacing between blocks; section headings; lists; inline code; code blocks with
-  a left accent bar; and blockquotes.
 - **Heading levels.** Markdown `##` renders as `<h2>`, the same level as the post title. The mock uses `<h3>` for
   sections under an `<h2>` title. Moving every content heading down one level would fix the page outline. If that
   happens, change `CONTENTS_HEADING_TAG` from Step 2 to `"h3"`. The `scroll-margin-top` rule from Step 7e already
   matches any heading.
-- **Markdown or MDX (decide before styling the body).** Posts are `.mdx` files, but `src/lib/articles.ts` treats them
-  as plain Markdown and renders an HTML string for `dangerouslySetInnerHTML`. That causes two problems:
-  - Posts can't embed React components, such as a live Netgraph or GneissEditor demo.
-  - The files aren't valid MDX. The test post's `<https://example.com>` and `<mailto:…>` autolinks and its
-    `<div style="…">` block are all rejected by MDX. Editors and Prettier treat `.mdx` files as MDX, and a later move
-    to real MDX would break posts written for the current pipeline.
-
-  The choice decides how the body gets styled: CSS for the elements inside the HTML string, or MDX mapping Markdown
-  elements to React components. The Contents plugin works either way, because MDX accepts rehype plugins and the
-  plugin passes headings out on `file.data`. If the decision is to stay with plain Markdown, rename posts to `.md`
-  and change the loader's `*.mdx` filter. Don't rename them before deciding, so the extension doesn't change twice.
-- **Markdown features.** `remark-rehype` drops raw HTML by default, so the test post's `<img>` and `<div>` blocks
-  don't render. Tables, task lists, and strikethrough need `remark-gfm`, which isn't installed, so they render as
-  plain text. Decide whether to add `remark-gfm`, and whether to allow raw HTML (`allowDangerousHtml` plus
-  `rehype-raw`). This depends on the Markdown or MDX decision.
-- **The test post's content.** `mb-blog-article-one.mdx` has its own hand-written "## Table of Contents" section, which
-  will show up as an item in the new Contents. So will its "## Headers" demo section and the sample `##` heading inside
-  it. Clean these up when that post is revised or replaced.
 
 **Deeper Contents levels (from D4):** a later iteration may add `###` headings as nested items under their `##`
 heading. To do that, collect `<h3>` elements in the Step 2 plugin with a `depth` field on `ArticleHeading`, then

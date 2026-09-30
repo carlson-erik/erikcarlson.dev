@@ -98,7 +98,8 @@ export interface ArticleHeading {
 }
 
 export interface Article extends ArticleSummary {
-  contentHtml: string;
+  /** The post's body, compiled by MDX. Render it with <ArticleContent />. */
+  code: string;
   /** The post's "##" headings, in order. */
   headings: ArticleHeading[];
 }
