@@ -6,9 +6,17 @@ import { compile } from "@mdx-js/mdx";
 import type { Plugin } from "unified";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import { toString } from "hast-util-to-string";
-import { visit } from "unist-util-visit";
+import { SKIP, visit } from "unist-util-visit";
+// With ".ts", so node --test can load this file too (Step 9)
+import {
+  footnoteBackContent,
+  rehypeQuoteAttribution,
+  rehypeWrapTables,
+} from "./article-plugins.ts";
 /* ------------------ Types ------------------ */
 import type { Root } from "hast";
 import type {
@@ -145,6 +153,20 @@ export function groupByYear(
 const rehypeCollectHeadings: Plugin<[], Root> = () => (tree, file) => {
   const headings: ArticleHeading[] = [];
   visit(tree, "element", (node) => {
+    // The footnotes' hidden "Footnotes" heading isn't a section of the post
+    if (
+      node.tagName === "section" &&
+      node.properties.dataFootnotes !== undefined
+    ) {
+      return SKIP;
+    }
+    // The post title is the page's h1, so "#" would add a second one
+    if (node.tagName === "h1") {
+      file.message(
+        "Use ## for sections. The post title is already the page's h1.",
+        node,
+      );
+    }
     if (node.tagName !== CONTENTS_HEADING_TAG) {
       return;
     }
@@ -158,25 +180,32 @@ const rehypeCollectHeadings: Plugin<[], Root> = () => (tree, file) => {
 };
 
 /**
- * One post: its front matter, its body compiled from MDX, and its Contents
- * headings. A post that isn't valid MDX throws an error naming the file and line,
- * which stops `next build`.
+ * Compiles one post's MDX, front matter included, and collects its Contents headings.
+ * Bad MDX and plugin warnings throw an error naming the file and line, which stops
+ * `next build`.
  */
-export async function getArticle(slug: string): Promise<Article> {
-  const file = readArticleFile(slug);
-  const frontMatter = parseFrontMatter(slug, file.data);
-
-  // Compiles the whole file, front matter included, so error line numbers match
-  // the file. remark-frontmatter keeps the front matter off the page.
-  const articlePath = `articles/${slug}${ARTICLE_EXTENSION}`;
+export async function compileArticle(
+  articlePath: string,
+  source: string,
+): Promise<{ code: string; headings: ArticleHeading[] }> {
   let compiled;
   try {
     compiled = await compile(
-      { path: articlePath, value: file.orig.toString() },
+      { path: articlePath, value: source },
       {
         outputFormat: "function-body",
+        // Keeps GFM's align attribute on table cells rather than an inline style
+        tableCellAlignToStyle: false,
         remarkPlugins: [remarkFrontmatter, remarkGfm],
-        rehypePlugins: [rehypeSlug, rehypeCollectHeadings],
+        remarkRehypeOptions: { footnoteBackContent },
+        rehypePlugins: [
+          rehypeUnwrapImages,
+          rehypeSlug,
+          rehypeCollectHeadings,
+          [rehypeHighlight, { aliases: { markdown: ["mdx"] } }],
+          rehypeWrapTables,
+          rehypeQuoteAttribution,
+        ],
       },
     );
   } catch (error) {
@@ -184,10 +213,32 @@ export async function getArticle(slug: string): Promise<Article> {
     throw new Error(`${articlePath}:${String(error)}`, { cause: error });
   }
 
+  // Any warning stops the build. Each reads "articles/<slug>.mdx:<line>:<column>-…: <reason>".
+  if (compiled.messages.length > 0) {
+    throw new Error(compiled.messages.map(String).join("\n"));
+  }
+
   return {
-    slug,
-    ...frontMatter,
     code: String(compiled),
     headings: compiled.data.headings as ArticleHeading[],
   };
+}
+
+/**
+ * One post: its front matter, its body compiled from MDX, and its Contents
+ * headings. A post that isn't valid MDX, or that makes a plugin warn, throws an
+ * error naming the file and line, which stops `next build`.
+ */
+export async function getArticle(slug: string): Promise<Article> {
+  const file = readArticleFile(slug);
+  const frontMatter = parseFrontMatter(slug, file.data);
+
+  // Compiles the whole file, front matter included, so error line numbers match
+  // the file. remark-frontmatter keeps the front matter off the page.
+  const compiled = await compileArticle(
+    `articles/${slug}${ARTICLE_EXTENSION}`,
+    file.orig.toString(),
+  );
+
+  return { slug, ...frontMatter, ...compiled };
 }

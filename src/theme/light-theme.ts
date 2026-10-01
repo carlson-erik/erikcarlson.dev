@@ -16,6 +16,23 @@ const LightTheme: Theme = {
     contents: {
       background: designSystem.colors.grays.shade200,
     },
+    article: {
+      surface: designSystem.colors.grays.shade200,
+      strongLine: designSystem.colors.grays.shade500,
+      quoteRule: designSystem.colors.grays.shade600,
+      selection: designSystem.colors.primary.shade100,
+      highlight: "#FFF0A6",
+      imageEdge: "transparent",
+      // Links on selection, highlight, and surface, which the link color is too light for
+      linkOnTint: designSystem.colors.primary.shade600,
+      code: {
+        string: designSystem.colors.primary.shade600,
+        constant: "#6E3AC9",
+        comment: designSystem.colors.grays.shade700,
+        addedLine: designSystem.colors.primary.shade100,
+        removedLine: designSystem.colors.grays.shade300,
+      },
+    },
     menu: {
       background: designSystem.colors.grays.shade200,
       backgroundHover: designSystem.colors.grays.shade300,

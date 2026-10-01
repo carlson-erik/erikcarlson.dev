@@ -26,7 +26,7 @@ const Sidebar = styled.nav`
   }
 `;
 
-const SidebarHeading = styled.h3`
+const SidebarHeading = styled.h2`
   font-family: ${headingFont};
   font-size: 1rem;
   line-height: 1.25;

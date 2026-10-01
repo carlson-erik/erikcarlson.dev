@@ -48,7 +48,7 @@ export default class SiteDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           {/* Must run before first paint so the correct theme shows immediately */}
           <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

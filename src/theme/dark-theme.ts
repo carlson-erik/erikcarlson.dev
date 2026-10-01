@@ -16,6 +16,23 @@ const DarkTheme: Theme = {
     contents: {
       background: designSystem.colors.grays.shade800,
     },
+    article: {
+      surface: designSystem.colors.grays.shade800,
+      strongLine: designSystem.colors.grays.shade600,
+      quoteRule: designSystem.colors.grays.shade600,
+      selection: designSystem.colors.primary.shade800,
+      highlight: "#5A4B0C",
+      imageEdge: designSystem.colors.grays.shade600,
+      // Links on selection, highlight, and surface, which the link color is too light for
+      linkOnTint: designSystem.colors.primary.shade200,
+      code: {
+        string: designSystem.colors.primary.shade200,
+        constant: "#CDB6FF",
+        comment: designSystem.colors.grays.shade500,
+        addedLine: designSystem.colors.primary.shade800,
+        removedLine: designSystem.colors.grays.shade900,
+      },
+    },
     menu: {
       background: designSystem.colors.grays.shade800,
       backgroundHover: designSystem.colors.grays.shade700,

@@ -22,6 +22,7 @@ const MetaLine = styled.p`
   flex-wrap: wrap;
   gap: 0.25rem 1rem;
   font-size: 1rem;
+  font-variant-numeric: lining-nums; /* Matches the post body's figures */
   color: ${(props) => props.theme.colors.mutedText};
 `;
 

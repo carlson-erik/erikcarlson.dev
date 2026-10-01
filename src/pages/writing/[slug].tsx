@@ -7,6 +7,7 @@ import type {
 } from "next";
 /* ------------------ Components ------------------ */
 import Layout from "@/components/layout";
+import ArticleBody from "@/components/writing/article-body";
 import ArticleContent from "@/components/writing/article-content";
 import ArticleHeader from "@/components/writing/article-header";
 import { ContentsSection, ContentsSidebar } from "@/components/writing/contents";
@@ -43,13 +44,6 @@ const ArticleLayout = styled.div<{ $hasContents: boolean }>`
   }
 `;
 
-const ArticleBody = styled.div`
-  /* Contents jumps stop a little below the top of the window */
-  & [id] {
-    scroll-margin-top: 1.5rem;
-  }
-`;
-
 export default function ArticlePage({
   article,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -57,7 +51,7 @@ export default function ArticlePage({
   return (
     <>
       <Head>{getPageMetadata(article.title, article.description)}</Head>
-      <Layout>
+      <Layout siteNameIsHeading={false}>
         <ArticleLayout $hasContents={hasContents}>
           <article>
             <ArticleHeader
@@ -66,7 +60,8 @@ export default function ArticlePage({
               minutesToRead={article.minutesToRead}
             />
             {hasContents && <ContentsSection headings={article.headings} />}
-            <ArticleBody>
+            {/* Keyed so each post mounts its own useFocusableOverflow */}
+            <ArticleBody key={article.slug}>
               <ArticleContent code={article.code} />
             </ArticleBody>
           </article>

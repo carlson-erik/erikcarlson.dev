@@ -10,6 +10,7 @@ import { themeCssVariables } from "../../theme/css-vars";
 import "@fontsource-variable/montserrat"; // Headings, weights 100-900
 import "@fontsource-variable/raleway"; // Body text, weights 100-900
 import "@fontsource-variable/raleway/wght-italic.css"; // Body text in italics
+import "@fontsource-variable/source-code-pro"; // Code, weights 200-900
 /* ------------------ Global CSS Styles ------------------ */
 import { globalCSS, resetCSS } from "./styles";
 
@@ -62,15 +63,17 @@ const MainContent = styled.main`
 
 interface LayoutProps {
   children?: React.ReactNode;
+  /** False on pages whose own title is the h1, such as posts */
+  siteNameIsHeading?: boolean;
 }
 
 const Layout = (props: LayoutProps) => {
-  const { children } = props;
+  const { children, siteNameIsHeading = true } = props;
   return (
     <ThemeProvider>
       <GlobalStyle />
       <Container>
-        <Header />
+        <Header siteNameIsHeading={siteNameIsHeading} />
         <MainContent>{children}</MainContent>
         <Footer />
       </Container>

@@ -32,20 +32,6 @@ const DemoContainer = styled.div`
   }
 `;
 
-const getPadding = (windowWidth: number) => {
-  const borderWidth = 2;
-  let paddingWidth = 0; // mobile: 0.5rem * 2
-
-  // "<=" to match the body padding's max-width media queries, which include the boundary
-  if (windowWidth <= 400) {
-    paddingWidth = 16;
-  } else if (windowWidth <= 1000) {
-    paddingWidth = 64; // mobile: 0.5rem * 2
-  }
-
-  return borderWidth + paddingWidth;
-};
-
 function NetgraphPage() {
   const { theme } = useContext(ThemeContext);
   const [graphSectionRef, setGraphSectionRef] = useState<HTMLDivElement | null>(
@@ -60,18 +46,12 @@ function NetgraphPage() {
     }
 
     const updateGraphDimensions = () => {
-      const rect = graphSectionRef.getBoundingClientRect();
-      const windowWidth = window.innerWidth;
-      const adjustedWidth =
-        (windowWidth < 1000 ? windowWidth : 1000) - getPadding(windowWidth);
-
-      setGraphWidth(adjustedWidth);
-      setGraphHeight(rect.height);
+      // The inside of the container's border
+      setGraphWidth(graphSectionRef.clientWidth);
+      setGraphHeight(graphSectionRef.clientHeight);
     };
 
     updateGraphDimensions();
-
-    window.addEventListener("resize", updateGraphDimensions);
 
     const resizeObserver = new ResizeObserver((entries) => {
       if (!entries.length) {
@@ -84,7 +64,6 @@ function NetgraphPage() {
 
     return () => {
       resizeObserver.disconnect();
-      window.removeEventListener("resize", updateGraphDimensions);
     };
   }, [graphSectionRef]);
 

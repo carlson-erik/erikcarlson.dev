@@ -23,6 +23,23 @@ export type Theme = {
     contents: {
       background: string;
     };
+    /** Post bodies: code, quotes, highlights, and images */
+    article: {
+      surface: string;
+      strongLine: string;
+      quoteRule: string;
+      selection: string;
+      highlight: string;
+      imageEdge: string;
+      linkOnTint: string;
+      code: {
+        string: string;
+        constant: string;
+        comment: string;
+        addedLine: string;
+        removedLine: string;
+      };
+    };
     menu: {
       background: string;
       backgroundHover: string;

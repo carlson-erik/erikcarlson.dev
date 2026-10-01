@@ -8,18 +8,27 @@ export const resetCSS = `
     box-sizing: border-box;
   }
 
+  /* Stop iOS Safari enlarging text when the phone rotates */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   /* Remove default margin */
   body,
   h1,
   h2,
   h3,
   h4,
+  h5,
+  h6,
   p,
   figure,
   blockquote,
+  pre,
   dl,
   ul,
-  ol
+  ol,
   dd {
     margin: 0;
   }
@@ -39,7 +48,6 @@ export const resetCSS = `
   body {
     min-height: 100vh;
     min-height: 100dvh;
-    text-rendering: optimizeSpeed;
     line-height: 1.5;
   }
 
@@ -80,6 +88,9 @@ export const resetCSS = `
   }
 `;
 
+/** Side padding on every page. Full-width blocks in posts pull out by the same amount. */
+export const PAGE_GUTTER = "1rem";
+
 export const globalCSS = `
   body {
     margin: 0;
@@ -88,6 +99,7 @@ export const globalCSS = `
     display: flex;
     justify-content: center;
     width: 100%;
+    padding: 0 ${PAGE_GUTTER};
   }
 
   /*
@@ -103,14 +115,14 @@ export const globalCSS = `
   }
 
   @media only screen and (max-width: 1000px) {
-    body  {
-      padding: 1rem 1rem 0 1rem;
+    body {
+      padding-top: 1rem;
     }
   }
 
   @media only screen and (max-width: 400px) {
-    body  {
-      padding: 0.5rem 0.5rem 0 0.5rem;
+    body {
+      padding-top: 0.5rem;
     }
   }
 `;

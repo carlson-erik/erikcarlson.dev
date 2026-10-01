@@ -36,7 +36,7 @@ const ArticleHeader = ({ title, date, minutesToRead }: ArticleHeaderProps) => {
   return (
     <Container>
       <BackLink href="/writing">All writing</BackLink>
-      <ArticleTitle>{title}</ArticleTitle>
+      <ArticleTitle as="h1">{title}</ArticleTitle>
       <PostMeta date={date} minutesToRead={minutesToRead} />
     </Container>
   );

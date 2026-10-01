@@ -55,6 +55,7 @@ const TitleContainer = styled.div`
 const Title = styled.h1`
   font-family: ${headingFont};
   font-size: 2.5rem;
+  font-weight: 700;
   padding-left: 1rem;
   text-decoration: none;
 
@@ -165,7 +166,12 @@ const MobileMenuIcon = styled.svg`
   fill: ${(props) => props.theme.colors.text};
 `;
 
-const Header = () => {
+interface HeaderProps {
+  /** False on pages whose own title is the h1, so the site name is a <p> */
+  siteNameIsHeading?: boolean;
+}
+
+const Header = ({ siteNameIsHeading = true }: HeaderProps) => {
   const { width } = useWindowResize();
   const [$showMobileMenu, set$showMobileMenu] = useState<boolean>(false);
   const [showProjectsMenu, setShowProjectsMenu] = useState<boolean>(false);
@@ -186,7 +192,7 @@ const Header = () => {
             height={96}
             alt="erik carlson portfolio picture"
           />
-          <Title>Erik Carlson</Title>
+          <Title as={siteNameIsHeading ? "h1" : "p"}>Erik Carlson</Title>
         </TitleContainer>
         <ActionContainer>
           <ThemeSwitch />
