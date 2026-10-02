@@ -11,10 +11,10 @@ import { getPageMetadata } from "@/lib/metadata";
 import { projects } from "@/data/projects";
 
 const INTRO_PHRASES = [
-  "software.",
-  "things people use.",
-  "ideas into reality.",
-  "charts that explain data.",
+  "build software that matters",
+  "turn ideas into reality",
+  "create products people use",
+  "design user experiences",
 ];
 
 const Introduction = styled.section`
@@ -36,7 +36,7 @@ export default function HomePage() {
       <Head>{getPageMetadata("Home")}</Head>
       <Layout>
         <Introduction>
-          <RevolvingTitle prefix="I build" phrases={INTRO_PHRASES} />
+          <RevolvingTitle prefix="I" phrases={INTRO_PHRASES} />
           <IntroBody>
             <Paragraph>
               I'm Erik, a Full Stack Software Engineer based in Maine. I like
