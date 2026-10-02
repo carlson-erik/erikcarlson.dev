@@ -30,13 +30,15 @@ const SidebarHeading = styled.h2`
   font-family: ${headingFont};
   font-size: 1rem;
   line-height: 1.25;
+  /* Lines up with the links' text, which is inset for the current item's fill */
+  padding-left: 0.5rem;
 `;
 
 const SidebarList = styled.ol`
   margin: 0;
   padding: 0;
   list-style: none;
-  border-left: 2px solid ${(props) => props.theme.colors.borderLine};
+  border-right: 2px solid ${(props) => props.theme.colors.borderLine};
 `;
 
 // Doubled class so it beats Layout's "a, a:visited" link color. Contents links
@@ -44,9 +46,10 @@ const SidebarList = styled.ol`
 const SidebarLink = styled.a`
   display: block;
   /* Over the list's rule, so the current item's border replaces it */
-  margin-left: -2px;
-  padding: 0.375rem 0 0.375rem 0.875rem;
-  border-left: 2px solid transparent;
+  margin-right: -2px;
+  padding: 0.375rem 0.875rem 0.375rem 0.5rem;
+  border-right: 2px solid transparent;
+  border-radius: 4px 0 0 4px;
   font-size: 0.9375rem;
   line-height: 1.4;
 
@@ -60,9 +63,10 @@ const SidebarLink = styled.a`
   }
   /* After :hover, so the current item keeps the text color on hover */
   &&[aria-current="true"] {
-    border-left-color: ${(props) => props.theme.colors.link.text};
+    /* No bold: a wider title could rewrap and shift the list while scrolling */
+    border-right-color: ${(props) => props.theme.colors.link.text};
+    background-color: ${(props) => props.theme.colors.contents.background};
     color: ${(props) => props.theme.colors.text};
-    font-weight: bold;
   }
 `;
 
@@ -107,7 +111,7 @@ export const ContentsSidebar = ({ headings }: ContentsProps) => {
   const activeId = useActiveHeading(headings.map((heading) => heading.id));
   return (
     <Sidebar aria-labelledby="contents-heading">
-      <SidebarHeading id="contents-heading">Contents</SidebarHeading>
+      <SidebarHeading id="contents-heading">In this article</SidebarHeading>
       <SidebarList>
         {headings.map((heading) => (
           <li key={heading.id}>
@@ -128,7 +132,7 @@ export const ContentsSidebar = ({ headings }: ContentsProps) => {
 export const ContentsSection = ({ headings }: ContentsProps) => {
   return (
     <Section>
-      <SectionSummary>Contents</SectionSummary>
+      <SectionSummary>In this article</SectionSummary>
       <SectionList>
         {headings.map((heading) => (
           <li key={heading.id}>
